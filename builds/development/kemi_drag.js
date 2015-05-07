@@ -84,19 +84,20 @@ function MakePeriodicTable(JsonObj){
 }
 
 
-function FontSizeScaler(){
+function FontSizeScaler(FontSizeStr, LineHeight, Selector){
+    var FontSizeNum = parseInt(FontSizeStr.replace(/px/g, ''));
     var NativeWindowWidth = 1425;   // At WindowWidth = 1426px the .ElementBox font-size = 11px, and scaling linarly.
     var WindowWidth = $( window ).width();
-    var ElementBoxFontSizeNum = 11; // At WindowWidth = 1426px the .ElementBox font-size = 11px, and scaling linarly.
-    var AtomSymbolFontSizeNum = 18; // At WindowWidth = 1426px the .AtomSymbol font-size = 18px, and scaling linarly.
     var Ratio = Math.round(1000*( WindowWidth/NativeWindowWidth ))/1000; // Rounded to 3 digit precision.
 
-    $( ".ElementBox" ).css("font-size", String(ElementBoxFontSizeNum*Ratio)+"px");
-    $( ".AtomSymbol" ).css("font-size", String(AtomSymbolFontSizeNum*Ratio)+"px");
+    $( Selector ).css("font-size", String(FontSizeNum*Ratio)+"px");
+
+    // Ajust line-height
+    // $( Selector ).css("line-height", String(parseInt(LineHeight)*Math.pow(1,Ratio));
+    console.log("Ratio : " + Ratio);
     
     console.log("Ratio : " + Ratio);
-    console.log("ElementBoxFontSizeNum : " + ElementBoxFontSizeNum);
-    console.log("AtomSymbolFontSizeNum : " + AtomSymbolFontSizeNum);
+    console.log("ElementBoxFontSizeNum : " + FontSizeNum);
 }
 
 
@@ -113,10 +114,17 @@ $( document ).ready(function() {
 
     MakePeriodicTable(JsonObj);
 
+    // Get CSS font-sizes
+    var AtomSymbolFontSizeStr = $( ".AtomSymbol" ).css("font-size");
+    var ElementBoxFontSizeStr = $( ".ElementBox" ).css("font-size");
+
+    // Get CSS line-height
+    var LineHeight = $( ".ElementBox" ).css("line-height");
+
     
 
     // Scale the height on all ElmentBox
-    $( ".ElementBox" ).height( 4/3*$( ".ElementBox" ).width() );
+    // $( ".ElementBox" ).height( 4/3*$( ".ElementBox" ).width() );
 
     // Scale the height on all small and large boxes
     $( ".lbox" ).height( $( ".lbox" ).width() );
@@ -134,7 +142,8 @@ $( document ).ready(function() {
         $( ".xlbox" ).height( $( ".xlbox" ).width() );
         $( ".sbox" ).height( $( ".sbox" ).width() );
 
-        FontSizeScaler();
+        FontSizeScaler(AtomSymbolFontSizeStr, LineHeight, ".AtomSymbol");
+        FontSizeScaler(ElementBoxFontSizeStr, LineHeight, ".ElementBox");
 
         console.log("WindowWidth: " + $( window ).width());
 
@@ -151,7 +160,8 @@ $( document ).ready(function() {
         $( ".xlbox" ).height( $( ".xlbox" ).width() );
         $( ".sbox" ).height( $( ".sbox" ).width() );
 
-        FontSizeScaler();
+        FontSizeScaler(AtomSymbolFontSizeStr, LineHeight, ".AtomSymbol");
+        FontSizeScaler(ElementBoxFontSizeStr, LineHeight, ".ElementBox");
     });
 
 
