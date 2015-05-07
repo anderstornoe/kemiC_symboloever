@@ -7,22 +7,24 @@
 // Perodisk system på dansk og andre sprog:
 // http://www.ptable.com/?lang=da
 
+// JQuery-ui resources:
+// https://jqueryui.com/resources/demos/droppable/revert.html
+
 
 var JsonObj;
 
 var Names;
 var NameArray = [];
 
-var ElementBox =    '<div class="ElementBox draggable">' + 
-                        '<div class="AtomNum">xxx' + 
-                        '</div>' +
-                        '<div class="AtomSymbol">' + 
-                        '</div>' +
-                        '<div class="AtomName"> TESTX' + 
-                        '</div>' +
-                        '<div class="AtomWeight">' + 
-                        '</div>' +
-                    '</div>';
+function ElementBox(AtomNum, AtomSymbol, AtomName, AtomWeight){   
+    var HTML = '<div class="ElementBox draggable">' + 
+                    '<div class="AtomNum">' + AtomNum + '</div>' +
+                    '<div class="AtomSymbol">' + AtomSymbol + '</div>' +
+                    '<div class="AtomName">' + AtomName + '</div>' +
+                    '<div class="AtomWeight">' + AtomWeight + '</div>' +
+                '</div>';
+    return HTML;
+}
 
 var DummyElement = '<div class="DummyElement"></div>';
 
@@ -65,22 +67,31 @@ function loadData(url) {
 
 function MakePeriodicTable(JsonObj){
     var Z = 0;
-    for (var i = 1; i <= 18*7; i++) {
-        if (ElementDummyNumbers.indexOf( "_"+String(i)+"_" ) !== -1){
-            $(".PeriodicTableWrapper").append(DummyElement);
-        } else {
-            $(".PeriodicTableWrapper").append(ElementBox);
-            if (Z < 18){
-                console.log("Z: " + Z + ", JsonObj[Z].sym: " + JsonObj[Z].Z);
-                $(".AtomNum").last().text(JsonObj[Z].Z);
-                $(".AtomSymbol").last().text(JsonObj[Z].sym);
-                $(".AtomName").last().text(JsonObj[Z].name);
-                $(".AtomWeight").last().text(Math.round(10000*JsonObj[Z].A)/10000);  // Rounded to 4 digit precision.
-                ++Z;
-                console.log("ElementBox TEXT: " + $(".ElementBox").last().html() );
+    var x = 0;
+    var HTML = "";
+    for (var r = 1; r <= 7; r++) {
+        HTML += '<div class="row">';
+        for (var i = 1; i <= 18; i++) {
+            ++x;
+            if (ElementDummyNumbers.indexOf( "_"+String(x)+"_" ) !== -1){
+                HTML += DummyElement;
+            } else {
+                if (Z < 18){ // Midlertidig if-else-konstruktion:
+                    console.log("Z: " + Z + ", JsonObj[Z].sym: " + JsonObj[Z].Z);
+                    var AtomNum = String(JsonObj[Z].Z);
+                    var AtomSymbol = JsonObj[Z].sym;
+                    var AtomName = JsonObj[Z].name;
+                    var AtomWeight = String(Math.round(10000*JsonObj[Z].A)/10000);
+                    HTML += ElementBox(AtomNum, AtomSymbol, AtomName, AtomWeight);
+                    ++Z;
+                } else {
+                    HTML += ElementBox("34", "X", "Xxxx", "34");
+                }
             }
-        }
+        };
+        HTML += '</div>';
     };
+    $(".PeriodicTableWrapper").append(HTML);
 }
 
 
@@ -108,6 +119,7 @@ function FontSizeScaler(FontSizeStr, LineHeight, Selector){
 
 $( document ).ready(function() {
 
+
     console.log("JsonObj: " + JSON.stringify(JsonObj));
 
     console.log("NameArray 2: " + NameArray);
@@ -120,8 +132,6 @@ $( document ).ready(function() {
 
     // Get CSS line-height
     var LineHeight = $( ".ElementBox" ).css("line-height");
-
-    
 
     // Scale the height on all ElmentBox
     // $( ".ElementBox" ).height( 4/3*$( ".ElementBox" ).width() );
@@ -148,6 +158,8 @@ $( document ).ready(function() {
         console.log("WindowWidth: " + $( window ).width());
 
         // $( ".ElementBox" ).css( "font-size", String(50)+"%" );
+
+
     });
 
     // Naar vinduet resizes rescales elementerne:
@@ -165,13 +177,22 @@ $( document ).ready(function() {
     });
 
 
-    $( ".draggable" ).draggable();
+    $( document ).on('mousedown', ".ElementBox", function(event){
+        // $(".AtomNum, .AtomName, .AtomWeight", this).css("display", "none");
+        // // $(".AtomNum, .AtomName, .AtomWeight", this).css("color", "#FFF");
+        // $(".AtomSymbol", this).css("font-size", "400%");
+    });
+
+
+    $( ".draggable" ).draggable({ 
+        revert: "valid" 
+    });
     $( ".droppable" ).droppable({
         // accept: ".OK",
         drop: function( event, ui ) {
             $( this ).addClass( "DropHighlight" );
             // console.log("event: " + JSON.stringify(event));
-            console.log("ui: " + JSON.stringify(ui));
+            // console.log("ui: " + JSON.stringify(ui));
         }
     });
 
