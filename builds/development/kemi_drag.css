@@ -1,0 +1,21 @@
+body{}
+.PeriodicTableWrapper{ width: 100%; border: 1px solid #F00;}
+/*.ElmentBox{width: 5.5555%; display: inline-block; border: 1px solid #00F;}*/
+.ElementBox   {width: 5%; margin: 0.27777%; padding: 3px; display: inline-block; border: 1px solid #00F;}  /* NOTE: 90/18 = 5%, og 5/18 = 0.27777% */
+.DummyElement{width: 5%; margin: 0.27777%; padding: 3px; display: inline-block; /*border: 1px solid #F00;*/}
+.AtomSymbol{}
+
+.lbox{width: 12%;}
+.xlbox{width: 16%;}
+.sbox{width: 33%;}
+
+.red{border: 1px solid #F00;}
+
+.DropZone{padding-left: 41%; margin-top: 3%}
+.DropCoeff{display: inline-block;}
+.DropElement{display: inline-block;}
+.DropChargeAndIndex{display: inline-block;}
+.DropCharge{}
+.DropIndex{}
+
+.DropHighlight{background-color: #FF0;}
