@@ -16,6 +16,10 @@ var JsonObj;
 var Names;
 var NameArray = [];
 
+var DummyElement = '<div class="DummyElement"></div>';
+
+var ElementDummyNumbers = "_2_3_4_5_6_7_8_9_10_11_12_13_14_15_16_17_21_22_23_24_25_26_27_28_29_30_39_40_41_42_43_44_45_46_47_48_";
+
 function ElementBox(AtomNum, AtomSymbol, AtomName, AtomWeight){   
     var HTML = '<div class="ElementBox draggable">' + 
                     '<div class="AtomNum">' + AtomNum + '</div>' +
@@ -25,11 +29,6 @@ function ElementBox(AtomNum, AtomSymbol, AtomName, AtomWeight){
                 '</div>';
     return HTML;
 }
-
-var DummyElement = '<div class="DummyElement"></div>';
-
-var ElementDummyNumbers = "_2_3_4_5_6_7_8_9_10_11_12_13_14_15_16_17_21_22_23_24_25_26_27_28_29_30_39_40_41_42_43_44_45_46_47_48_";
-
 
 function AjaxCallback(JSONdata){
     console.log("JsonObj - AjaxCallback: " + JSON.stringify(JSONdata));
@@ -112,6 +111,36 @@ function FontSizeScaler(FontSizeStr, LineHeight, Selector){
 }
 
 
+function CreateNumberDivs(Min, Max, Class){
+    var HTML = "";
+    for (var i = Min; i <= Max; i++) {
+        HTML += '<div class="'+Class+'">' + i + '</div>';
+    };
+    return HTML;
+}
+
+
+function SetAcceptedElements(AtomNumOk){
+    $(".ElementBox").each(function( index, element ) {
+        var AtomNum = parseInt($(".AtomNum", element).text());
+        console.log("AtomNum: " + AtomNum);
+        if(AtomNumOk == AtomNum){
+            $(element).addClass("Elem_OK");
+        }
+    });
+}
+
+function SetAcceptedNumbers(NumOk, Selector, Class_OK){
+    $(Selector).each(function( index, element ) {
+        var Num = parseInt($(element).text());
+        console.log("Num: " + Num);
+        if(NumOk == Num){
+            $(element).addClass(Class_OK);
+        }
+    });
+}
+
+
 //########################################################################
 //                        Run code....
 //########################################################################
@@ -126,20 +155,19 @@ $( document ).ready(function() {
 
     MakePeriodicTable(JsonObj);
 
+    $(".IndexWrapper").html(CreateNumberDivs(1, 5, "IndexNum draggable"));  
+    $(".ChargeWrapper").html(CreateNumberDivs(-4, 1, "ChargeNum draggable"));
+
+    SetAcceptedElements(1);
+    SetAcceptedNumbers(1, ".IndexNum", "Index_OK");
+    SetAcceptedNumbers(-4, ".ChargeNum", "Char_OK");
+
     // Get CSS font-sizes
     var AtomSymbolFontSizeStr = $( ".AtomSymbol" ).css("font-size");
     var ElementBoxFontSizeStr = $( ".ElementBox" ).css("font-size");
 
     // Get CSS line-height
     var LineHeight = $( ".ElementBox" ).css("line-height");
-
-    // Scale the height on all ElmentBox
-    // $( ".ElementBox" ).height( 4/3*$( ".ElementBox" ).width() );
-
-    // Scale the height on all small and large boxes
-    $( ".lbox" ).height( $( ".lbox" ).width() );
-    $( ".xlbox" ).height( $( ".xlbox" ).width() );
-    $( ".sbox" ).height( $( ".sbox" ).width() );
 
 
     // Naar vinduet loader scales elementerne:
@@ -152,14 +180,12 @@ $( document ).ready(function() {
         $( ".xlbox" ).height( $( ".xlbox" ).width() );
         $( ".sbox" ).height( $( ".sbox" ).width() );
 
-        FontSizeScaler(AtomSymbolFontSizeStr, LineHeight, ".AtomSymbol");
-        FontSizeScaler(ElementBoxFontSizeStr, LineHeight, ".ElementBox");
+        FontSizeScaler(AtomSymbolFontSizeStr, LineHeight, ".AtomSymbol, .NumberHeading");
+        FontSizeScaler(ElementBoxFontSizeStr, LineHeight, ".ElementBox, .IndexNum, .ChargeNum");
 
         console.log("WindowWidth: " + $( window ).width());
 
         // $( ".ElementBox" ).css( "font-size", String(50)+"%" );
-
-
     });
 
     // Naar vinduet resizes rescales elementerne:
@@ -172,8 +198,8 @@ $( document ).ready(function() {
         $( ".xlbox" ).height( $( ".xlbox" ).width() );
         $( ".sbox" ).height( $( ".sbox" ).width() );
 
-        FontSizeScaler(AtomSymbolFontSizeStr, LineHeight, ".AtomSymbol");
-        FontSizeScaler(ElementBoxFontSizeStr, LineHeight, ".ElementBox");
+        FontSizeScaler(AtomSymbolFontSizeStr, LineHeight, ".AtomSymbol, .NumberHeading");
+        FontSizeScaler(ElementBoxFontSizeStr, LineHeight, ".ElementBox, .IndexNum, .ChargeNum");
     });
 
 
@@ -185,14 +211,33 @@ $( document ).ready(function() {
 
 
     $( ".draggable" ).draggable({ 
-        revert: "valid" 
+        revert: 'invalid'  // Makes the draggable revert back if does not have class "Elem_OK", "Coeff_OK", "Char_OK" or "Index_OK". 
     });
-    $( ".droppable" ).droppable({
-        // accept: ".OK",
+
+    $( ".DropElement" ).droppable({
+        accept: ".Elem_OK",
         drop: function( event, ui ) {
             $( this ).addClass( "DropHighlight" );
             // console.log("event: " + JSON.stringify(event));
             // console.log("ui: " + JSON.stringify(ui));
+        }
+    });
+    $( ".DropCoeff" ).droppable({
+        accept: ".Coeff_OK",
+        drop: function( event, ui ) {
+            $( this ).addClass( "DropHighlight" );
+        }
+    });
+    $( ".DropCharge" ).droppable({
+        accept: ".Char_OK",
+        drop: function( event, ui ) {
+            $( this ).addClass( "DropHighlight" );
+        }
+    });
+    $( ".DropIndex" ).droppable({
+        accept: ".Index_OK",
+        drop: function( event, ui ) {
+            $( this ).addClass( "DropHighlight" );
         }
     });
 
