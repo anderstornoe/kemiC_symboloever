@@ -197,6 +197,8 @@ $( document ).ready(function() {
     var AtomSymbolFontSizeStr = $( ".AtomSymbol" ).css("font-size");
     var ElementBoxFontSizeStr = $( ".ElementBox" ).css("font-size");
     var DragNumFontSizeStr = $( ".DragNum" ).css("font-size");
+    var ScoreHeaderH3FontSizeStr = $( ".ScoreHeaderH3" ).css("font-size");
+    var ScoreHeaderFontSizeStr = $( ".ScoreHeader" ).css("font-size");
     console.log("DragNumFontSizeStr: " + DragNumFontSizeStr);
 
     // Get CSS line-height
@@ -216,6 +218,8 @@ $( document ).ready(function() {
         FontSizeScaler(AtomSymbolFontSizeStr, LineHeight, ".AtomSymbol, .NumberHeading");
         FontSizeScaler(ElementBoxFontSizeStr, LineHeight, ".ElementBox");
         FontSizeScaler(DragNumFontSizeStr, LineHeight, ".DragNum");
+        FontSizeScaler(ScoreHeaderH3FontSizeStr, LineHeight, ".ScoreHeaderH3");
+        FontSizeScaler(ScoreHeaderFontSizeStr, LineHeight, ".ScoreHeader, .ScoreNum, .TryAgain");
 
         console.log("WindowWidth: " + $( window ).width());
 
@@ -235,6 +239,8 @@ $( document ).ready(function() {
         FontSizeScaler(AtomSymbolFontSizeStr, LineHeight, ".AtomSymbol, .NumberHeading");
         FontSizeScaler(ElementBoxFontSizeStr, LineHeight, ".ElementBox");
         FontSizeScaler(DragNumFontSizeStr, LineHeight, ".DragNum");
+        FontSizeScaler(ScoreHeaderH3FontSizeStr, LineHeight, ".ScoreHeaderH3");
+        FontSizeScaler(ScoreHeaderFontSizeStr, LineHeight, ".ScoreHeader, .ScoreNum, .TryAgain");
     });
 
 

@@ -13,7 +13,7 @@ body{line-height: 1;}
 
 .red{border: 1px solid #F00;}
 
-.DropZone{padding-left: 41%; margin-bottom: 3%}
+.DropZone{padding-left: 25%; margin-bottom: 3%}
 .DropCoeff{display: inline-block;}
 .DropElement{display: inline-block;}
 .DropChargeAndIndex{display: inline-block;}
