@@ -1,7 +1,28 @@
 
 //########################################################################
-//          JSON-objekt som senere skal have sin egen JSON-fil:
+//          JSON-objekter som senere skal have sin egne JSON-filer:
 //########################################################################
+
+var JsonObj_PeriodicTable = [
+    {"name": "Hydrogen",  "sym":"H",  "num":1,   "Z":1,  "A":1.0079},
+    {"name": "Helium",    "sym":"He", "num":18,  "Z":2,  "A":4.002602},
+    {"name": "Lithium",   "sym":"Li", "num":19,  "Z":3,  "A":6.94},
+    {"name": "Beryllium", "sym":"Be", "num":20,  "Z":4,  "A":9.0121831},
+    {"name": "Bor",       "sym":"B",  "num":31,  "Z":5,  "A":10.81},
+    {"name": "Carbon",    "sym":"C",  "num":32,  "Z":6,  "A":12.011},
+    {"name": "Nitrogen",  "sym":"N",  "num":33,  "Z":7,  "A":14.007},
+    {"name": "Ilt",       "sym":"O",  "num":34,  "Z":8,  "A":15.999},
+    {"name": "Fluor",     "sym":"F",  "num":35,  "Z":9,  "A":18.998403163},
+    {"name": "Neon",      "sym":"Ne", "num":36,  "Z":10, "A":17.1797},
+    {"name": "Natrium",   "sym":"Na", "num":37,  "Z":11, "A":22.98976928},
+    {"name": "Magnesium", "sym":"Mg", "num":38,  "Z":12, "A":24.305},
+    {"name": "Aluminium", "sym":"Al", "num":49,  "Z":13, "A":26.9815385},
+    {"name": "Silicium",  "sym":"Si", "num":50,  "Z":14, "A":28.085},
+    {"name": "Fosfor",    "sym":"P",  "num":51,  "Z":15, "A":30.973761998},
+    {"name": "Svovl",     "sym":"S",  "num":52,  "Z":16, "A":32.06},
+    {"name": "Klor",      "sym":"Cl", "num":53,  "Z":17, "A":35.45},
+    {"name": "Argon",     "sym":"Ar", "num":54,  "Z":18, "A":39.948}
+];
 
 var JsonObj_Questions = [
     {"AtomSym": "H",   "Name": "Hydrogen", "TName": "Dihydrogen",      "AtomNum": 1,  "Principle": [1,3], "ChemType": "molecule", "Index": 2, "Charge":1,  "Coeff": 1},
@@ -16,6 +37,10 @@ var JsonObj_Questions = [
     {"AtomSym": "I",   "Name": "Iod",      "TName": "Diiod",           "AtomNum": 53, "Principle": [1,3], "ChemType": "molecule", "Index": 2, "Charge":-1, "Coeff": 1}
 ];
 
+
+//########################################################################
+//                      Interne JS-objekter:
+//########################################################################
 
 var ResultStr = "";
 var EventObj = {    Success: false,
@@ -66,9 +91,12 @@ $( document ).ready(function() {
 // Revert:
 // https://jqueryui.com/resources/demos/droppable/revert.html
 
+// LINK til "objekter" på visningssitet:
+// http://eundervisning-wp.dk/objekter/kemi_drag/builds/development/
+
 // MARK 
 
-var PrincipleNum = 4;
+var PrincipleNum = 1;
 
 var JsonObj_PeriodicTable;
 
@@ -84,193 +112,6 @@ var QuestionObj =   {
                         P2 : [],  // Princip 2 - P2-array consists of the array-index of all the JsonObj_Questions which have Principle: [2]
                         P3 : []   // Princip 3 - P3-array consists of the array-index of all the JsonObj_Questions which have Principle: [3]
                     }
-
-function MakeQuestionObj(JsonObj_Questions, QuestionObj){
-
-    for (var ElmObjNr in JsonObj_Questions){
-        console.log("JsonObj_Questions["+String(ElmObjNr)+"].Principle: " + JsonObj_Questions[ElmObjNr].Principle);
-        for (var p in JsonObj_Questions[ElmObjNr].Principle){
-            console.log("p: " + p, ", JsonObj_Questions["+String(ElmObjNr)+"].Principle["+p+"]: " + ElmObjNr);
-            if (JsonObj_Questions[ElmObjNr].Principle[p] == 1) QuestionObj.P1.push( ElmObjNr );
-            if (JsonObj_Questions[ElmObjNr].Principle[p] == 2) QuestionObj.P2.push( ElmObjNr );
-            if (JsonObj_Questions[ElmObjNr].Principle[p] == 3) QuestionObj.P3.push( ElmObjNr );
-        }
-    }
-
-    console.log("QuestionObj: " + JSON.stringify(QuestionObj));
-}
-
-
-function Principle1(JOQ, PrincipleArray, Qcount){
-
-    var Inx = PrincipleArray[Qcount];
-
-    var HTML = "";
-    HTML += "<h1>Princip 1-a-1: et grundstof - letteste niveau</h1>";
-    HTML += "<h2>Skriv formlen for stoffet der indeholder "+JOQ[Inx]["Index"]+" "+JOQ[Inx]["Name"].toLowerCase()+"atom"+((JOQ[Inx]["Index"]==1)?"":"er")+". <span class='Qcount'></span></h2>";
-    
-    // Write the heading and question for the student:
-    $(".QuizHeading").html( HTML );
-
-    SetAcceptedElements( JOQ[Inx]["AtomNum"] );                        // The draggable element
-    SetAcceptedNumbers(  JOQ[Inx]["Index"], ".IndexNum", "Index_OK");  // Principle 1: index numbers
-}
-
-
-function Principle4(JOQ, PrincipleArray, Qcount){
-
-    var Inx = PrincipleArray[Qcount];
-
-    var HTML = "";
-    HTML += "<h1>Princip 1, 2 og 3 - <b>TEST</b> - med alle draggable tal</h1>";
-    HTML += "<h2>Skriv formlen for stoffet der indeholder "+JOQ[Inx]["Index"]+" "+JOQ[Inx]["Name"].toLowerCase()+"atom"+((JOQ[Inx]["Index"]==1)?"":"er")+". <span class='Qcount'></span></h2>";
-    
-    // Write the heading and question for the student:
-    $(".QuizHeading").html( HTML );
-
-    // $(".IndexWrapper").html(CreateNumberDivs(1, 8, "IndexNum DragNum btn btn-info draggable", false));  
-    // $(".ChargeWrapper").html(CreateNumberDivs(-3, 3, "ChargeNum DragNum btn btn-info draggable", true));
-    // $(".CoeffWrapper").html(CreateNumberDivs(1, 5, "CoeffNum DragNum btn btn-info draggable", false));
-
-    $(".DragNum").removeClass("Index_OK Char_OK Coeff_OK");
-
-    // Returns "X+" if X > 0, "X-" if X < 0 or 0 if X = 0, where X = charge.
-    Charge = String(Math.abs(JOQ[Inx]["Charge"])) + ((JOQ[Inx]["Charge"] > 0)?"+":((JOQ[Inx]["Charge"] < 0)?"-":""));  
-
-    SetAcceptedElements( JOQ[Inx]["AtomNum"] );                        // The draggable element
-    SetAcceptedNumbers(  JOQ[Inx]["Index"], ".IndexNum", "Index_OK");  // Principle 1: index numbers
-    SetAcceptedNumbers(  Charge, ".ChargeNum", "Char_OK");             // Principle 2: charge numbers
-    SetAcceptedNumbers(  JOQ[Inx]["Coeff"], ".CoeffNum", "Coeff_OK");  // Principle 3: coefficient numbers
-
-    // console.log("PrincipleArray: " + PrincipleArray);
-    console.log("JOQ: " + JOQ[1]["Name"].toLowerCase());
-    console.log("GiveQuestion 1: " + HTML);
-    console.log("GiveQuestion 2 - AtomNum: " + JOQ[Inx]["AtomNum"] + ", Name: " + JOQ[Inx]["Name"] + ", Index: " + JOQ[Inx]["Index"] + ", Charge: " + Charge + ", Coeff: " + JOQ[Inx]["Coeff"]);
-}
-
-
-function GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum){
-    var PrincipleArray; var TPrincipleArray; var ArrayLength;
-    var JOQ = JsonObj_Questions;  // JsonObj_Questions[ArrayIndexNum][KeyName];
-    var HTML = ""; 
-    var Qcount = 0;
-    if (PrincipleNum == 1){ // PRINCIPLE 1: index numbers
-        PrincipleArray = QuestionObj["P1"]; 
-        TPrincipleArray = ShuffelArray( PrincipleArray );  // Random index relating to the sub-objects in JsonObj_Questions.
-        ArrayLength = TPrincipleArray.length;
-
-        $(".IndexWrapper").html(CreateNumberDivs(1, 8, "IndexNum DragNum btn btn-info draggable", false));  
-        $(".ChargeWrapper").html(CreateNumberDivs(-3, 3, "ChargeNum DragNum btn btn-info draggable", true));
-
-        Principle1(JOQ, TPrincipleArray, Qcount);
-        $(".Qcount").text( String(Qcount + 1) + "/" + String(ArrayLength) );
-
-        $(".CoeffHeadingWrapper, .CoeffWrapper").hide();  // Hide placeholders for the coefficients - they are not in use in principle 1 anyway.
-
-        $( document ).on('click', ".NextQuestion", function(event){
-            event.preventDefault();  // Prevents sending the user to "href".
-
-            // if ( (parseInt($(".ScoreCorrect").text()) < 2) ) {
-            //     alert("Du skal have samtlige spørgsmål korrekt før du kan fortsætte!");
-            //     return 0;
-            // }
-
-            ResetQuiz(500);
-            ++Qcount;
-            Principle1(JOQ, TPrincipleArray, Qcount);
-            
-            $(".Qcount").text( String(Qcount + 1) + "/" + String(ArrayLength) );
-        });
-    }
-    if (PrincipleNum == 2){ // PRINCIPLE 2: charge numbers
-        PrincipleArray = QuestionObj["P2"];
-        Inx = ShuffelArray( PrincipleArray )[0];  // Random index relating to the sub-objects in JsonObj_Questions.
-        HTML += "<h1>Princip 1-b-1: flere grundstoffer - letteste niveau</h1>";
-        HTML += "<h2>DETTE PRINCIP ER IKKE LAVET ENDNU...</h2>";
-        // SetAcceptedNumbers( JOQ[Inx]["Charge"], ".ChargeNum", "Char_OK"); // Principle 2: charge numbers
-    }
-    if (PrincipleNum == 3){ // PRINCIPLE 3: coefficient numbers
-        PrincipleArray = QuestionObj["P3"];
-        Inx = ShuffelArray( PrincipleArray )[0];  // Random index relating to the sub-objects in JsonObj_Questions.
-        HTML += "<h1>Princip 1-b-1: sværere niveau - alle formler</h1>";
-        HTML += "<h2>DETTE PRINCIP ER IKKE LAVET ENDNU...</h2>";
-        // SetAcceptedNumbers( JOQ[Inx]["Coeff"], ".CoeffNum", "Coeff_OK");  // Principle 3: coefficient numbers
-    }
-    if (PrincipleNum == 4){ // PRINCIPLE 1+2+3 - FOR TESTING 
-        PrincipleArray = QuestionObj["P1"];  // <---------------------------  HUSK AT RETTE DENNE!!!
-        TPrincipleArray = ShuffelArray( PrincipleArray );  // Random index relating to the sub-objects in JsonObj_Questions.
-        ArrayLength = TPrincipleArray.length;
-
-        $(".IndexWrapper").html(CreateNumberDivs(1, 8, "IndexNum DragNum btn btn-info draggable", false));  
-        $(".ChargeWrapper").html(CreateNumberDivs(-3, 3, "ChargeNum DragNum btn btn-info draggable", true));
-        $(".CoeffWrapper").html(CreateNumberDivs(1, 5, "CoeffNum DragNum btn btn-info draggable", false));
-
-        Principle4(JOQ, TPrincipleArray, Qcount);
-        $(".Qcount").text( String(Qcount) + "/" + String(ArrayLength) );
-
-        $( document ).on('click', ".NextQuestion", function(event){
-            event.preventDefault();  // Prevents sending the user to "href".
-
-            // if ( (parseInt($(".ScoreCorrect").text()) < 3) ) {
-            //     alert("Du skal have samtlige 3 spørgsmål korrekt før du kan fortsætte!");
-            //     return 0;
-            // }
-
-            ResetQuiz(500);
-            Principle4(JOQ, TPrincipleArray, Qcount);
-            ++Qcount;
-            $(".Qcount").text( String(Qcount) + "/" + String(ArrayLength) );
-        });
-
-        console.log("ScoreCorrect XXX: " + parseInt($(".ScoreCorrect").text())   );
-        console.log("ArrayLength: " + ArrayLength);
-    }
-
-    // Write the heading and question for the student:
-    // $(".QuizHeading").html( HTML );
-
-}
-
-
-function GivePosetiveFeedback(){
-
-}
-
-
-function GiveNegativeFeedback(){
-
-}
-
-
-// Funktionen laver en kopi af arrayet i argumentet, og blander elementerne tilfaeldigt
-function ShuffelArray(ItemArray){
-    var NumOfItems = ItemArray.length;
-    var NewArray = ItemArray.slice();  // Copy the array...
-    var Item2; var TempItem1; var TempItem2;
-    for (var Item1 = 0; Item1 < NumOfItems; Item1++) {
-        Item2 = Math.floor( Math.random() * NumOfItems);
-        TempItem1 = NewArray[Item1];
-        TempItem2 = NewArray[Item2];
-        NewArray[Item2] = TempItem1;
-        NewArray[Item1] = TempItem2;
-    }
-    return NewArray;
-}
-
-
-function ElementBox(AtomNum, AtomSymbol, AtomName, AtomWeight){   
-    var HTML = '<div class="ElementBox btn btn-info draggable">' + 
-                    '<div class="AtomNum">' + AtomNum + '</div>' +
-                    '<div class="AtomSymbol">' + AtomSymbol + '</div>' +
-                    '<div class="AtomName">' + AtomName + '</div>' +
-                    '<div class="AtomWeight">' + AtomWeight + '</div>' +
-                '</div>';
-    return HTML;
-}
-
-function AjaxCallback(JSONdata){
-    console.log("JsonObj_PeriodicTable - AjaxCallback: " + JSON.stringify(JSONdata));
-}
 
 function loadData(url) {
     $.ajax({
@@ -315,6 +156,213 @@ function loadData(url) {
 }
 
 
+function MakeQuestionObj(JsonObj_Questions, QuestionObj){
+
+    for (var ElmObjNr in JsonObj_Questions){
+        console.log("JsonObj_Questions["+String(ElmObjNr)+"].Principle: " + JsonObj_Questions[ElmObjNr].Principle);
+        for (var p in JsonObj_Questions[ElmObjNr].Principle){
+            console.log("p: " + p, ", JsonObj_Questions["+String(ElmObjNr)+"].Principle["+p+"]: " + ElmObjNr);
+            if (JsonObj_Questions[ElmObjNr].Principle[p] == 1) QuestionObj.P1.push( ElmObjNr );
+            if (JsonObj_Questions[ElmObjNr].Principle[p] == 2) QuestionObj.P2.push( ElmObjNr );
+            if (JsonObj_Questions[ElmObjNr].Principle[p] == 3) QuestionObj.P3.push( ElmObjNr );
+        }
+    }
+
+    console.log("QuestionObj: " + JSON.stringify(QuestionObj));
+}
+
+
+function Principle1(JOQ, PrincipleArray, Qcount){
+
+    var Inx = PrincipleArray[Qcount];
+
+    var ArrayLength = PrincipleArray.length;
+    var QuestionCountStr = "<h2><span class='QuizHeadingTextCount'>" + String(Qcount + 1) + "/" + String(ArrayLength) + "</span></h2>" + 
+                           "<span class='QuizNextQuestion'>" + 
+                                '<a class="NextQuestion btn-default btn btn-default" href="#">Næste spørgsmål</a>' +
+                           "</span>";
+
+    var HTML = "";
+    HTML += "<h1>Princip 1-a-1: et grundstof - letteste niveau</h1>";
+    HTML += "<div class='QuestionWrap'>";
+    HTML += "<h2 class='QuestionText'>Skriv formlen for stoffet der indeholder <span class='QuestionTask'>"+JOQ[Inx]["Index"]+" "+JOQ[Inx]["Name"].toLowerCase()+"atom"+((JOQ[Inx]["Index"]==1)?"":"er")+"</span>.</h2>" + QuestionCountStr;
+    HTML += "</div>";
+    HTML += "<div class='QuestionWrap'><h2 class='AnswerText'>TEST</h2></div>";
+
+    // Write the heading and question for the student:
+    $(".QuizHeadingText").html( HTML );
+    // $(".QuizNextQuestion").html( '<a class="NextQuestion btn-default btn btn-default" href="#">Næste spørgsmål</a>' );
+
+    SetAcceptedElements( JOQ[Inx]["AtomNum"] );                        // The draggable element
+    SetAcceptedNumbers(  JOQ[Inx]["Index"], ".IndexNum", "Index_OK");  // Principle 1: index numbers
+}
+
+
+function Principle4(JOQ, PrincipleArray, Qcount){
+
+    var Inx = PrincipleArray[Qcount];
+
+    var ArrayLength = PrincipleArray.length;
+    var QuestionCountStr = "<h2><span class='QuizHeadingTextCount'>" + String(Qcount + 1) + "/" + String(ArrayLength) + "</span></h2>" + 
+                           "<span class='QuizNextQuestion'>" + 
+                                '<a class="NextQuestion btn-default btn btn-default" href="#">Næste spørgsmål</a>' +
+                           "</span>";
+
+    var HTML = "";
+    HTML += "<h1>Princip 1, 2 og 3 - <b>TEST</b> - med alle draggable tal</h1>";
+    HTML += "<div class='QuestionWrap'>";
+    HTML += "<h2>Skriv formlen for stoffet der indeholder <span class='QuestionTask'>"+JOQ[Inx]["Index"]+" "+JOQ[Inx]["Name"].toLowerCase()+"atom"+((JOQ[Inx]["Index"]==1)?"":"er")+"</span>.</h2>" + QuestionCountStr + "";
+    HTML += "</div>";
+
+    // Write the heading and question for the student:
+    $(".QuizHeadingText").html( HTML );
+
+    // $(".IndexWrapper").html(CreateNumberDivs(1, 8, "IndexNum DragNum btn btn-info draggable", false));  
+    // $(".ChargeWrapper").html(CreateNumberDivs(-3, 3, "ChargeNum DragNum btn btn-info draggable", true));
+    // $(".CoeffWrapper").html(CreateNumberDivs(1, 5, "CoeffNum DragNum btn btn-info draggable", false));
+
+    $(".DragNum").removeClass("Index_OK Char_OK Coeff_OK");
+
+    // Returns "X+" if X > 0, "X-" if X < 0 or 0 if X = 0, where X = charge.
+    Charge = String(Math.abs(JOQ[Inx]["Charge"])) + ((JOQ[Inx]["Charge"] > 0)?"+":((JOQ[Inx]["Charge"] < 0)?"-":""));  
+
+    SetAcceptedElements( JOQ[Inx]["AtomNum"] );                        // The draggable element
+    SetAcceptedNumbers(  JOQ[Inx]["Index"], ".IndexNum", "Index_OK");  // Principle 1: index numbers
+    SetAcceptedNumbers(  Charge, ".ChargeNum", "Char_OK");             // Principle 2: charge numbers
+    SetAcceptedNumbers(  JOQ[Inx]["Coeff"], ".CoeffNum", "Coeff_OK");  // Principle 3: coefficient numbers
+
+    // console.log("PrincipleArray: " + PrincipleArray);
+    console.log("JOQ: " + JOQ[1]["Name"].toLowerCase());
+    console.log("GiveQuestion 1: " + HTML);
+    console.log("GiveQuestion 2 - AtomNum: " + JOQ[Inx]["AtomNum"] + ", Name: " + JOQ[Inx]["Name"] + ", Index: " + JOQ[Inx]["Index"] + ", Charge: " + Charge + ", Coeff: " + JOQ[Inx]["Coeff"]);
+}
+
+
+function GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum){
+    var PrincipleArray; var TPrincipleArray; var ArrayLength;
+    var JOQ = JsonObj_Questions;  // JsonObj_Questions[ArrayIndexNum][KeyName];
+    var HTML = ""; 
+    var Qcount = 0;
+    if (PrincipleNum == 1){ // PRINCIPLE 1: index numbers
+        PrincipleArray = QuestionObj["P1"]; 
+        TPrincipleArray = ShuffelArray( PrincipleArray );  // Random index relating to the sub-objects in JsonObj_Questions.
+        ArrayLength = TPrincipleArray.length;
+
+        $(".IndexWrapper").html(CreateNumberDivs(1, 8, "IndexNum DragNum btn btn-info draggable", false));  
+        $(".ChargeWrapper").html(CreateNumberDivs(-3, 3, "ChargeNum DragNum btn btn-info draggable", true));
+
+        Principle1(JOQ, TPrincipleArray, Qcount);
+        $(".QuizHeadingTextCount").text( String(Qcount + 1) + "/" + String(ArrayLength) );
+
+        $(".CoeffHeadingWrapper, .CoeffWrapper").hide();  // Hide placeholders for the coefficients - they are not in use in principle 1 anyway.
+
+        $( document ).on('click', ".NextQuestion", function(event){
+            event.preventDefault();  // Prevents sending the user to "href".
+
+            // if ( (parseInt($(".ScoreCorrect").text()) < 2) ) {
+            //     alert("Du skal have samtlige spørgsmål korrekt før du kan fortsætte!");
+            //     return 0;
+            // }
+
+            ResetQuiz(500);
+            ++Qcount;
+            Principle1(JOQ, TPrincipleArray, Qcount);
+            
+            // $(".QuestionWrap").append( "<span class='QuizHeadingTextCount'>" + String(Qcount + 1) + "/" + String(ArrayLength) + "</span>");
+        });
+    }
+    if (PrincipleNum == 2){ // PRINCIPLE 2: charge numbers
+        PrincipleArray = QuestionObj["P2"];
+        Inx = ShuffelArray( PrincipleArray )[0];  // Random index relating to the sub-objects in JsonObj_Questions.
+        HTML += "<h1>Princip 1-b-1: flere grundstoffer - letteste niveau</h1>";
+        HTML += "<h2>DETTE PRINCIP ER IKKE LAVET ENDNU...</h2>";
+        // SetAcceptedNumbers( JOQ[Inx]["Charge"], ".ChargeNum", "Char_OK"); // Principle 2: charge numbers
+    }
+    if (PrincipleNum == 3){ // PRINCIPLE 3: coefficient numbers
+        PrincipleArray = QuestionObj["P3"];
+        Inx = ShuffelArray( PrincipleArray )[0];  // Random index relating to the sub-objects in JsonObj_Questions.
+        HTML += "<h1>Princip 1-b-1: sværere niveau - alle formler</h1>";
+        HTML += "<h2>DETTE PRINCIP ER IKKE LAVET ENDNU...</h2>";
+        // SetAcceptedNumbers( JOQ[Inx]["Coeff"], ".CoeffNum", "Coeff_OK");  // Principle 3: coefficient numbers
+    }
+    if (PrincipleNum == 4){ // PRINCIPLE 1+2+3 - FOR TESTING 
+        PrincipleArray = QuestionObj["P1"];  // <---------------------------  HUSK AT RETTE DENNE!!!
+        TPrincipleArray = ShuffelArray( PrincipleArray );  // Random index relating to the sub-objects in JsonObj_Questions.
+        ArrayLength = TPrincipleArray.length;
+
+        $(".IndexWrapper").html(CreateNumberDivs(1, 8, "IndexNum DragNum btn btn-info draggable", false));  
+        $(".ChargeWrapper").html(CreateNumberDivs(-3, 3, "ChargeNum DragNum btn btn-info draggable", true));
+        $(".CoeffWrapper").html(CreateNumberDivs(1, 5, "CoeffNum DragNum btn btn-info draggable", false));
+
+        Principle4(JOQ, TPrincipleArray, Qcount);
+        $(".Qcount").text( String(Qcount) + "/" + String(ArrayLength) );
+
+        $( document ).on('click', ".NextQuestion", function(event){
+            event.preventDefault();  // Prevents sending the user to "href".
+
+            // if ( (parseInt($(".ScoreCorrect").text()) < 3) ) {
+            //     alert("Du skal have samtlige 3 spørgsmål korrekt før du kan fortsætte!");
+            //     return 0;
+            // }
+
+            ResetQuiz(500);
+            Principle4(JOQ, TPrincipleArray, Qcount);
+            ++Qcount;
+            // $(".Qcount").text( String(Qcount) + "/" + String(ArrayLength) );
+            $(".QuestionWrap").append( "<span class='QuizHeadingTextCount'>" + String(Qcount + 1) + "/" + String(ArrayLength) + "</span>");
+        });
+
+        console.log("ScoreCorrect XXX: " + parseInt($(".ScoreCorrect").text())   );
+        console.log("ArrayLength: " + ArrayLength);
+    }
+
+    // Write the heading and question for the student:
+    // $(".QuizHeading").html( HTML );
+
+}
+
+
+function GivePosetiveFeedback(){
+
+}
+
+
+function GiveNegativeFeedback(){
+
+}
+
+
+// Funktionen laver en kopi af arrayet i argumentet, og blander elementerne tilfaeldigt
+function ShuffelArray(ItemArray){
+    var NumOfItems = ItemArray.length;
+    var NewArray = ItemArray.slice();  // Copy the array...
+    var Item2; var TempItem1; var TempItem2;
+    for (var Item1 = 0; Item1 < NumOfItems; Item1++) {
+        Item2 = Math.floor( Math.random() * NumOfItems);
+        TempItem1 = NewArray[Item1];
+        TempItem2 = NewArray[Item2];
+        NewArray[Item2] = TempItem1;
+        NewArray[Item1] = TempItem2;
+    }
+    return NewArray;
+}
+
+
+function ElementBox(AtomNum, AtomSymbol, AtomName, AtomWeight){   
+    var HTML = '<div class="ElementBox btn btn-info draggable">' + 
+                    '<div class="AtomNum">' + AtomNum + '</div>' +
+                    '<div class="AtomSymbol">' + AtomSymbol + '</div>' +
+                    '<div class="AtomName">' + AtomName + '</div>' +
+                    // '<div class="AtomWeight">' + AtomWeight + '</div>' +
+                '</div>';
+    return HTML;
+}
+
+function AjaxCallback(JSONdata){
+    console.log("JsonObj_PeriodicTable - AjaxCallback: " + JSON.stringify(JSONdata));
+}
+
+
 function MakePeriodicTable(JsonObj_PeriodicTable){
     var Zn = 0;
     var x = 0;
@@ -327,7 +375,7 @@ function MakePeriodicTable(JsonObj_PeriodicTable){
                 HTML += DummyElement;
             } else {
                 if (Zn < 18){ // Midlertidig if-else-konstruktion:
-                    console.log("Zn: " + Zn + ", JsonObj_PeriodicTable[Zn].sym: " + JsonObj_PeriodicTable[Zn].Z);
+                    // console.log("Zn: " + Zn + ", JsonObj_PeriodicTable[Zn].sym: " + JsonObj_PeriodicTable[Zn].Z);
                     var AtomNum = String(JsonObj_PeriodicTable[Zn].Z);
                     var AtomSymbol = JsonObj_PeriodicTable[Zn].sym;
                     var AtomName = JsonObj_PeriodicTable[Zn].name;
@@ -495,7 +543,8 @@ $( document ).ready(function() {
     // Naar vinduet loader scales elementerne:
     $(window).load(function () {
         // Scale the height on all ElmentBox
-        $( ".ElementBox" ).height( 4/3*$( ".ElementBox" ).width() );
+        // $( ".ElementBox" ).height( 4/3*$( ".ElementBox" ).width() ); // Rektangulære boxe
+        $( ".ElementBox" ).height( $( ".ElementBox" ).width() );        // Kvardratiske boxe  
 
         // Scale the height on all small and large boxes
         $( ".lbox" ).height( $( ".lbox" ).width() );
@@ -507,6 +556,8 @@ $( document ).ready(function() {
         FontSizeScaler(DragNumFontSizeStr, LineHeight, ".DragNum");
         FontSizeScaler(ScoreHeaderH3FontSizeStr, LineHeight, ".ScoreHeaderH3");
         FontSizeScaler(ScoreHeaderFontSizeStr, LineHeight, ".ScoreHeader, .ScoreNum, .TryAgain, .NextQuestion");
+
+        $( ".DragNum" ).width( $( ".DragNum" ).height() );
 
         console.log("WindowWidth: " + $( window ).width());
 
@@ -516,8 +567,8 @@ $( document ).ready(function() {
     // Naar vinduet resizes rescales elementerne:
     $(window).resize(function () {
         // Scale the height on all ElmentBox
-        $( ".ElementBox" ).height( 4/3*$( ".ElementBox" ).width() );
-        // $( ".ElementBox" ).height( 1*$( ".ElementBox" ).width() );
+        // $( ".ElementBox" ).height( 4/3*$( ".ElementBox" ).width() );  // Rektangulære boxe
+        $( ".ElementBox" ).height( $( ".ElementBox" ).width() );       // Kvardratiske boxe
 
         // Scale the height on all small and large boxes
         $( ".lbox" ).height( $( ".lbox" ).width() );
@@ -529,6 +580,8 @@ $( document ).ready(function() {
         FontSizeScaler(DragNumFontSizeStr, LineHeight, ".DragNum");
         FontSizeScaler(ScoreHeaderH3FontSizeStr, LineHeight, ".ScoreHeaderH3");
         FontSizeScaler(ScoreHeaderFontSizeStr, LineHeight, ".ScoreHeader, .ScoreNum, .TryAgain, .NextQuestion");
+
+        $( ".DragNum" ).width( $( ".DragNum" ).height() );
     });
 
 

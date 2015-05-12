@@ -1,7 +1,12 @@
 body{line-height: 1;}
 
-.QuizHeading{color: #000;}
-.QuizHeading h2 {margin-left: 4%;}
+.QuizHeadingText{}
+.QuestionWrap{margin-left: 4%;}
+.QuestionWrap h2{display: inline-block;}
+.QuestionText{ margin-right: 2%;}
+.QuizHeadingTextCount{display: inline-block;}
+.NextQuestion{margin-left: 1%; margin-bottom: 1%;}
+.QuestionTask{color: #000;}
 
 .PeriodicTableWrapper{ width: 100%; /*border: 1px solid #F00;*/}
 .ElementBox  {position: relative; font-size: 11px; width: 5%; margin: 0.27777%; padding: 3px; display: inline-block; /*border: 1px solid #00F;*/ line-height: 1.4;}  /* NOTE: 90/18 = 5%, og 5/18 = 0.27777% */
@@ -9,7 +14,7 @@ body{line-height: 1;}
 .AtomNum     {position: relative; }
 .AtomName    {position: relative; }
 .AtomSymbol  {position: relative; font-size: 160%; }
-.AtomWeight  {position: relative; }
+.AtomWeight  {position: relative; display: none;}
  
 .lbox{width: 12%; margin-bottom: 0%;} /* width: 12%; margin-bottom: 3%; */
 .xlbox{width: 16%;}
@@ -26,7 +31,7 @@ body{line-height: 1;}
 
 .DropHighlight{background-color: #0F0;}
 
-.NumbersWrapper{display: inline-block; width: 20%; margin-bottom: 0%;} /* border: 1px solid #F00; */
+.NumbersWrapper{display: inline-block; width: 40%; margin-bottom: 0%;} /* border: 1px solid #F00; */
 .IndexWrapper{} /* border: 1px solid #F00; */
 .ChargeWrapper{} /* border: 1px solid #F00; */
 .CoeffWrapper{/*height: 50px; border: 1px solid #F00;*/}

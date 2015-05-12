@@ -29,7 +29,10 @@
             <h4>Træk: Hydrogen, ladning = +1 og index = 1 på deres respektive pladser</h4>
  -->
             <div class="QuizHeading">
-                No QuizHeading...
+                <div class="QuizHeadingText">
+                </div>
+                <!-- <div class='QuizHeadingTextCount'></div> -->
+                
             </div>
         </div>
 
@@ -50,25 +53,25 @@
                 </div>
                 <div class="NumbersWrapper"> 
                     <div class="NumberHeading">
-                        Index:
+                        Indeks tal:
                     </div>
-                    <span class="IndexWrapper"> 
+                    <div class="IndexWrapper"> 
                         No index numbers...
-                    </span>
+                    </div>
                     
                     <div class="NumberHeading">
                         Ladning:
                     </div>
-                    <span class="ChargeWrapper"> 
+                    <div class="ChargeWrapper"> 
                         No charges...
-                    </span>
+                    </div>
 
                     <div class="NumberHeading CoeffHeadingWrapper">
                         Koefficient:
                     </div>
-                    <span class="CoeffWrapper"> 
+                    <div class="CoeffWrapper"> 
                         No Coefficients...
-                    </span>
+                    </div>
 
                 </div>
 <!--  
@@ -78,10 +81,11 @@
                     </a>
                 </div>
  -->
+<!--  
                 <a class="NextQuestion btn-default btn btn-default" href="#">
                     Næste spørgsmål
                 </a>
-               
+  -->              
             </div>
 
             <div class="PeriodicTableWrapper"> 
@@ -119,8 +123,9 @@
     <script src="kemi_drag.js"></script>
    
     <script>
-        // alert ($.fn.jquery); 
-        loadData("kemi_drag.json");
+        // Denne linje virker fint lokalt i Git-serveren, men ikke på  http://eundervisning-wp.dk/objekter/kemi_drag/builds/development/ , så 
+        // derfor ukommenteres den midlertidigt:
+        // loadData("kemi_drag.json");  
     </script>
 <!-- 
     <script src="../../shared components/shared_functions.js"></script>
