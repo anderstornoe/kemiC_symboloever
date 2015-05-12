@@ -1,19 +1,23 @@
 body{line-height: 1;}
+
+.QuizHeading{color: #000;}
+.QuizHeading h2 {margin-left: 4%;}
+
 .PeriodicTableWrapper{ width: 100%; /*border: 1px solid #F00;*/}
-.ElementBox  {position: relative; font-size: 11px; width: 5%; margin: 0.27777%; padding: 3px; display: inline-block; border: 1px solid #00F; line-height: 1.4;}  /* NOTE: 90/18 = 5%, og 5/18 = 0.27777% */
+.ElementBox  {position: relative; font-size: 11px; width: 5%; margin: 0.27777%; padding: 3px; display: inline-block; /*border: 1px solid #00F;*/ line-height: 1.4;}  /* NOTE: 90/18 = 5%, og 5/18 = 0.27777% */
 .DummyElement{position: relative; width: 5%; margin: 0.27777%; padding: 3px; display: inline-block; /*border: 1px solid #F00;*/ }
 .AtomNum     {position: relative; }
 .AtomName    {position: relative; }
 .AtomSymbol  {position: relative; font-size: 160%; }
 .AtomWeight  {position: relative; }
-
-.lbox{width: 12%; margin-bottom: 3%;}
+ 
+.lbox{width: 12%; margin-bottom: 0%;} /* width: 12%; margin-bottom: 3%; */
 .xlbox{width: 16%;}
 .sbox{width: 33%;}
 
 .red{border: 1px solid #F00;}
 
-.DropZone{padding-left: 25%; margin-bottom: 3%}
+.DropZone{padding-left: 4%; margin-bottom: 0%} /* padding-left: 25%; margin-bottom: 3% */
 .DropCoeff{display: inline-block;}
 .DropElement{display: inline-block;}
 .DropChargeAndIndex{display: inline-block;}
@@ -22,16 +26,16 @@ body{line-height: 1;}
 
 .DropHighlight{background-color: #0F0;}
 
-.NumbersWrapper{display: inline-block; width: 40%;} /* border: 1px solid #F00; */
+.NumbersWrapper{display: inline-block; width: 20%; margin-bottom: 0%;} /* border: 1px solid #F00; */
 .IndexWrapper{} /* border: 1px solid #F00; */
 .ChargeWrapper{} /* border: 1px solid #F00; */
 .CoeffWrapper{/*height: 50px; border: 1px solid #F00;*/}
 
-.ScoreWrapper{display: inline-block; padding: 3px; border: 1px solid #00F;}
+.ScoreWrapper{display: inline-block; padding: 3px; border: 1px solid #717272;}
 .ScoreWrapper h3{margin: 3px 0px;}
 
 .NumberHeading{font-size: 18px; margin-top: 5px;}
-.DragNum{padding: 3px; margin: 0.5%; display: inline-block; border: 1px solid #00F; font-size: 18px;}
+.DragNum{padding: 3px; margin: 0.5%; display: inline-block; /*border: 1px solid #00F;*/ font-size: 18px;}
 .IndexNum{}
 .ChargeNum{}
 .CoeffNum{}
@@ -39,3 +43,5 @@ body{line-height: 1;}
 .left{float: left;}
 .right{float: right;}
 .clear{clear: both;}
+
+.droppable{border: 1px solid #717272;}
