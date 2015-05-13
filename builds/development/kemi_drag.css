@@ -8,6 +8,8 @@ body{line-height: 1;}
 .NextQuestion{margin-left: 1%; margin-bottom: 1%;}
 .QuestionTask{color: #000;}
 
+.AnsMolecule{display: inline-block;}
+
 .PeriodicTableWrapper{ width: 100%; /*border: 1px solid #F00;*/}
 .ElementBox  {position: relative; font-size: 11px; width: 5%; margin: 0.27777%; padding: 3px; display: inline-block; /*border: 1px solid #00F;*/ line-height: 1.4;}  /* NOTE: 90/18 = 5%, og 5/18 = 0.27777% */
 .DummyElement{position: relative; width: 5%; margin: 0.27777%; padding: 3px; display: inline-block; /*border: 1px solid #F00;*/ }
@@ -16,13 +18,14 @@ body{line-height: 1;}
 .AtomSymbol  {position: relative; font-size: 160%; }
 .AtomWeight  {position: relative; display: none;}
  
-.lbox{width: 12%; margin-bottom: 0%;} /* width: 12%; margin-bottom: 3%; */
-.xlbox{width: 16%;}
-.sbox{width: 33%;}
+.lbox{width: 6%; margin-bottom: 3.2%;} /* width: 12%; margin-bottom: 3%; */
+.xlbox{/*width: 12%;*/ width: 4%; margin-right: 4%; }
+.sbox{/*width: 33%;*/ width: 100%;}
 
 .red{border: 1px solid #F00;}
 
-.DropZone{padding-left: 4%; margin-bottom: 0%} /* padding-left: 25%; margin-bottom: 3% */
+.DropZone{padding-left: 4%; margin-bottom: 0%;} /* padding-left: 25%; margin-bottom: 3% */ 
+.DropWrap{}
 .DropCoeff{display: inline-block;}
 .DropElement{display: inline-block;}
 .DropChargeAndIndex{display: inline-block;}
@@ -31,7 +34,7 @@ body{line-height: 1;}
 
 .DropHighlight{background-color: #0F0;}
 
-.NumbersWrapper{display: inline-block; width: 40%; margin-bottom: 0%;} /* border: 1px solid #F00; */
+.NumbersWrapper{display: inline-block; width: 40%; margin-bottom: 0%; position: absolute; top: 0px;} /* position: absolute løser tilsyneladende problemet med NumbersWrapper i FireFox, Chrome og Safari */
 .IndexWrapper{} /* border: 1px solid #F00; */
 .ChargeWrapper{} /* border: 1px solid #F00; */
 .CoeffWrapper{/*height: 50px; border: 1px solid #F00;*/}

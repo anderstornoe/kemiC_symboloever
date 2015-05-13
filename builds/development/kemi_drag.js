@@ -1,6 +1,6 @@
 
 //########################################################################
-//          JSON-objekter som senere skal have sin egne JSON-filer:
+//         JSON-objekter som senere skal have sine egne JSON-filer:
 //########################################################################
 
 var JsonObj_PeriodicTable = [
@@ -25,16 +25,16 @@ var JsonObj_PeriodicTable = [
 ];
 
 var JsonObj_Questions = [
-    {"AtomSym": "H",   "Name": "Hydrogen", "TName": "Dihydrogen",      "AtomNum": 1,  "Principle": [1,3], "ChemType": "molecule", "Index": 2, "Charge":1,  "Coeff": 1},
-    {"AtomSym": "He",  "Name": "Helium",   "TName": "Helium (ballon)", "AtomNum": 2,  "Principle": [1,3], "ChemType": "molecule", "Index": 1, "Charge":0,  "Coeff": 1},
-    {"AtomSym": "N",   "Name": "Nitrogen", "TName": "Dinitrogen",      "AtomNum": 7,  "Principle": [1,3], "ChemType": "molecule", "Index": 2, "Charge":0,  "Coeff": 1},
-    {"AtomSym": "O",   "Name": "Oxygen",   "TName": "Dioxygen",        "AtomNum": 8,  "Principle": [1,3], "ChemType": "molecule", "Index": 2, "Charge":0,  "Coeff": 1},
-    {"AtomSym": "O",   "Name": "Oxygen",   "TName": "Ozon",            "AtomNum": 8,  "Principle": [1,3], "ChemType": "molecule", "Index": 3, "Charge":0,  "Coeff": 1},
-    {"AtomSym": "Ne",  "Name": "Neon",     "TName": "Neongas",         "AtomNum": 10, "Principle": [1,3], "ChemType": "molecule", "Index": 1, "Charge":0,  "Coeff": 1},
-    {"AtomSym": "S",   "Name": "Svovl",    "TName": "Svovl",           "AtomNum": 16, "Principle": [1,3], "ChemType": "molecule", "Index": 8, "Charge":0,  "Coeff": 1},
-    {"AtomSym": "Cl",  "Name": "Klor",     "TName": "Dilor",           "AtomNum": 17, "Principle": [1,3], "ChemType": "molecule", "Index": 2, "Charge":-1, "Coeff": 1},
-    {"AtomSym": "Br",  "Name": "Brom",     "TName": "Dibrom",          "AtomNum": 35, "Principle": [1,3], "ChemType": "molecule", "Index": 2, "Charge":-1, "Coeff": 1},
-    {"AtomSym": "I",   "Name": "Iod",      "TName": "Diiod",           "AtomNum": 53, "Principle": [1,3], "ChemType": "molecule", "Index": 2, "Charge":-1, "Coeff": 1}
+    {"AtomSym": "H",   "Name": "Hydrogen", "TName": "Dihydrogen",         "AtomNum": 1,  "Principle": [1,3], "ChemType": "molecule", "Index": 2, "Charge":1,  "Coeff": 1},
+    {"AtomSym": "He",  "Name": "Helium",   "TName": "Helium (ballongas)", "AtomNum": 2,  "Principle": [1,3], "ChemType": "molecule", "Index": 1, "Charge":0,  "Coeff": 1},
+    {"AtomSym": "N",   "Name": "Nitrogen", "TName": "Dinitrogen",         "AtomNum": 7,  "Principle": [1,3], "ChemType": "molecule", "Index": 2, "Charge":0,  "Coeff": 1},
+    {"AtomSym": "O",   "Name": "Oxygen",   "TName": "Dioxygen",           "AtomNum": 8,  "Principle": [1,3], "ChemType": "molecule", "Index": 2, "Charge":0,  "Coeff": 1},
+    {"AtomSym": "O",   "Name": "Oxygen",   "TName": "Ozon",               "AtomNum": 8,  "Principle": [1,3], "ChemType": "molecule", "Index": 3, "Charge":0,  "Coeff": 1},
+    {"AtomSym": "Ne",  "Name": "Neon",     "TName": "Neongas",            "AtomNum": 10, "Principle": [1,3], "ChemType": "molecule", "Index": 1, "Charge":0,  "Coeff": 1},
+    {"AtomSym": "S",   "Name": "Svovl",    "TName": "Svovl",              "AtomNum": 16, "Principle": [1,3], "ChemType": "molecule", "Index": 8, "Charge":0,  "Coeff": 1},
+    {"AtomSym": "Cl",  "Name": "Klor",     "TName": "Dilor",              "AtomNum": 17, "Principle": [1,3], "ChemType": "molecule", "Index": 2, "Charge":-1, "Coeff": 1},
+    // {"AtomSym": "Br",  "Name": "Brom",     "TName": "Dibrom",          "AtomNum": 35, "Principle": [1,3], "ChemType": "molecule", "Index": 2, "Charge":-1, "Coeff": 1},
+    // {"AtomSym": "I",   "Name": "Iod",      "TName": "Diiod",           "AtomNum": 53, "Principle": [1,3], "ChemType": "molecule", "Index": 2, "Charge":-1, "Coeff": 1}
 ];
 
 
@@ -55,10 +55,13 @@ var ResultObj = {   Attempt: 0,
                     Correct: 0, 
                     Fail: 0, 
 
-                    Element: {AtomNum: null}, 
-                    Index: {val: null},
-                    Charge: {val: null},
-                    Coeff: {val: null},
+                    Qcount: 0,
+                    PrincipleArray: [],
+
+                    Element: {AtomNum: null, Attempt: 0}, 
+                    Index: {val: null, Attempt: 0},
+                    Charge: {val: null, Attempt: 0},
+                    Coeff: {val: null, Attempt: 0},
 
                     Dropped: {Element: false, Index: false, Charge: false, Coeff: false} 
                 };
@@ -71,7 +74,9 @@ $( document ).ready(function() {
     var TestArray = [1,2,3,4,5,6,7,8,9,10];
     console.log("ShuffelArray: " + ShuffelArray(TestArray));
 
-    // GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum);
+    // GiveQuestion(JsonObj_Questions, QuestionObj, ResultObj, PrincipleNum);
+
+    // GivePosetiveFeedback(JsonObj_Questions, 0);
 });
 
 
@@ -187,7 +192,7 @@ function Principle1(JOQ, PrincipleArray, Qcount){
     HTML += "<div class='QuestionWrap'>";
     HTML += "<h2 class='QuestionText'>Skriv formlen for stoffet der indeholder <span class='QuestionTask'>"+JOQ[Inx]["Index"]+" "+JOQ[Inx]["Name"].toLowerCase()+"atom"+((JOQ[Inx]["Index"]==1)?"":"er")+"</span>.</h2>" + QuestionCountStr;
     HTML += "</div>";
-    HTML += "<div class='QuestionWrap'><h2 class='AnswerText'>TEST</h2></div>";
+    // HTML += "<div class='QuestionWrap'><h2 class='AnswerText'>TEST</h2></div>";
 
     // Write the heading and question for the student:
     $(".QuizHeadingText").html( HTML );
@@ -252,6 +257,10 @@ function GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum){
         $(".ChargeWrapper").html(CreateNumberDivs(-3, 3, "ChargeNum DragNum btn btn-info draggable", true));
 
         Principle1(JOQ, TPrincipleArray, Qcount);
+        ResultObj.Qcount = Qcount;
+        ResultObj.PrincipleArray = TPrincipleArray; 
+
+
         $(".QuizHeadingTextCount").text( String(Qcount + 1) + "/" + String(ArrayLength) );
 
         $(".CoeffHeadingWrapper, .CoeffWrapper").hide();  // Hide placeholders for the coefficients - they are not in use in principle 1 anyway.
@@ -259,14 +268,21 @@ function GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum){
         $( document ).on('click', ".NextQuestion", function(event){
             event.preventDefault();  // Prevents sending the user to "href".
 
-            // if ( (parseInt($(".ScoreCorrect").text()) < 2) ) {
-            //     alert("Du skal have samtlige spørgsmål korrekt før du kan fortsætte!");
+
+// GivePosetiveFeedbackTest(JsonObj_Questions, 0);  // <--------------  TEST TEST TEST!!!!
+
+
+            // if ( ResultObj.Correct < 2) {
+            //     alert("Du skal placere både grundstof og indeks tal korrekt før du kan fortsætte!");
             //     return 0;
             // }
+            // console.log("GiveQuestion - ResultObj" + JSON.stringify(ResultObj) )
 
             ResetQuiz(500);
             ++Qcount;
             Principle1(JOQ, TPrincipleArray, Qcount);
+            ResultObj.Qcount = Qcount;
+            ResultObj.PrincipleArray = TPrincipleArray; 
             
             // $(".QuestionWrap").append( "<span class='QuizHeadingTextCount'>" + String(Qcount + 1) + "/" + String(ArrayLength) + "</span>");
         });
@@ -322,8 +338,46 @@ function GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum){
 }
 
 
-function GivePosetiveFeedback(){
+function GivePosetiveFeedback(JsonObj_Questions, ResultObj){
 
+    console.log("GivePosetiveFeedback - ResultObj: " + JSON.stringify(ResultObj) );
+
+    if (ResultObj.Correct == 2){
+        // ArrayIndex = ResultObj.Qcount;
+        ArrayIndex = ResultObj.PrincipleArray[ ResultObj.Qcount ];
+
+        var HTML = "";
+        HTML += "RIGTIGT: Du har skrevet formlen for " + JsonObj_Questions[ArrayIndex].TName.toLowerCase() + ".";
+        console.log("GivePosetiveFeedback: " + HTML);
+
+        $(".QuestionText").html( HTML );
+        // $(".QuestionText").css("color", "#0F0");
+    }
+}
+
+
+function GivePosetiveFeedbackTest(JsonObj_Questions, ArrayIndex){
+    
+
+    // $( ".DropZone" ).prepend("<div class='AnsMolecule'>H<sub>2</sub></div>");  // DropZone
+    var Position1 = $( ".DropWrap").position();    // relative
+    var Position2 = $( ".NumbersWrapper").position();    // relative
+    var Width = Position2.left - Position1.left;
+    console.log("GivePosetiveFeedback - Width: " + Width);
+    // $( ".AnsMolecule" ).css({ position: "absolute", top: Top+"px", left: Left+"px"});
+
+    var CWidth = 2*$(".lbox").width() + $(".xlbox").width();
+    $(".DropWrap").width( CWidth );
+    console.log("GivePosetiveFeedback - CWidth: " + CWidth);
+
+    $( ".DropCoeff, .DropElement, .DropCharge, .DropIndex").hide();
+    // $( ".DropCoeff, .DropElement, .DropCharge, .DropIndex").css({'border-color': 'transparent' });
+
+
+    // $( ".AnsMolecule").css("font-size", "50px");
+    // $( ".DropCoeff, .DropElement, .DropCharge, .DropIndex").animate({'border-color': 'transparent' },1000);
+
+    // .DropCoeff .DropElement .DropCharge .DropIndex
 }
 
 
@@ -548,7 +602,7 @@ $( document ).ready(function() {
 
         // Scale the height on all small and large boxes
         $( ".lbox" ).height( $( ".lbox" ).width() );
-        $( ".xlbox" ).height( $( ".xlbox" ).width() );
+        // $( ".xlbox" ).height( $( ".xlbox" ).width() );
         $( ".sbox" ).height( $( ".sbox" ).width() );
 
         FontSizeScaler(AtomSymbolFontSizeStr, LineHeight, ".AtomSymbol, .NumberHeading");
@@ -564,7 +618,7 @@ $( document ).ready(function() {
         // $( ".ElementBox" ).css( "font-size", String(50)+"%" );
     });
 
-    // Naar vinduet resizes rescales elementerne:
+    // Naar vinduet resizes rescales elementerne: 
     $(window).resize(function () {
         // Scale the height on all ElmentBox
         // $( ".ElementBox" ).height( 4/3*$( ".ElementBox" ).width() );  // Rektangulære boxe
@@ -572,7 +626,7 @@ $( document ).ready(function() {
 
         // Scale the height on all small and large boxes
         $( ".lbox" ).height( $( ".lbox" ).width() );
-        $( ".xlbox" ).height( $( ".xlbox" ).width() );
+        // $( ".xlbox" ).height( $( ".xlbox" ).width() );
         $( ".sbox" ).height( $( ".sbox" ).width() );
 
         FontSizeScaler(AtomSymbolFontSizeStr, LineHeight, ".AtomSymbol, .NumberHeading");
@@ -633,6 +687,8 @@ $( document ).ready(function() {
 
                 ErrStr += "B1,";
 
+                ResultObj.Element.Attempt += 1;  // Update the number pf attempts.
+
                 // Ensures that only the accepted draggable element gets a correct-score, and that only one correct-score is given if the accepted draggable is re-dragged.
                 if (EventObj.Element.drop && (ResultObj.Element.AtomNum === null)){ // accepted draggable is in droppable AND not counted before.
                     ErrStr += "B2,";
@@ -664,6 +720,8 @@ $( document ).ready(function() {
 
                 ErrStr += "C1,";
 
+                ResultObj.Index.Attempt += 1;  // Update the number pf attempts.
+
                 // Ensures that only the accepted draggable element gets a correct-score, and that only one correct-score is given if the accepted draggable is re-dragged.
                 if (EventObj.Index.drop && (ResultObj.Index.val === null)){ // accepted draggable is in droppable AND not counted before.
                     ErrStr += "C2,";
@@ -685,6 +743,8 @@ $( document ).ready(function() {
             if (EventObj.Charge.val !== null){  // if draggable is an element of the perodic table.
 
                 ErrStr += "D1,";
+
+                ResultObj.Charge.Attempt += 1;  // Update the number pf attempts.
 
                 // Ensures that only the accepted draggable element gets a correct-score, and that only one correct-score is given if the accepted draggable is re-dragged.
                 if (EventObj.Charge.drop && (ResultObj.Charge.val === null)){ // accepted draggable is in droppable AND not counted before.
@@ -708,6 +768,8 @@ $( document ).ready(function() {
 
                 ErrStr += "E1,";
 
+                ResultObj.Coeff.Attempt += 1;  // Update the number pf attempts.
+
                 // Ensures that only the accepted draggable element gets a correct-score, and that only one correct-score is given if the accepted draggable is re-dragged.
                 if (EventObj.Coeff.drop && (ResultObj.Coeff.val === null)){ // accepted draggable is in droppable AND not counted before.
                     ErrStr += "E2,";
@@ -729,6 +791,9 @@ $( document ).ready(function() {
 
             console.log("ErrStr: " + ErrStr);
             ErrStr = "";
+
+
+            GivePosetiveFeedback(JsonObj_Questions, ResultObj);
         }
     });
 
@@ -769,5 +834,6 @@ $( document ).ready(function() {
     });
 
     // console.log("inputObj 2: " + JSON.stringify(inputObj.NameArray));
+
 });
 
