@@ -13,8 +13,8 @@ function swallowError(error) {
 //  
 
 var gulp = require('gulp'),
-    gutil = require('gulp-util')
-gulpif = require('gulp-if'),
+    gutil = require('gulp-util'),
+    gulpif = require('gulp-if'),
     uglify = require('gulp-uglify'),
     connect = require('gulp-connect'),
     minifyCSS = require('gulp-minify-css'),
@@ -36,20 +36,13 @@ if (env === 'development') {
     outputDir = 'builds/production/';
 }
 
-jsSources = [
-    '../../bower_components/jquery/dist/jquery.js',
-    '../../bower_components/jquery-ui/jquery-ui.js',
-    '../../bower_components/bootstrap/dist/js/bootstrap.js'
-
-];
+jsSources = [outputDir + '*.js'];
 
 htmlSources = [
     outputDir + '*.html'
 ];
 
-cssSources = [
-    'components/css/*.css'
-];
+cssSources = [outputDir + '*.css'];
 
 
 gulp.task('log', function() {
@@ -59,7 +52,7 @@ gulp.task('log', function() {
 gulp.task('js', function() {
     gulp.src(jsSources)
         //.on('error', swallowError)
-        .pipe(concat("script.js"))
+        //.pipe(concat("script.js"))
         .pipe(gulpif(env === 'production', uglify()))
         .pipe(gulp.dest(outputDir))
         .pipe(connect.reload())
@@ -77,11 +70,11 @@ gulp.task('html', function() {
 
 gulp.task('css', function() {
     gulp.src(cssSources)
-        .pipe(concat("styles.css"))
+        //.pipe(concat("styles.css"))
         .pipe(gulpif(env === 'production', minifyCSS({
             keepBreaks: false
         })))
-        .pipe(gulp.dest(outputDir + 'css'))
+        .pipe(gulp.dest(outputDir))
         .pipe(connect.reload())
 });
 
@@ -98,13 +91,13 @@ gulp.task('watch', function() {
 
 
 });
-
+/*
 gulp.task('connect', function() {
     connect.server({
         root: outputDir,
         livereload: true
     });
     gutil.log("Hej fra connect");
-});
+});*/
 
-gulp.task('default', ['js', 'connect', 'html', 'css', 'lint', 'log', 'watch']);
+gulp.task('default', ['js', 'html', 'css', 'lint', 'log', 'watch']);
