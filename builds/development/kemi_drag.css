@@ -11,14 +11,14 @@ body{line-height: 1;}
 .AnsMolecule{display: inline-block;}
 
 .PeriodicTableWrapper{ width: 100%; /*border: 1px solid #F00;*/}
-.ElementBox  {position: relative; font-size: 11px; width: 5%; margin: 0.27777%; padding: 3px; display: inline-block; /*border: 1px solid #00F;*/ line-height: 1.4;}  /* NOTE: 90/18 = 5%, og 5/18 = 0.27777% */
+.ElementBox  {position: relative; font-size: 11px; width: 5%; margin: 0.27777%; padding: 3px; display: inline-block; line-height: 1.4; overflow: hidden;}  /* NOTE: 90/18 = 5%, og 5/18 = 0.27777% */
 .DummyElement{position: relative; width: 5%; margin: 0.27777%; padding: 3px; display: inline-block; /*border: 1px solid #F00;*/ }
 .AtomNum     {position: relative; }
 .AtomName    {position: relative; }
 .AtomSymbol  {position: relative; font-size: 160%; }
 .AtomWeight  {position: relative; display: none;}
  
-.lbox{width: 6%; margin-bottom: 3.2%;} /* width: 12%; margin-bottom: 3%; */
+.lbox{width: 6%; margin-bottom: 2.8%;} /* width: 12%; margin-bottom: 3%; */
 .xlbox{/*width: 12%;*/ width: 4%; margin-right: 4%; }
 .sbox{/*width: 33%;*/ width: 100%;}
 
@@ -31,6 +31,7 @@ body{line-height: 1;}
 .DropChargeAndIndex{display: inline-block;}
 .DropCharge{}
 .DropIndex{}
+.DropSpacer{width: 70%;}
 .DroppedDraggable{background-color: transparent; border-color: transparent;}
 
 .DropHighlight{background-color: #0F0;}
