@@ -43,13 +43,13 @@ var JsonObj_Questions = [
 //########################################################################
 
 var ResultStr = "";
-var EventObj = {    Success: false,
-                    Element: {AtomNum: null, AtomName: null, drop: false}, 
-                    Index: {val: null, drop: false},
-                    Charge: {val: null, drop: false},
-                    Coeff: {val: null, drop: false}
+var EventObj = {    Element: {AtomNum: null, AtomName: null, drop: false}, 
+                    Index: {val: null, drop: false },
+                    Charge: {val: null, drop: false },
+                    Coeff: {val: null, drop: false }
                 };
-var TEventObj = JSON.parse(JSON.stringify(EventObj));   // Used for resetting EventObj
+// var TEventObj = JSON.parse(JSON.stringify(EventObj));   // Used for resetting EventObj
+// var TEventObj  = jQuery.extend(true, {}, EventObj);
 
 var ResultObj = {   Attempt: 0, 
                     Correct: 0, 
@@ -58,15 +58,20 @@ var ResultObj = {   Attempt: 0,
                     Qcount: 0,
                     PrincipleArray: [],
 
-                    Element: {AtomNum: null, Attempt: 0}, 
-                    Index: {val: null, Attempt: 0},
-                    Charge: {val: null, Attempt: 0},
-                    Coeff: {val: null, Attempt: 0},
+                    Element: {AtomNum: null, Attempt: 0 }, 
+                    Index: {val: null, Attempt: 0 },
+                    Charge: {val: null, Attempt: 0 },
+                    Coeff: {val: null, Attempt: 0 },
 
                     Dropped: {Element: false, Index: false, Charge: false, Coeff: false} 
                 };
-var TResultObj = JSON.parse(JSON.stringify(ResultObj));  // Used for resetting ResultObj
 
+var CssObj = {};
+
+// var TResultObj = JSON.parse(JSON.stringify(ResultObj));  // Used for resetting ResultObj
+// var TResultObj  = jQuery.extend(true, {}, ResultObj);
+
+var FontSizeScalerObj = {};
 
 // TEST:
 $( document ).ready(function() {
@@ -115,7 +120,8 @@ var ElementDummyNumbers = "_2_3_4_5_6_7_8_9_10_11_12_13_14_15_16_17_21_22_23_24_
 var QuestionObj =   { 
                         P1 : [],  // Princip 1 - P1-array consists of the array-index of all the JsonObj_Questions which have Principle: [1]
                         P2 : [],  // Princip 2 - P2-array consists of the array-index of all the JsonObj_Questions which have Principle: [2]
-                        P3 : []   // Princip 3 - P3-array consists of the array-index of all the JsonObj_Questions which have Principle: [3]
+                        P3 : [],  // Princip 3 - P3-array consists of the array-index of all the JsonObj_Questions which have Principle: [3]
+                        P4 : []   // Princip 1+2+3 - P4-array consists of the array-index 
                     }
 
 function loadData(url) {
@@ -171,6 +177,7 @@ function MakeQuestionObj(JsonObj_Questions, QuestionObj){
             if (JsonObj_Questions[ElmObjNr].Principle[p] == 2) QuestionObj.P2.push( ElmObjNr );
             if (JsonObj_Questions[ElmObjNr].Principle[p] == 3) QuestionObj.P3.push( ElmObjNr );
         }
+        QuestionObj.P4.push( ElmObjNr );
     }
 
     console.log("QuestionObj: " + JSON.stringify(QuestionObj));
@@ -196,7 +203,9 @@ function Principle1(JOQ, PrincipleArray, Qcount){
 
     // Write the heading and question for the student:
     $(".QuizHeadingText").html( HTML );
-    // $(".QuizNextQuestion").html( '<a class="NextQuestion btn-default btn btn-default" href="#">Næste spørgsmål</a>' );
+
+    $(".ElementBox").removeClass("Elem_OK");
+    $(".DragNum").removeClass("Index_OK Char_OK Coeff_OK");
 
     SetAcceptedElements( JOQ[Inx]["AtomNum"] );                        // The draggable element
     SetAcceptedNumbers(  JOQ[Inx]["Index"], ".IndexNum", "Index_OK");  // Principle 1: index numbers
@@ -222,10 +231,7 @@ function Principle4(JOQ, PrincipleArray, Qcount){
     // Write the heading and question for the student:
     $(".QuizHeadingText").html( HTML );
 
-    // $(".IndexWrapper").html(CreateNumberDivs(1, 8, "IndexNum DragNum btn btn-info draggable", false));  
-    // $(".ChargeWrapper").html(CreateNumberDivs(-3, 3, "ChargeNum DragNum btn btn-info draggable", true));
-    // $(".CoeffWrapper").html(CreateNumberDivs(1, 5, "CoeffNum DragNum btn btn-info draggable", false));
-
+    $(".ElementBox").removeClass("Elem_OK");
     $(".DragNum").removeClass("Index_OK Char_OK Coeff_OK");
 
     // Returns "X+" if X > 0, "X-" if X < 0 or 0 if X = 0, where X = charge.
@@ -269,9 +275,6 @@ function GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum){
             event.preventDefault();  // Prevents sending the user to "href".
 
 
-// GivePosetiveFeedbackTest(JsonObj_Questions, 0);  // <--------------  TEST TEST TEST!!!!
-
-
             // if ( ResultObj.Correct < 2) {
             //     alert("Du skal placere både grundstof og indeks tal korrekt før du kan fortsætte!");
             //     return 0;
@@ -283,6 +286,10 @@ function GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum){
             Principle1(JOQ, TPrincipleArray, Qcount);
             ResultObj.Qcount = Qcount;
             ResultObj.PrincipleArray = TPrincipleArray; 
+
+            FontSizeScalerNew([".AtomSymbol", ".NumberHeading", ".ElementBox", ".DragNum", ".ScoreHeaderH3", 
+                            ".ScoreHeader", ".ScoreNum", ".TryAgain", ".NextQuestion", ".QuizHeadingText h2", 
+                            ".QuizHeadingText h1", ".QuizHeadingTextCount"], 1425);
             
             // $(".QuestionWrap").append( "<span class='QuizHeadingTextCount'>" + String(Qcount + 1) + "/" + String(ArrayLength) + "</span>");
         });
@@ -302,7 +309,7 @@ function GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum){
         // SetAcceptedNumbers( JOQ[Inx]["Coeff"], ".CoeffNum", "Coeff_OK");  // Principle 3: coefficient numbers
     }
     if (PrincipleNum == 4){ // PRINCIPLE 1+2+3 - FOR TESTING 
-        PrincipleArray = QuestionObj["P1"];  // <---------------------------  HUSK AT RETTE DENNE!!!
+        PrincipleArray = QuestionObj["P4"];  // <---------------------------  HUSK AT RETTE DENNE!!!
         TPrincipleArray = ShuffelArray( PrincipleArray );  // Random index relating to the sub-objects in JsonObj_Questions.
         ArrayLength = TPrincipleArray.length;
 
@@ -311,21 +318,34 @@ function GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum){
         $(".CoeffWrapper").html(CreateNumberDivs(1, 5, "CoeffNum DragNum btn btn-info draggable", false));
 
         Principle4(JOQ, TPrincipleArray, Qcount);
-        $(".Qcount").text( String(Qcount) + "/" + String(ArrayLength) );
+        ResultObj.Qcount = Qcount;
+        ResultObj.PrincipleArray = TPrincipleArray; 
+
+        $(".QuizHeadingTextCount").text( String(Qcount + 1) + "/" + String(ArrayLength) );
+
+        // $(".CoeffHeadingWrapper, .CoeffWrapper").hide();  // Hide placeholders for the coefficients - they are not in use in principle 1 anyway.
 
         $( document ).on('click', ".NextQuestion", function(event){
             event.preventDefault();  // Prevents sending the user to "href".
 
-            // if ( (parseInt($(".ScoreCorrect").text()) < 3) ) {
-            //     alert("Du skal have samtlige 3 spørgsmål korrekt før du kan fortsætte!");
+
+            // if ( ResultObj.Correct < 2) {
+            //     alert("Du skal placere både grundstof og indeks tal korrekt før du kan fortsætte!");
             //     return 0;
             // }
+            // console.log("GiveQuestion - ResultObj" + JSON.stringify(ResultObj) )
 
             ResetQuiz(500);
-            Principle4(JOQ, TPrincipleArray, Qcount);
             ++Qcount;
-            // $(".Qcount").text( String(Qcount) + "/" + String(ArrayLength) );
-            $(".QuestionWrap").append( "<span class='QuizHeadingTextCount'>" + String(Qcount + 1) + "/" + String(ArrayLength) + "</span>");
+            Principle4(JOQ, TPrincipleArray, Qcount);
+            ResultObj.Qcount = Qcount;
+            ResultObj.PrincipleArray = TPrincipleArray; 
+
+            FontSizeScalerNew([".AtomSymbol", ".NumberHeading", ".ElementBox", ".DragNum", ".ScoreHeaderH3", 
+                            ".ScoreHeader", ".ScoreNum", ".TryAgain", ".NextQuestion", ".QuizHeadingText h2", 
+                            ".QuizHeadingText h1", ".QuizHeadingTextCount"], 1425);
+            
+            // $(".QuestionWrap").append( "<span class='QuizHeadingTextCount'>" + String(Qcount + 1) + "/" + String(ArrayLength) + "</span>");
         });
 
         console.log("ScoreCorrect XXX: " + parseInt($(".ScoreCorrect").text())   );
@@ -342,42 +362,72 @@ function GivePosetiveFeedback(JsonObj_Questions, ResultObj){
 
     console.log("GivePosetiveFeedback - ResultObj: " + JSON.stringify(ResultObj) );
 
-    if (ResultObj.Correct == 2){
-        // ArrayIndex = ResultObj.Qcount;
+    var NumOfCorrectAnswers;
+    if ((1 <= PrincipleNum) && (PrincipleNum <= 3)) NumOfCorrectAnswers = 2;  // Principle 1 OR 2 OR 3
+    if (PrincipleNum == 4) NumOfCorrectAnswers = 3;                           // Principle 1 AND 2 AND 3
+
+    if (ResultObj.Correct == NumOfCorrectAnswers){
+
         ArrayIndex = ResultObj.PrincipleArray[ ResultObj.Qcount ];
 
+        console.log("ArrayIndex: " + ArrayIndex);
+
         var HTML = "";
-        HTML += "RIGTIGT: Du har skrevet formlen for " + JsonObj_Questions[ArrayIndex].TName.toLowerCase() + ".";
+        HTML += "RIGTIGT: Du har skrevet formlen for " + JsonObj_Questions[ ArrayIndex ].TName.toLowerCase() + ".";
         console.log("GivePosetiveFeedback: " + HTML);
 
         $(".QuestionText").html( HTML );
-        // $(".QuestionText").css("color", "#0F0");
+
+        // Get 
+        if ($.isEmptyObject(CssObj)){
+            CssObj.Element = $(".ElementBox").css(["background-color", "border-color"]);
+            CssObj.Index =  $(".IndexNum").css(["background-color", "border-color"]);
+            CssObj.Charge =  $(".ChargeNum").css(["background-color", "border-color"]);
+            CssObj.Coeff =  $(".CoeffNum").css(["background-color", "border-color"]);
+            CssObj.lbox =  $(".lbox").css(["background-color", "border-color"]);
+            CssObj.sbox =  $(".sbox").css(["background-color", "border-color"]);
+        }
+        console.log("CssObj: " + JSON.stringify(CssObj));
+
+        // Fade out borders on the droppables 
+        $( ".lbox, .sbox" ).animate({
+            "border-color": "transparent"
+        }, 500 );
+
+        // Fade out borders and background-color on the draggables: 
+        if (ResultObj.Dropped.Element) $(".Elem_OK").animate({"background-color": "transparent", "border-color": "transparent"}, 500);
+        if (ResultObj.Dropped.Index)  $(".Index_OK").animate({"background-color": "transparent", "border-color": "transparent"}, 500);
+        if (ResultObj.Dropped.Charge)  $(".Char_OK").animate({"background-color": "transparent", "border-color": "transparent"}, 500);
+        if (ResultObj.Dropped.Coeff)  $(".Coeff_OK").animate({"background-color": "transparent", "border-color": "transparent"}, 500);
+
+
+        // var Offset = $(DivObj).offset();     // absolute
+        // var Position = $(DivObj).position();    // relative
+
+        var OIndexPos = $(".Index_OK").offset();
+
+        var OElemPos = $(".Elem_OK").offset();
+        var ElemWidth = $(".Elem_OK").width();
+
+        var PIndexPos = $(".Index_OK").position();
+
+        var PElemPos = $(".Elem_OK").position();
+
+        console.log("TT2 - PIndexPos: " + JSON.stringify(PIndexPos) + ", OIndexPos: " + JSON.stringify(OIndexPos));
+        console.log("TT2 - PElemPos: " + JSON.stringify(PElemPos) + ", OElemPos: " + JSON.stringify(OElemPos));
+
+        var IndexTop = String(-(OIndexPos.top - OElemPos.top));
+        var IndexLeft = String(OIndexPos.left - OElemPos.left);
+
+        // // Move all draggables to their initial positions
+        // $(".Index_OK").animate({
+        //     top: IndexTop+"px",
+        //     left: IndexLeft+"px"
+        // }, 500, function() {  // When animation complete, do...
+        //     // FEJL: Hvis nedenstående kode placeres her, så køres det mange gange (ca 90), derfor er det placeret forneden - check console.log
+        //     console.log("ResetQuiz - 0");
+        // });
     }
-}
-
-
-function GivePosetiveFeedbackTest(JsonObj_Questions, ArrayIndex){
-    
-
-    // $( ".DropZone" ).prepend("<div class='AnsMolecule'>H<sub>2</sub></div>");  // DropZone
-    var Position1 = $( ".DropWrap").position();    // relative
-    var Position2 = $( ".NumbersWrapper").position();    // relative
-    var Width = Position2.left - Position1.left;
-    console.log("GivePosetiveFeedback - Width: " + Width);
-    // $( ".AnsMolecule" ).css({ position: "absolute", top: Top+"px", left: Left+"px"});
-
-    var CWidth = 2*$(".lbox").width() + $(".xlbox").width();
-    $(".DropWrap").width( CWidth );
-    console.log("GivePosetiveFeedback - CWidth: " + CWidth);
-
-    $( ".DropCoeff, .DropElement, .DropCharge, .DropIndex").hide();
-    // $( ".DropCoeff, .DropElement, .DropCharge, .DropIndex").css({'border-color': 'transparent' });
-
-
-    // $( ".AnsMolecule").css("font-size", "50px");
-    // $( ".DropCoeff, .DropElement, .DropCharge, .DropIndex").animate({'border-color': 'transparent' },1000);
-
-    // .DropCoeff .DropElement .DropCharge .DropIndex
 }
 
 
@@ -447,21 +497,27 @@ function MakePeriodicTable(JsonObj_PeriodicTable){
 }
 
 
-function FontSizeScaler(FontSizeStr, LineHeight, Selector){
-    var FontSizeNum = parseInt(FontSizeStr.replace(/px/g, ''));
-    var NativeWindowWidth = 1425;   // At WindowWidth = 1426px the .ElementBox font-size = 11px, and scaling linarly.
+function FontSizeScalerNew(SelectorClassArr, NativeWindowWidth){
+    console.log("FontSizeScalerObj 1:" + JSON.stringify(FontSizeScalerObj) );
+    var FontSize;
+    if ($.isEmptyObject(FontSizeScalerObj)){  // If the window reloades, then FontSizeScalerObj is empty and therefore store all font-sizes.
+        for (var i = 0; i < SelectorClassArr.length; i++) { 
+            FontSize = $( SelectorClassArr[i] ).css("font-size");
+            console.log("FontSizeScalerObj FontSize - SelectorClass: " + SelectorClassArr[i] + ", font-size: " + FontSize );
+            if (typeof FontSize != 'undefined') // Check in case a CSS-class in SelectorClassArr does not exist:
+                FontSizeScalerObj[ SelectorClassArr[i] ] = parseInt( FontSize.replace(/px/g, '') );
+        }
+    } 
+
+    // Resize all fonts:
     var WindowWidth = $( window ).width();
     var Ratio = Math.round(1000*( WindowWidth/NativeWindowWidth ))/1000; // Rounded to 3 digit precision.
-
-    $( Selector ).css("font-size", String(FontSizeNum*Ratio)+"px");
-
-    // Ajust line-height
-    // $( Selector ).css("line-height", String(parseInt(LineHeight)*Math.pow(1,Ratio));
-    console.log("Ratio : " + Ratio);
-    
-    console.log("Ratio : " + Ratio);
-    console.log("ElementBoxFontSizeNum : " + FontSizeNum);
+    for (var Selector in FontSizeScalerObj ) { 
+        $( Selector ).css("font-size", String(FontSizeScalerObj[ Selector ]*Ratio)+"px");
+    }
+    console.log("FontSizeScalerObj 2:" + JSON.stringify(FontSizeScalerObj) );
 }
+
 
 // NOTE: BoolSetPlusSign = true sætter "+" foran alle tal større end nul, dvs: 
 function CreateNumberDivs(Min, Max, Class, BoolSetSign){
@@ -524,15 +580,37 @@ function ResetQuiz(Milliseconds){
     $(".AtomNum, .AtomName, .AtomWeight").show();
     $(".AtomSymbol").css("font-size", "160%");
 
-    console.log("ResetQuiz - ResultObj 1: " + JSON.stringify(ResultObj));
-    console.log("ResetQuiz - EventObj 1: " + JSON.stringify(EventObj));
+
+    // Make borders and background-color on the draggables visible: 
+    if (ResultObj.Dropped.Element) $(".Elem_OK").css(CssObj.Element);
+    if (ResultObj.Dropped.Index)  $(".Index_OK").css(CssObj.Index);
+    if (ResultObj.Dropped.Charge)  $(".Char_OK").css(CssObj.Charge);
+    if (ResultObj.Dropped.Coeff)  $(".Coeff_OK").css(CssObj.Coeff);
+    $(".lbox").css(CssObj.lbox);
+    $(".sbox").css(CssObj.sbox);
 
     // Reset memory:
-    ResultObj = TResultObj;
-    EventObj = TEventObj;
+    EventObj = { Element: {AtomNum: null, AtomName: null, drop: false}, 
+                    Index: {val: null, drop: false },
+                    Charge: {val: null, drop: false },
+                    Coeff: {val: null, drop: false }
+                };
 
-    console.log("ResetQuiz - ResultObj 2: " + JSON.stringify(ResultObj));
-    console.log("ResetQuiz - EventObj 2: " + JSON.stringify(EventObj));
+    // Reset memory:
+    ResultObj = {   Attempt: 0, 
+                    Correct: 0, 
+                    Fail: 0, 
+
+                    Qcount: 0,
+                    PrincipleArray: [],
+
+                    Element: {AtomNum: null, Attempt: 0 }, 
+                    Index: {val: null, Attempt: 0 },
+                    Charge: {val: null, Attempt: 0 },
+                    Coeff: {val: null, Attempt: 0 },
+
+                    Dropped: {Element: false, Index: false, Charge: false, Coeff: false} 
+                };
 
     // Reset counters:
     $(".ScoreAttempts").text( 0 ); 
@@ -566,35 +644,13 @@ $( document ).ready(function() {
 
     console.log("NameArray 2: " + NameArray);
 
-    // QuizSetup(JsonObj_PeriodicTable);
-
+    // Create the periodic table:
     MakePeriodicTable(JsonObj_PeriodicTable);
 
-    // $(".IndexWrapper").html(CreateNumberDivs(0, 8, "IndexNum DragNum btn btn-info draggable", false));  
-    // $(".ChargeWrapper").html(CreateNumberDivs(-4, 3, "ChargeNum DragNum btn btn-info draggable", true));
-    // $(".CoeffWrapper").html(CreateNumberDivs(0, 5, "CoeffNum DragNum btn btn-info draggable", false));
-
-    // SetAcceptedElements(1);
-    // SetAcceptedNumbers("1", ".IndexNum", "Index_OK");  // PRINCIP 1
-    // SetAcceptedNumbers("1+", ".ChargeNum", "Char_OK"); // PRINCIP 2
-    // SetAcceptedNumbers("1", ".CoeffNum", "Coeff_OK");  // PRINCIP 3
-
+    // Make the H1 heading, eg. "Princip 1...", and the H2 question, eg. "Skriv formlen for stoffet der..."
     GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum);
 
-
-    // Get CSS font-sizes
-    var AtomSymbolFontSizeStr = $( ".AtomSymbol" ).css("font-size");
-    var ElementBoxFontSizeStr = $( ".ElementBox" ).css("font-size");
-    var DragNumFontSizeStr = $( ".DragNum" ).css("font-size");
-    var ScoreHeaderH3FontSizeStr = $( ".ScoreHeaderH3" ).css("font-size");
-    var ScoreHeaderFontSizeStr = $( ".ScoreHeader" ).css("font-size");
-    console.log("DragNumFontSizeStr: " + DragNumFontSizeStr);
-
-    // Get CSS line-height
-    var LineHeight = $( ".ElementBox" ).css("line-height");
-
-
-    // Naar vinduet loader scales elementerne:
+    // When the window loades, scale all elements:
     $(window).load(function () {
         // Scale the height on all ElmentBox
         // $( ".ElementBox" ).height( 4/3*$( ".ElementBox" ).width() ); // Rektangulære boxe
@@ -605,11 +661,9 @@ $( document ).ready(function() {
         // $( ".xlbox" ).height( $( ".xlbox" ).width() );
         $( ".sbox" ).height( $( ".sbox" ).width() );
 
-        FontSizeScaler(AtomSymbolFontSizeStr, LineHeight, ".AtomSymbol, .NumberHeading");
-        FontSizeScaler(ElementBoxFontSizeStr, LineHeight, ".ElementBox");
-        FontSizeScaler(DragNumFontSizeStr, LineHeight, ".DragNum");
-        FontSizeScaler(ScoreHeaderH3FontSizeStr, LineHeight, ".ScoreHeaderH3");
-        FontSizeScaler(ScoreHeaderFontSizeStr, LineHeight, ".ScoreHeader, .ScoreNum, .TryAgain, .NextQuestion");
+        FontSizeScalerNew([".AtomSymbol", ".NumberHeading", ".ElementBox", ".DragNum", ".ScoreHeaderH3", 
+                            ".ScoreHeader", ".ScoreNum", ".TryAgain", ".NextQuestion", ".QuizHeadingText h2", 
+                            ".QuizHeadingText h1", ".QuizHeadingTextCount"], 1425);
 
         $( ".DragNum" ).width( $( ".DragNum" ).height() );
 
@@ -618,7 +672,7 @@ $( document ).ready(function() {
         // $( ".ElementBox" ).css( "font-size", String(50)+"%" );
     });
 
-    // Naar vinduet resizes rescales elementerne: 
+    // When the window resizes, scale all elements: 
     $(window).resize(function () {
         // Scale the height on all ElmentBox
         // $( ".ElementBox" ).height( 4/3*$( ".ElementBox" ).width() );  // Rektangulære boxe
@@ -629,11 +683,9 @@ $( document ).ready(function() {
         // $( ".xlbox" ).height( $( ".xlbox" ).width() );
         $( ".sbox" ).height( $( ".sbox" ).width() );
 
-        FontSizeScaler(AtomSymbolFontSizeStr, LineHeight, ".AtomSymbol, .NumberHeading");
-        FontSizeScaler(ElementBoxFontSizeStr, LineHeight, ".ElementBox");
-        FontSizeScaler(DragNumFontSizeStr, LineHeight, ".DragNum");
-        FontSizeScaler(ScoreHeaderH3FontSizeStr, LineHeight, ".ScoreHeaderH3");
-        FontSizeScaler(ScoreHeaderFontSizeStr, LineHeight, ".ScoreHeader, .ScoreNum, .TryAgain, .NextQuestion");
+        FontSizeScalerNew([".AtomSymbol", ".NumberHeading", ".ElementBox", ".DragNum", ".ScoreHeaderH3", 
+                            ".ScoreHeader", ".ScoreNum", ".TryAgain", ".NextQuestion", ".QuizHeadingText h2", 
+                            ".QuizHeadingText h1", ".QuizHeadingTextCount"], 1425);
 
         $( ".DragNum" ).width( $( ".DragNum" ).height() );
     });
@@ -694,6 +746,7 @@ $( document ).ready(function() {
                     ErrStr += "B2,";
                     UpdateResultFeedback(ResultObj, true);
                     ResultObj.Element.AtomNum = EventObj.Element.AtomNum;
+                    ResultObj.Dropped.Element = true;
                     console.log("B2:\n EventObj.Element.AtomNum: " + EventObj.Element.AtomNum + ", ResultObj.Element.AtomNum: " + ResultObj.Element.AtomNum );
                 } 
 
@@ -727,6 +780,7 @@ $( document ).ready(function() {
                     ErrStr += "C2,";
                     UpdateResultFeedback(ResultObj, true);
                     ResultObj.Index.val = EventObj.Index.val;
+                    ResultObj.Dropped.Index = true;
                     console.log("C2:\n EventObj.Index.val: " + EventObj.Index.val + ", ResultObj.Index.val: " + ResultObj.Index.val );
                 } 
 
@@ -751,6 +805,7 @@ $( document ).ready(function() {
                     ErrStr += "D2,";
                     UpdateResultFeedback(ResultObj, true);
                     ResultObj.Charge.val = EventObj.Charge.val;
+                    ResultObj.Dropped.Charge = true;
                     console.log("D2:\n EventObj.Charge.val: " + EventObj.Charge.val + ", ResultObj.Charge.val: " + ResultObj.Charge.val );
                 } 
 
@@ -776,6 +831,7 @@ $( document ).ready(function() {
                     UpdateResultFeedback(ResultObj, true);
                     $(this).css({"width": "10%", "height": "50%", "font-size": "300%"});
                     ResultObj.Coeff.val = EventObj.Coeff.val;
+                    ResultObj.Dropped.Coeff = true;
                     console.log("E2:\n EventObj.Coeff.val: " + EventObj.Coeff.val + ", ResultObj.Coeff.val: " + ResultObj.Coeff.val );
                     // alert($(this).css("font-size"));
                 } 
@@ -787,13 +843,25 @@ $( document ).ready(function() {
                 }
             }
 
-            EventObj = TEventObj; // Reset object.
-
             console.log("ErrStr: " + ErrStr);
             ErrStr = "";
 
-
             GivePosetiveFeedback(JsonObj_Questions, ResultObj);
+
+            // Reset EventObj:
+            EventObj = {    Element: {AtomNum: null, AtomName: null, drop: false}, 
+                            Index: {val: null, drop: false },
+                            Charge: {val: null, drop: false },
+                            Coeff: {val: null, drop: false }
+                        };
+        },
+
+        drag: function(){
+            var offset = $(this).offset();
+            var xPos = offset.left;
+            var yPos = offset.top;
+            $('#DragLeft').text(xPos);
+            $('#DragTop').text(yPos);
         }
     });
 
@@ -802,38 +870,34 @@ $( document ).ready(function() {
 
         // SEQUENCE 2:
         drop: function( event, ui ) {
-            $( this ).addClass( "DropHighlight" );
+            // $( this ).addClass( "DropHighlight" );
             ResultStr += "Drop";
-            EventObj.Success = true;
             EventObj.Element.drop = true;
+            console.log("EventObj.Element.obj: " + JSON.stringify( EventObj.Element.obj ));
         }
     });
     $( ".DropCoeff" ).droppable({
         accept: ".Coeff_OK",
         drop: function( event, ui ) {
-            $( this ).addClass( "DropHighlight" );
-            EventObj.Success = true;
+            // $( this ).addClass( "DropHighlight" );
             EventObj.Coeff.drop = true;
         }
     });
     $( ".DropCharge" ).droppable({
         accept: ".Char_OK",
         drop: function( event, ui ) {
-            $( this ).addClass( "DropHighlight" );
-            EventObj.Success = true;
+            // $( this ).addClass( "DropHighlight" );
             EventObj.Charge.drop = true;
         }
     });
     $( ".DropIndex" ).droppable({
         accept: ".Index_OK",
         drop: function( event, ui ) {
-            $( this ).addClass( "DropHighlight" );
-            EventObj.Success = true;
+            // $( this ).addClass( "DropHighlight" );
             EventObj.Index.drop = true;
         }
     });
 
-    // console.log("inputObj 2: " + JSON.stringify(inputObj.NameArray));
 
 });
 

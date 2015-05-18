@@ -31,6 +31,7 @@ body{line-height: 1;}
 .DropChargeAndIndex{display: inline-block;}
 .DropCharge{}
 .DropIndex{}
+.DroppedDraggable{background-color: transparent; border-color: transparent;}
 
 .DropHighlight{background-color: #0F0;}
 
@@ -43,7 +44,7 @@ body{line-height: 1;}
 .ScoreWrapper h3{margin: 3px 0px;}
 
 .NumberHeading{font-size: 18px; margin-top: 5px;}
-.DragNum{padding: 3px; margin: 0.5%; display: inline-block; /*border: 1px solid #00F;*/ font-size: 18px;}
+.DragNum{padding: 0px; margin: 0.5%; display: inline-block; /*border: 1px solid #00F;*/ font-size: 22px;}
 .IndexNum{}
 .ChargeNum{}
 .CoeffNum{}
