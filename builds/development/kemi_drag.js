@@ -125,6 +125,7 @@ var EventObj = {    Element: {AtomNum: null, AtomName: null, drop: false},
 // var TEventObj = JSON.parse(JSON.stringify(EventObj));   // Used for resetting EventObj
 // var TEventObj  = jQuery.extend(true, {}, EventObj);
 
+// ResultObj is used for keeping track of correct/wrong anwsers regarding assembly of a single molecule:
 var ResultObj = {   Attempt: 0, 
                     Correct: 0, 
                     Fail: 0, 
@@ -139,6 +140,20 @@ var ResultObj = {   Attempt: 0,
 
                     Dropped: {Element: false, Index: false, Charge: false, Coeff: false} 
                 };
+
+// TotResultObj is used for keeping track of correct/wrong anwsers of the whole quiz:
+var TotResultObj = {  
+                        TotAttempt: 0, 
+                        TotCorrect: 0, 
+                        TotFail: 0, 
+                        LastDraggableAccepted: false,  // Status of the last draggable: "true" if successfully dropped, otherwise "false".
+                        LastDragged: {Type: null, Left: null, Right: null},  // The last (attempted) dragged draggable
+                        LastDropped: null,  // The last (attempted) dropped droppable
+                        Element: {Correct: 0, Fail: 0, Attempt: 0}, 
+                        Index:   {Correct: 0, Fail: 0, Attempt: 0},
+                        Charge:  {Correct: 0, Fail: 0, Attempt: 0},
+                        Coeff:   {Correct: 0, Fail: 0, Attempt: 0}
+                    };
 
 var CssObj = {};
 
@@ -271,8 +286,9 @@ function Principle1(JOQ, PrincipleArray, Qcount){
     var HTML = "";
     HTML += "<h1>Princip 1-a-1: et grundstof - letteste niveau</h1>";
     HTML += "<div class='QuestionWrap'>";
-    HTML += "<h2 class='QuestionText'>Skriv formlen for stoffet der indeholder <span class='QuestionTask'>"+JOQ[Inx]["Index"]+" "+JOQ[Inx]["Name"].toLowerCase()+"atom"+((JOQ[Inx]["Index"]==1)?"":"er")+"</span>.</h2>" + QuestionCountStr;
+    HTML += "<h2 class='QuestionText'>Skriv formlen for stoffet der indeholder <span class='QuestionTask'>"+JOQ[Inx]["Index"]+" "+JOQ[Inx]["Name"].toLowerCase()+"atom"+((JOQ[Inx]["Index"]==1)?"":"er")+"</span></h2>" + QuestionCountStr;
     HTML += "</div>";
+    HTML += "<div class='FeedbackWrap'></div>";
     // HTML += "<div class='QuestionWrap'><h2 class='AnswerText'>TEST</h2></div>";
 
     // Write the heading and question for the student:
@@ -301,6 +317,7 @@ function Principle4(JOQ, PrincipleArray, Qcount){
     HTML += "<div class='QuestionWrap'>";
     HTML += "<h2>Skriv formlen for stoffet der indeholder <span class='QuestionTask'>"+JOQ[Inx]["Index"]+" "+JOQ[Inx]["Name"].toLowerCase()+"atom"+((JOQ[Inx]["Index"]==1)?"":"er")+"</span>.</h2>" + QuestionCountStr + "";
     HTML += "</div>";
+    HTML += "<div class='FeedbackWrap'></div>";
 
     // Write the heading and question for the student:
     $(".QuizHeadingText").html( HTML );
@@ -447,7 +464,7 @@ function GivePosetiveFeedback(JsonObj_Questions, ResultObj){
         console.log("ArrayIndex: " + ArrayIndex);
 
         var HTML = "";
-        HTML += "RIGTIGT: Du har skrevet formlen for " + JsonObj_Questions[ ArrayIndex ].TName.toLowerCase() + ".";
+        HTML += "RIGTIGT: Du har skrevet formlen for " + JsonObj_Questions[ ArrayIndex ].TName.toLowerCase() + "";
         console.log("GivePosetiveFeedback: " + HTML);
 
         $(".QuestionText").html( HTML );
@@ -458,8 +475,8 @@ function GivePosetiveFeedback(JsonObj_Questions, ResultObj){
             CssObj.Index =  $(".IndexNum").css(["background-color"]);
             CssObj.Charge =  $(".ChargeNum").css(["background-color"]);
             CssObj.Coeff =  $(".CoeffNum").css(["background-color"]);
-            CssObj.lbox =  $(".lbox").css(["border-color"]);
-            CssObj.sbox =  $(".sbox").css(["border-color"]);
+            CssObj.lbox =  $(".lbox").css(["border-top-color", "border-right-color", "border-bottom-color", "border-left-color"]); // Note: "border-color" will not work, you have to explicitly name the sides
+            CssObj.sbox =  $(".sbox").css(["border-top-color", "border-right-color", "border-bottom-color", "border-left-color"]); // Note: "border-color" will not work, you have to explicitly name the sides
         }
         console.log("CssObj: " + JSON.stringify(CssObj));
 
@@ -467,19 +484,14 @@ function GivePosetiveFeedback(JsonObj_Questions, ResultObj){
         $( ".lbox, .sbox" ).animate({
             "border-color": "transparent"
         }, 500 );
-        // $( ".DropCoeff, .DropCharge" ).animate({
-        //     "border-color": "transparent"
-        // }, 500 );
-
-        // Fade out borders and background-color on the draggables: 
-        // if (ResultObj.Dropped.Element) $(".Elem_OK").animate({"background-color": "transparent", "border-color": "transparent"}, 500);
-        // if (ResultObj.Dropped.Index)  $(".Index_OK").animate({"background-color": "transparent", "border-color": "transparent"}, 500);
-        // if (ResultObj.Dropped.Charge)  $(".Char_OK").animate({"background-color": "transparent", "border-color": "transparent"}, 500);
-        // if (ResultObj.Dropped.Coeff)  $(".Coeff_OK").animate({"background-color": "transparent", "border-color": "transparent"}, 500);
+        
         if (ResultObj.Dropped.Element) $(".Elem_OK").animate({"background-color": "transparent"}, 500);
         if (ResultObj.Dropped.Index)  $(".Index_OK").animate({"background-color": "transparent"}, 500);
         if (ResultObj.Dropped.Charge)  $(".Char_OK").animate({"background-color": "transparent"}, 500);
         if (ResultObj.Dropped.Coeff)  $(".Coeff_OK").animate({"background-color": "transparent"}, 500);
+
+
+        /////////    TEST   ///////////////////////////
 
 
         // var Offset = $(DivObj).offset();     // absolute
@@ -516,9 +528,46 @@ function GivePosetiveFeedback(JsonObj_Questions, ResultObj){
 }
 
 
-function GiveNegativeFeedback(){
+function GiveNegativeFeedback(JsonObj_Questions, ResultObj, TotResultObj){
+    if ((TotResultObj.TotFail >= 3) && (TotResultObj.LastDraggableAccepted == false)){
+        var Inx = ResultObj.PrincipleArray[ResultObj.Qcount]; 
+        var JOQ = JsonObj_Questions;
+        var HTML = "<h2 id='Feedbackhide'>";
+        if (TotResultObj.LastDropped == "Coeff") 
+            HTML += "Denne kasse er til koefficienter, som angiver hvor mange <b>"+(((JOQ[Inx]["AtomNum"]==2)||(JOQ[Inx]["AtomNum"]==10))?"atomer":"molekyler")+"</b> der er. Her er der kun tale om et molekyle, derfor skal der ikke stå noget tal.";
+        if (TotResultObj.LastDropped == "Element") 
+            HTML += "Denne kasse er til atomsymbolet. Find symbolet for <b>"+JOQ[Inx]["Name"].toLowerCase()+"atomet</b> i grundstoffernes periodesystem og træk det op i kassen.";
+        if (TotResultObj.LastDropped == "Charge") 
+            HTML += "Denne kasse er til ladninger, men da <b>"+(((JOQ[Inx]["AtomNum"]==2)||(JOQ[Inx]["AtomNum"]==10))?"atomer":"molekyler")+"</b> er uden ladninger, skal der ikke stå noget her.";
+        if (TotResultObj.LastDropped == "Index")
+            HTML += "Denne kasse er til indekstal, tallet der skal stå her angiver hvor mange atomer der er i molekylet. Find tallet til højre og træk det hen i kassen.";
+        HTML += "</h2> ";
 
-}
+        if (TotResultObj.LastDropped != TotResultObj.LastDragged.Type){ // Do not give wrong-type feedback if e.g. index = 3 is dragged to the .DropIndex instead of index = 2
+            $(".FeedbackWrap").html(HTML);
+
+            $("#Feedbackhide").slideDown( "slow", function() {
+                $("#Feedbackhide").append('<a class="FeekbackOkBtn btn-default btn btn-default" href="#">OK</a>');
+
+                $( ".draggable" ).draggable( "disable" ); // Disable all draggables. This is the simplest way of advoiding errors due to unexpected user behavior.
+
+            });
+        }
+
+        $( document ).on('click', ".FeekbackOkBtn", function(event){
+            event.preventDefault();  // Prevents sending the user to "href".
+            $("#Feedbackhide").slideUp( "slow" , function() {
+
+                $( ".draggable" ).draggable( "enable" ); // Enable all draggables
+
+            });
+        });
+
+    }
+
+    var TTT = $( ".draggable" ).draggable('option', 'enable');
+    console.log("TTT: " + JSON.stringify(TTT));
+} 
 
 
 // Funktionen laver en kopi af arrayet i argumentet, og blander elementerne tilfaeldigt
@@ -636,17 +685,29 @@ function SetAcceptedNumbers(NumStrOk, Selector, Class_OK){
 
 
 
-function UpdateResultFeedback(ResultObj, BoolCorrectOrFail){
+function UpdateResultFeedback(ResultObj, TotResultObj, ObjKey ,BoolCorrectOrFail){
     ResultObj.Attempt += 1;
-    if (BoolCorrectOrFail)
+    TotResultObj.TotAttempt += 1;
+    TotResultObj[ObjKey].Attempt += 1;
+    TotResultObj.LastDragged.Type = ObjKey;
+    if (BoolCorrectOrFail){
         ResultObj.Correct += 1;
-    else
+        TotResultObj.TotCorrect += 1;
+        TotResultObj[ObjKey].Correct += 1;
+        TotResultObj.LastDraggableAccepted = true;
+    }
+    else{
         ResultObj.Fail += 1;
+        TotResultObj.TotFail += 1;
+        TotResultObj[ObjKey].Fail += 1;
+        TotResultObj.LastDraggableAccepted = false;
+    }
     $(".ScoreAttempts").text( ResultObj.Attempt ); 
     $(".ScoreCorrect").text( ResultObj.Correct );
     $(".ScoreFail").text( ResultObj.Fail );
     $(".ScoreStat").text( (ResultObj.Correct/ResultObj.Attempt*100).toFixed(2) + "%" ); 
-    // alert(typeof((ResultObj.Correct/ResultObj.Attempt*100).toFixed(2)))               
+    // alert(typeof((ResultObj.Correct/ResultObj.Attempt*100).toFixed(2)))     
+    console.log("TotResultObj: " + JSON.stringify(TotResultObj));          
 }
 
 
@@ -671,8 +732,10 @@ function ResetQuiz(Milliseconds){
     if (ResultObj.Dropped.Index)  $(".Index_OK").css(CssObj.Index);
     if (ResultObj.Dropped.Charge)  $(".Char_OK").css(CssObj.Charge);
     if (ResultObj.Dropped.Coeff)  $(".Coeff_OK").css(CssObj.Coeff);
-    $(".lbox").css(CssObj.lbox);
-    $(".sbox").css(CssObj.sbox);
+    // $(".lbox").css(CssObj.lbox);
+    // $(".sbox").css(CssObj.sbox);
+    $( ".lbox" ).animate(CssObj.lbox, 1000 ); // The droppables will fadein 
+    $( ".sbox" ).animate(CssObj.sbox, 1000 ); // The droppables will fadein 
 
     // Reset memory:
     EventObj = { Element: {AtomNum: null, AtomName: null, drop: false}, 
@@ -707,9 +770,24 @@ function ResetQuiz(Milliseconds){
     $(".droppable").removeClass( "DropHighlight" );
 }
 
+function IsInsideBox(Selector, Left, Top){
+    var Con  = $(Selector).offset(); 
+    Con.width = $(Selector).width();
+    Con.height = $(Selector).height();
+    if ((Con.left <= Left) && (Left <= Con.left + Con.width) && (Con.top <= Top) && (Top <= Con.top + Con.height)) 
+        return true;
+    else
+        return false;
+}
 
-function QuizSetup(JsonObj_PeriodicTable){
+function FindAttemptedDroppable(TotResultObj){
+    var Left = TotResultObj.LastDragged.Left;
+    var Top = TotResultObj.LastDragged.Top;
 
+    if (IsInsideBox(".DropCoeff", Left, Top)) TotResultObj.LastDropped = "Coeff";
+    if (IsInsideBox(".DropElement", Left, Top)) TotResultObj.LastDropped = "Element";
+    if (IsInsideBox(".DropCharge", Left, Top)) TotResultObj.LastDropped = "Charge";
+    if (IsInsideBox(".DropIndex", Left, Top))  TotResultObj.LastDropped = "Index";
 }
 
 
@@ -787,8 +865,11 @@ $( document ).ready(function() {
 
     // Format the ElementBox to reprecent an element seen in chemical equations:
     $( document ).on('mousedown', ".ElementBox", function(event){
-        $(".AtomNum, .AtomName, .AtomWeight", this).hide();
-        $(".AtomSymbol", this).css("font-size", "400%");
+
+        if ($( ".draggable" ).draggable('option', 'disabled') != true){
+            $(".AtomNum, .AtomName, .AtomWeight", this).hide();
+            $(".AtomSymbol", this).css("font-size", "400%");
+        }
     });
 
 
@@ -806,7 +887,13 @@ $( document ).ready(function() {
             EventObj.Index.val = $(this).hasClass("IndexNum") ? $(this).text() : null;
             EventObj.Charge.val = $(this).hasClass("ChargeNum") ? $(this).text() : null;
             EventObj.Coeff.val = $(this).hasClass("CoeffNum") ? $(this).text() : null;
-            console.log("EventObj.Element: " + JSON.stringify(EventObj.Element) );
+
+            // if (EventObj.Element.AtomNum !== null) TotResultObj.LastDropped = "DropElement";
+            // if (EventObj.Index.val !== null) TotResultObj.LastDropped = "DropIndex";
+            // if (EventObj.Charge.val !== null) TotResultObj.LastDropped = "DropCharge";
+            // if (EventObj.Coeff.val !== null) TotResultObj.LastDropped = "DropCoeff";
+
+            // console.log("TotResultObj: " + JSON.stringify(TotResultObj) + "\nEventObj: " + JSON.stringify(EventObj) );
 
             // console.log("EventObj.this: " + JSON.stringify(this) );      // FEJL i Chrome + Safari
             // console.log("start.ui: " + JSON.stringify(ui));                // FEJL i Chrome + Safari
@@ -831,7 +918,7 @@ $( document ).ready(function() {
                 // Ensures that only the accepted draggable element gets a correct-score, and that only one correct-score is given if the accepted draggable is re-dragged.
                 if (EventObj.Element.drop && (ResultObj.Element.AtomNum === null)){ // accepted draggable is in droppable AND not counted before.
                     ErrStr += "B2,";
-                    UpdateResultFeedback(ResultObj, true);
+                    UpdateResultFeedback(ResultObj, TotResultObj, "Element", true);
                     ResultObj.Element.AtomNum = EventObj.Element.AtomNum;
                     ResultObj.Dropped.Element = true;
                     console.log("B2:\n EventObj.Element.AtomNum: " + EventObj.Element.AtomNum + ", ResultObj.Element.AtomNum: " + ResultObj.Element.AtomNum );
@@ -840,7 +927,7 @@ $( document ).ready(function() {
                 // Ensures that you can't get a higher fail-score once the right accepted draggable element is dropped.
                 if (ResultObj.Element.AtomNum === null){  // accepted draggable not counted before.
                     ErrStr += "B3,";
-                    UpdateResultFeedback(ResultObj, false);
+                    UpdateResultFeedback(ResultObj, TotResultObj, "Element", false);
                 }
 
                 // Prevents reset for an accepted draggable, if one tries to ajust the the accepted draggable element in the droppable zone.
@@ -865,7 +952,7 @@ $( document ).ready(function() {
                 // Ensures that only the accepted draggable element gets a correct-score, and that only one correct-score is given if the accepted draggable is re-dragged.
                 if (EventObj.Index.drop && (ResultObj.Index.val === null)){ // accepted draggable is in droppable AND not counted before.
                     ErrStr += "C2,";
-                    UpdateResultFeedback(ResultObj, true);
+                    UpdateResultFeedback(ResultObj, TotResultObj, "Index", true);
                     ResultObj.Index.val = EventObj.Index.val;
                     ResultObj.Dropped.Index = true;
                     console.log("C2:\n EventObj.Index.val: " + EventObj.Index.val + ", ResultObj.Index.val: " + ResultObj.Index.val );
@@ -874,7 +961,7 @@ $( document ).ready(function() {
                 // Ensures that you can't get a higher fail-score once the right accepted draggable element is dropped.
                 if (ResultObj.Index.val === null){  // accepted draggable not counted before.
                     ErrStr += "C3,";
-                    UpdateResultFeedback(ResultObj, false);
+                    UpdateResultFeedback(ResultObj, TotResultObj, "Index", false);
                 }
             }
 
@@ -890,7 +977,7 @@ $( document ).ready(function() {
                 // Ensures that only the accepted draggable element gets a correct-score, and that only one correct-score is given if the accepted draggable is re-dragged.
                 if (EventObj.Charge.drop && (ResultObj.Charge.val === null)){ // accepted draggable is in droppable AND not counted before.
                     ErrStr += "D2,";
-                    UpdateResultFeedback(ResultObj, true);
+                    UpdateResultFeedback(ResultObj, TotResultObj, "Charge", true);
                     ResultObj.Charge.val = EventObj.Charge.val;
                     ResultObj.Dropped.Charge = true;
                     console.log("D2:\n EventObj.Charge.val: " + EventObj.Charge.val + ", ResultObj.Charge.val: " + ResultObj.Charge.val );
@@ -899,7 +986,7 @@ $( document ).ready(function() {
                 // Ensures that you can't get a higher fail-score once the right accepted draggable element is dropped.
                 if (ResultObj.Charge.val === null){  // accepted draggable not counted before.
                     ErrStr += "D3,";
-                    UpdateResultFeedback(ResultObj, false);
+                    UpdateResultFeedback(ResultObj, TotResultObj, "Charge", false);
                 }
             }
 
@@ -915,7 +1002,7 @@ $( document ).ready(function() {
                 // Ensures that only the accepted draggable element gets a correct-score, and that only one correct-score is given if the accepted draggable is re-dragged.
                 if (EventObj.Coeff.drop && (ResultObj.Coeff.val === null)){ // accepted draggable is in droppable AND not counted before.
                     ErrStr += "E2,";
-                    UpdateResultFeedback(ResultObj, true);
+                    UpdateResultFeedback(ResultObj, TotResultObj, "Coeff", true);
                     $(this).css({"width": "10%", "height": "50%", "font-size": "300%"});
                     ResultObj.Coeff.val = EventObj.Coeff.val;
                     ResultObj.Dropped.Coeff = true;
@@ -926,7 +1013,7 @@ $( document ).ready(function() {
                 // Ensures that you can't get a higher fail-score once the right accepted draggable element is dropped.
                 if (ResultObj.Coeff.val === null){  // accepted draggable not counted before.
                     ErrStr += "E3,";
-                    UpdateResultFeedback(ResultObj, false);
+                    UpdateResultFeedback(ResultObj, TotResultObj, "Coeff", false);
                 }
             }
 
@@ -934,6 +1021,10 @@ $( document ).ready(function() {
             ErrStr = "";
 
             GivePosetiveFeedback(JsonObj_Questions, ResultObj);
+
+            FindAttemptedDroppable(TotResultObj);
+
+            GiveNegativeFeedback(JsonObj_Questions, ResultObj, TotResultObj);
 
             // Reset EventObj:
             EventObj = {    Element: {AtomNum: null, AtomName: null, drop: false}, 
@@ -944,11 +1035,18 @@ $( document ).ready(function() {
         },
 
         drag: function(){
+
+            $("#Feedbackhide").slideUp( "slow" ); // Hide the negative student feedback if present
+
             var offset = $(this).offset();
-            var xPos = offset.left;
-            var yPos = offset.top;
-            $('#DragLeft').text(xPos);
-            $('#DragTop').text(yPos);
+            var Left = offset.left;
+            var Top = offset.top;
+            var Width = $(this).width();
+            var Height = $(this).height();
+            TotResultObj.LastDragged.Left = Left + Math.round(Width/2);
+            TotResultObj.LastDragged.Top = Top + Math.round(Height/2);
+            $('#DragLeft').text(Left);
+            $('#DragTop').text(Top);
         }
     });
 
@@ -960,7 +1058,7 @@ $( document ).ready(function() {
             // $( this ).addClass( "DropHighlight" );
             ResultStr += "Drop";
             EventObj.Element.drop = true;
-            console.log("EventObj.Element.obj: " + JSON.stringify( EventObj.Element.obj ));
+            console.log("EventObj X: " + JSON.stringify( EventObj ));
         }
     });
     $( ".DropCoeff" ).droppable({
@@ -984,7 +1082,6 @@ $( document ).ready(function() {
             EventObj.Index.drop = true;
         }
     });
-
 
 });
 

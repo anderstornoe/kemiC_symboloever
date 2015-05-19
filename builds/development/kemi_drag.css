@@ -4,6 +4,8 @@ body{line-height: 1;}
 .QuestionWrap{margin-left: 4%;}
 .QuestionWrap h2{display: inline-block;}
 .QuestionText{ margin-right: 2%;}
+.FeedbackWrap{margin-left: 4%;}
+#Feedbackhide{display: none;}
 .QuizHeadingTextCount{display: inline-block;}
 .NextQuestion{margin-left: 1%; margin-bottom: 1%;}
 .QuestionTask{color: #000;}
@@ -11,16 +13,23 @@ body{line-height: 1;}
 .AnsMolecule{display: inline-block;}
 
 .PeriodicTableWrapper{ width: 100%; /*border: 1px solid #F00;*/}
-.ElementBox  {position: relative; font-size: 11px; width: 5%; margin: 0.27777%; padding: 3px; display: inline-block; line-height: 1.4; overflow: hidden;}  /* NOTE: 90/18 = 5%, og 5/18 = 0.27777% */
+.ElementBox  {position: relative; font-size: 11px; width: 5%; margin: 0.27777%; padding: 3px; display: inline-block; line-height: 1.4; overflow: hidden;
+/*
+        IPAD-work-around til at faa HintClass-div's til at lukke:
+        http://stackoverflow.com/questions/7892863/jquery-click-not-working-with-ipad
+        http://www.mitch-solutions.com/blog/17-ipad-jquery-live-click-events-not-working
+*/
+        /*cursor:pointer;*/   
+}  /* NOTE: 90/18 = 5%, og 5/18 = 0.27777% */
 .DummyElement{position: relative; width: 5%; margin: 0.27777%; padding: 3px; display: inline-block; /*border: 1px solid #F00;*/ }
 .AtomNum     {position: relative; }
 .AtomName    {position: relative; }
 .AtomSymbol  {position: relative; font-size: 160%; }
 .AtomWeight  {position: relative; display: none;}
  
-.lbox{width: 6%; margin-bottom: 2.8%;} /* width: 12%; margin-bottom: 3%; */
+.lbox{width: 6%; margin-bottom: 2.8%; border: 1px solid #717272;} /* width: 12%; margin-bottom: 3%; */
 .xlbox{/*width: 12%;*/ width: 4%; margin-right: 4%; }
-.sbox{/*width: 33%;*/ width: 100%;}
+.sbox{/*width: 33%;*/ width: 100%; border: 1px solid #717272;}
 
 .red{border: 1px solid #F00;}
 
@@ -45,7 +54,14 @@ body{line-height: 1;}
 .ScoreWrapper h3{margin: 3px 0px;}
 
 .NumberHeading{font-size: 18px; margin-top: 5px;}
-.DragNum{padding: 0px; margin: 0.5%; display: inline-block; /*border: 1px solid #00F;*/ font-size: 22px;}
+.DragNum{padding: 0px; margin: 0.5%; display: inline-block; /*border: 1px solid #00F;*/ font-size: 22px;
+/*
+        IPAD-work-around til at faa HintClass-div's til at lukke:
+        http://stackoverflow.com/questions/7892863/jquery-click-not-working-with-ipad
+        http://www.mitch-solutions.com/blog/17-ipad-jquery-live-click-events-not-working
+*/
+        /*cursor:pointer;*/  
+}
 .IndexNum{}
 .ChargeNum{}
 .CoeffNum{}
@@ -54,4 +70,5 @@ body{line-height: 1;}
 .right{float: right;}
 .clear{clear: both;}
 
-.droppable{border: 1px solid #717272;}
+
+.droppable{/*border: 1px solid #717272;*/}
