@@ -72,3 +72,18 @@ body{line-height: 1;}
 
 
 .droppable{/*border: 1px solid #717272;*/}
+
+.XTEST{background-color: #0F0;}
+
+.FontRed{color: #F00;}
+.FontGreen{color: #0F0;}
+.FontBlue{color: #00F;}
+
+.CapitalI{font-family: "Georgia"; font-weight: 100;}
+
+/*
+.ui-draggable-dragging{z-index: 2;}
+*/
+
+.HasClone{z-index: 2;}
+.Clone{z-index: 1;}

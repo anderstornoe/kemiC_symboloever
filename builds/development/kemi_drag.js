@@ -22,7 +22,7 @@ var JsonObj_PeriodicTable = [
     {"name": "Silicium",   "sym":"Si", "num":50,  "Z":14, "A":28.085},
     {"name": "Fosfor",     "sym":"P",  "num":51,  "Z":15, "A":30.973761998},
     {"name": "Svovl",      "sym":"S",  "num":52,  "Z":16, "A":32.06},
-    {"name": "Klor",       "sym":"Cl", "num":53,  "Z":17, "A":35.45},
+    {"name": "Chlor",       "sym":"Cl", "num":53,  "Z":17, "A":35.45},
     {"name": "Argon",      "sym":"Ar", "num":54,  "Z":18, "A":39.948},
     {"name": "Kalium",     "sym":"K",  "num":55,  "Z":19, "A":39.0983},     // SKAL 3
     {"name": "Calcium",    "sym":"Ca", "num":56,  "Z":20, "A":40.078},
@@ -106,7 +106,7 @@ var JsonObj_Questions = [
     {"AtomSym": "O",   "Name": "Oxygen",   "TName": "Ozon",               "AtomNum": 8,  "Principle": [1,3], "ChemType": "molecule", "Index": 3, "Charge":0,  "Coeff": 1},
     {"AtomSym": "Ne",  "Name": "Neon",     "TName": "Neongas",            "AtomNum": 10, "Principle": [1,3], "ChemType": "molecule", "Index": 1, "Charge":0,  "Coeff": 1},
     {"AtomSym": "S",   "Name": "Svovl",    "TName": "Svovl",              "AtomNum": 16, "Principle": [1,3], "ChemType": "molecule", "Index": 8, "Charge":0,  "Coeff": 1},
-    {"AtomSym": "Cl",  "Name": "Klor",     "TName": "Dilor",              "AtomNum": 17, "Principle": [1,3], "ChemType": "molecule", "Index": 2, "Charge":-1, "Coeff": 1},
+    {"AtomSym": "Cl",  "Name": "chlor",     "TName": "Dichlor",              "AtomNum": 17, "Principle": [1,3], "ChemType": "molecule", "Index": 2, "Charge":-1, "Coeff": 1},
     {"AtomSym": "Br",  "Name": "Brom",     "TName": "Dibrom",             "AtomNum": 35, "Principle": [1,3], "ChemType": "molecule", "Index": 2, "Charge":-1, "Coeff": 1},
     {"AtomSym": "I",   "Name": "Iod",      "TName": "Diiod",              "AtomNum": 53, "Principle": [1,3], "ChemType": "molecule", "Index": 2, "Charge":-1, "Coeff": 1}
 ]; 
@@ -117,7 +117,16 @@ var JsonObj_Questions = [
 //########################################################################
 
 var ResultStr = "";
-var EventObj = {    Element: {AtomNum: null, AtomName: null, drop: false}, 
+
+var MemObj = {  // MemObj is permanent through program execution 
+                CloneArray:[]   // Keeps track of the clone-numbers, eg. 1,2,3,..., denoted: "Clone_1", "Clone_2", "Clone_3",...
+            };
+
+var EventObj = {    
+                    Dragging: false,
+                    DraggableLeft: null,
+                    DraggableTop: null,
+                    Element: {AtomNum: null, AtomName: null, drop: false}, 
                     Index: {val: null, drop: false },
                     Charge: {val: null, drop: false },
                     Coeff: {val: null, drop: false }
@@ -197,8 +206,6 @@ $( document ).ready(function() {
 
 var PrincipleNum = 1;
 
-var JsonObj_PeriodicTable;
-
 var Names;
 var NameArray = [];
 
@@ -256,6 +263,39 @@ function loadData(url) {
 }
 
 
+// This function surrounds all letters (or clusters of letters) in LetterArray with span-tags with a class specified in LetterClassArray.
+// NOTE: The delimiter should be a character (eg. "#"), or a combination of characters (eg. "-X-"), that does not exist in the target text.
+// IMPORTANT: HTML-tags must not be present in the target-text. This could result in invalid/broken markup.
+// EXAMPLE CALL:
+//          MarkCertainLettersAsSpecial(JsonObj_PeriodicTable, ["name", "sym"], ["L","H"], ["FontRed", "FontGreen"], "#");
+// - which will make all L's red and all H's green in the text-strings associated with the object-keynames "name" and "sym".
+function MarkCertainLettersAsSpecial(JsonObj_PeriodicTable, ObjKeyArray, LetterArray, LetterClassArray, Delimiter){
+    for (var j in JsonObj_PeriodicTable){
+        for (var o in ObjKeyArray){
+            for (var l in LetterArray){ // First surround all letters (or clusters of letters) in LetterArray with delimiters, eg. If letter = L and delimiter = #, then #L#.
+                JsonObj_PeriodicTable[j][ObjKeyArray[o]] = JsonObj_PeriodicTable[j][ObjKeyArray[o]].replace(LetterArray[l], Delimiter + LetterArray[l] + Delimiter);
+            }
+
+            for (var l in LetterArray){// second, replace all delimited letters, eg. #L#, with <span class="MyClass">L</span>
+                var LetterClass = (LetterClassArray.length == LetterArray.length) ? LetterClassArray[l] : LetterClassArray[0]; 
+
+                JsonObj_PeriodicTable[j][ObjKeyArray[o]] = JsonObj_PeriodicTable[j][ObjKeyArray[o]].replace(Delimiter + LetterArray[l] + Delimiter, '<span class="'+LetterClass+'">'+LetterArray[l]+'</span>');
+
+                console.log("MarkCertainLettersAsSpecial - j: " + j + 
+                            "\no: " + o + ", ObjKeyArray["+o+"]: " + ObjKeyArray[o] + 
+                            "\nl: " + l + ", LetterArray["+l+"]: " + LetterArray[l] + 
+                            "\nJsonObj_PeriodicTable["+j+"]: " + JSON.stringify( JsonObj_PeriodicTable[j] ) + 
+                            "\nJsonObj_PeriodicTable["+j+"][ObjKeyArray["+o+"]]: " + JsonObj_PeriodicTable[j][ObjKeyArray[o]]);
+            }
+        }
+    }
+}
+
+
+// throw new Error("TEST STOP ENABLED!!!");
+
+
+
 function MakeQuestionObj(JsonObj_Questions, QuestionObj){
 
     for (var ElmObjNr in JsonObj_Questions){
@@ -284,9 +324,12 @@ function Principle1(JOQ, PrincipleArray, Qcount){
                            "</span>";
 
     var HTML = "";
-    HTML += "<h1>Princip 1-a-1: et grundstof - letteste niveau</h1>";
+    HTML += "<h1>Niveau 1: Kemiske formler - &eacute;t grundstof</h1>";
     HTML += "<div class='QuestionWrap'>";
-    HTML += "<h2 class='QuestionText'>Skriv formlen for stoffet der indeholder <span class='QuestionTask'>"+JOQ[Inx]["Index"]+" "+JOQ[Inx]["Name"].toLowerCase()+"atom"+((JOQ[Inx]["Index"]==1)?"":"er")+"</span></h2>" + QuestionCountStr;
+    HTML += "<h2 class='QuestionText'>" +
+                "Træk grundstofsymbol og indekstal til det rette felt.<br/>" +
+                "<span class='QuestionCorrect'>Lav molekylet bestående af <span class='QuestionTask'>"+JOQ[Inx]["Index"]+" "+JOQ[Inx]["Name"].toLowerCase()+"atom"+((JOQ[Inx]["Index"]==1)?"":"er")+"</span></span>" + 
+            "</h2>" + QuestionCountStr;
     HTML += "</div>";
     HTML += "<div class='FeedbackWrap'></div>";
     // HTML += "<div class='QuestionWrap'><h2 class='AnswerText'>TEST</h2></div>";
@@ -294,8 +337,10 @@ function Principle1(JOQ, PrincipleArray, Qcount){
     // Write the heading and question for the student:
     $(".QuizHeadingText").html( HTML );
 
-    $(".ElementBox").removeClass("Elem_OK");
-    $(".DragNum").removeClass("Index_OK Char_OK Coeff_OK");
+    // $(".ElementBox").removeClass("Elem_OK");
+    // $(".DragNum").removeClass("Index_OK Char_OK Coeff_OK");
+    $(".draggable").removeClass("Elem_OK Index_OK Char_OK Coeff_OK Dropped");
+
 
     SetAcceptedElements( JOQ[Inx]["AtomNum"] );                        // The draggable element
     SetAcceptedNumbers(  JOQ[Inx]["Index"], ".IndexNum", "Index_OK");  // Principle 1: index numbers
@@ -315,15 +360,19 @@ function Principle4(JOQ, PrincipleArray, Qcount){
     var HTML = "";
     HTML += "<h1>Princip 1, 2 og 3 - <b>TEST</b> - med alle draggable tal</h1>";
     HTML += "<div class='QuestionWrap'>";
-    HTML += "<h2>Skriv formlen for stoffet der indeholder <span class='QuestionTask'>"+JOQ[Inx]["Index"]+" "+JOQ[Inx]["Name"].toLowerCase()+"atom"+((JOQ[Inx]["Index"]==1)?"":"er")+"</span>.</h2>" + QuestionCountStr + "";
+    HTML += "<h2 class='QuestionText'>" +
+                "Træk grundstofsymbol og indekstal til det rette felt.<br/>" +
+                "Lav <span class='QuestionTask'>"+JOQ[Inx]["Index"]+" "+JOQ[Inx]["Name"].toLowerCase()+"atom"+((JOQ[Inx]["Index"]==1)?"":"er")+"</span>" + 
+            "</h2>" + QuestionCountStr;
     HTML += "</div>";
     HTML += "<div class='FeedbackWrap'></div>";
 
     // Write the heading and question for the student:
     $(".QuizHeadingText").html( HTML );
 
-    $(".ElementBox").removeClass("Elem_OK");
-    $(".DragNum").removeClass("Index_OK Char_OK Coeff_OK");
+    // $(".ElementBox").removeClass("Elem_OK");
+    // $(".DragNum").removeClass("Index_OK Char_OK Coeff_OK");
+    $(".draggable").removeClass("Elem_OK Index_OK Char_OK Coeff_OK Dropped");
 
     // Returns "X+" if X > 0, "X-" if X < 0 or 0 if X = 0, where X = charge.
     Charge = String(Math.abs(JOQ[Inx]["Charge"])) + ((JOQ[Inx]["Charge"] > 0)?"+":((JOQ[Inx]["Charge"] < 0)?"-":""));  
@@ -464,10 +513,10 @@ function GivePosetiveFeedback(JsonObj_Questions, ResultObj){
         console.log("ArrayIndex: " + ArrayIndex);
 
         var HTML = "";
-        HTML += "RIGTIGT: Du har skrevet formlen for " + JsonObj_Questions[ ArrayIndex ].TName.toLowerCase() + "";
+        HTML += "Rigtigt, du har lavet formlen for <span class='QuestionTask'>" + JsonObj_Questions[ ArrayIndex ].TName.toLowerCase() + "</span>";
         console.log("GivePosetiveFeedback: " + HTML);
 
-        $(".QuestionText").html( HTML );
+        $(".QuestionCorrect").html( HTML );
 
         // Get 
         if ($.isEmptyObject(CssObj)){
@@ -490,8 +539,15 @@ function GivePosetiveFeedback(JsonObj_Questions, ResultObj){
         if (ResultObj.Dropped.Charge)  $(".Char_OK").animate({"background-color": "transparent"}, 500);
         if (ResultObj.Dropped.Coeff)  $(".Coeff_OK").animate({"background-color": "transparent"}, 500);
 
+        if (ResultObj.Dropped.Index) { // If the value of the index number equal 1, then it need to fadeout in order to be chemically correct:
+            // if (parseInt($(".Index_OK").text()) == 1) $(".Index_OK").fadeOut(500);
+        }
 
-        /////////    TEST   ///////////////////////////
+        console.log("IndexNumValue: " + typeof($(".Index_OK").text()) );
+
+        //////////////////////////////////////////////////////
+        //                      TEST   
+        //////////////////////////////////////////////////////
 
 
         // var Offset = $(DivObj).offset();     // absolute
@@ -529,7 +585,7 @@ function GivePosetiveFeedback(JsonObj_Questions, ResultObj){
 
 
 function GiveNegativeFeedback(JsonObj_Questions, ResultObj, TotResultObj){
-    if ((TotResultObj.TotFail >= 3) && (TotResultObj.LastDraggableAccepted == false)){
+    if ((TotResultObj.TotFail >= 3) && (TotResultObj.LastDraggableAccepted == false)){  // LastDraggableAccepted == false prevent error message if you ajust the draggables position in the droppable.
         var Inx = ResultObj.PrincipleArray[ResultObj.Qcount]; 
         var JOQ = JsonObj_Questions;
         var HTML = "<h2 id='Feedbackhide'>";
@@ -543,8 +599,8 @@ function GiveNegativeFeedback(JsonObj_Questions, ResultObj, TotResultObj){
             HTML += "Denne kasse er til indekstal, tallet der skal stå her angiver hvor mange atomer der er i molekylet. Find tallet til højre og træk det hen i kassen.";
         HTML += "</h2> ";
 
-        if (TotResultObj.LastDropped != TotResultObj.LastDragged.Type){ // Do not give wrong-type feedback if e.g. index = 3 is dragged to the .DropIndex instead of index = 2
-            $(".FeedbackWrap").html(HTML);
+        if ( (TotResultObj.LastDropped != TotResultObj.LastDragged.Type) && (TotResultObj.LastDropped !== null) ){ // LastDropped != LastDragged.Type: Do not give wrong-type feedback if e.g. index = 3 is dragged to the .DropIndex instead of index = 2
+            $(".FeedbackWrap").html(HTML);                                                                         // LastDropped = null if a draggable is not dropped in a droppable.
 
             $("#Feedbackhide").slideDown( "slow", function() {
                 $("#Feedbackhide").append('<a class="FeekbackOkBtn btn-default btn btn-default" href="#">OK</a>');
@@ -586,8 +642,8 @@ function ShuffelArray(ItemArray){
 }
 
 
-function ElementBox(AtomNum, AtomSymbol, AtomName, AtomWeight){   
-    var HTML = '<div class="ElementBox btn btn-info draggable">' + 
+function ElementBox(AtomNum, AtomSymbol, AtomName, AtomWeight, ExtraCssClasses){   
+    var HTML = '<div class="ElementBox btn btn-info draggable '+ExtraCssClasses+'">' + 
                     '<div class="AtomNum">' + ((AtomNum > 0)? AtomNum : "&nbsp;") + '</div>' +
                     '<div class="AtomSymbol">' + AtomSymbol + '</div>' +
                     '<div class="AtomName">' + AtomName + '</div>' +
@@ -618,10 +674,10 @@ function MakePeriodicTable(JsonObj_PeriodicTable){
                     var AtomSymbol = JsonObj_PeriodicTable[Zn].sym;
                     var AtomName = JsonObj_PeriodicTable[Zn].name;
                     var AtomWeight = String(Math.round(10000*JsonObj_PeriodicTable[Zn].A)/10000);
-                    HTML += ElementBox(AtomNum, AtomSymbol, AtomName, AtomWeight);
+                    HTML += ElementBox(AtomNum, AtomSymbol, AtomName, AtomWeight, "");
                     ++Zn;
                 } else {
-                    HTML += ElementBox("34", "X", "Xxxx", "34");
+                    HTML += ElementBox("34", "X", "Xxxx", "34", "");
                 }
             }
         };
@@ -657,7 +713,8 @@ function FontSizeScalerNew(SelectorClassArr, NativeWindowWidth){
 function CreateNumberDivs(Min, Max, Class, BoolSetSign){
     var HTML = "";
     for (var i = Min; i <= Max; i++) {
-        if (i != 0) HTML += '<div class="'+Class+'">' + Math.abs(i) + ((BoolSetSign && i>0) ? "+" : ((BoolSetSign && i<0) ? "-" : "") )  + '</div>';
+        // if (i != 0) HTML += '<div class="'+Class+'">' + Math.abs(i) + ((BoolSetSign && i>0) ? "+" : ((BoolSetSign && i<0) ? "-" : "") )  + '</div>';
+        HTML += '<div class="'+Class+'">' + Math.abs(i) + ((BoolSetSign && i>0) ? "+" : ((BoolSetSign && i<0) ? "-" : "") )  + '</div>';
     };
     return HTML;
 }
@@ -723,7 +780,7 @@ function ResetQuiz(Milliseconds){
     });
 
     // Reset element when an unaccepted element returns to its position in the periodic table
-    $(".AtomNum, .AtomName, .AtomWeight").show();
+    $(".AtomNum, .AtomName, .AtomWeight Index_OK").show(); // Index_OK needs to be showen since all indexvalues = 1 is hidden.
     $(".AtomSymbol").css("font-size", "160%");
 
 
@@ -738,7 +795,11 @@ function ResetQuiz(Milliseconds){
     $( ".sbox" ).animate(CssObj.sbox, 1000 ); // The droppables will fadein 
 
     // Reset memory:
-    EventObj = { Element: {AtomNum: null, AtomName: null, drop: false}, 
+    EventObj = {    
+                    Dragging: false,
+                    DraggableLeft: null,
+                    DraggableTop: null,
+                    Element: {AtomNum: null, AtomName: null, drop: false}, 
                     Index: {val: null, drop: false },
                     Charge: {val: null, drop: false },
                     Coeff: {val: null, drop: false }
@@ -766,7 +827,12 @@ function ResetQuiz(Milliseconds){
     $(".ScoreFail").text( 0 );
     $(".ScoreStat").text( "0%" ); 
 
-    // Remove background-color from the correct droppables:
+    // Remove all Clone droppables
+    $(".Clone").remove();
+
+    $(".draggable").removeClass("Dropped");
+
+    // Remove background-color from the correct droppables:  Dropped
     $(".droppable").removeClass( "DropHighlight" );
 }
 
@@ -784,10 +850,45 @@ function FindAttemptedDroppable(TotResultObj){
     var Left = TotResultObj.LastDragged.Left;
     var Top = TotResultObj.LastDragged.Top;
 
+    TotResultObj.LastDropped = null;
+
     if (IsInsideBox(".DropCoeff", Left, Top)) TotResultObj.LastDropped = "Coeff";
     if (IsInsideBox(".DropElement", Left, Top)) TotResultObj.LastDropped = "Element";
     if (IsInsideBox(".DropCharge", Left, Top)) TotResultObj.LastDropped = "Charge";
     if (IsInsideBox(".DropIndex", Left, Top))  TotResultObj.LastDropped = "Index";
+}
+
+
+
+function ReturnLowestCloneNum(MemObj){
+    MemObj.CloneArray = MemObj.CloneArray.sort(); // Sort the array
+    var Count = 1;
+    for (var Num in MemObj.CloneArray){
+        if (Count < MemObj.CloneArray[Num]){  // Compare elements
+            MemObj.CloneArray.push(Count);
+            console.log("ReturnLowestCloneNum 1 - Num: " + MemObj.CloneArray[Num] + ", CloneArray: " + MemObj.CloneArray);
+            return Count;
+        }
+        ++Count;
+    }
+    console.log("ReturnLowestCloneNum 2 - CloneArray: " + MemObj.CloneArray);
+    MemObj.CloneArray.push(Count);
+    return Count;
+}
+
+
+// Problem: Several clones of a clone can be made. These clones are identified by having classes ".HasClone" and ".Clone" and 
+// having the same absolute position.
+function DestroyIdenticalClones(){
+    var CloneObj = {};
+    var Count = 0;
+    $(".Clone").each(function( index, element ) {  // First populate CloneObj with the absolute position of all DOM elements with classes ".HasClone" and ".Clone"
+        // if ($(this).hasClass(".HasClone")){
+            CloneObj[Count] = $(this).offset();
+            ++Count;
+        // }
+    });
+    console.log("DestroyIdenticalClones - CloneObj: " + JSON.stringify(CloneObj) );
 }
 
 
@@ -796,7 +897,10 @@ function FindAttemptedDroppable(TotResultObj){
 //########################################################################
 
 
-$( document ).ready(function() {
+$( document ).ready(function() {  // CapitalI
+
+    MarkCertainLettersAsSpecial(JsonObj_PeriodicTable, ["name", "sym"], ["I"], ["CapitalI"], "#");
+    // MarkCertainLettersAsSpecial(JsonObj_PeriodicTable, ["name", "sym"], ["H","L", "S"], ["FontRed", "FontGreen", "FontBlue"], "#");
 
 
     MakeQuestionObj(JsonObj_Questions, QuestionObj);
@@ -866,10 +970,10 @@ $( document ).ready(function() {
     // Format the ElementBox to reprecent an element seen in chemical equations:
     $( document ).on('mousedown', ".ElementBox", function(event){
 
-        if ($( ".draggable" ).draggable('option', 'disabled') != true){
-            $(".AtomNum, .AtomName, .AtomWeight", this).hide();
-            $(".AtomSymbol", this).css("font-size", "400%");
-        }
+        // if ($( ".draggable" ).draggable('option', 'disabled') != true){
+        //     $(".AtomNum, .AtomName, .AtomWeight", this).hide();
+        //     $(".AtomSymbol", this).css("font-size", "400%");
+        // }
     });
 
 
@@ -888,16 +992,12 @@ $( document ).ready(function() {
             EventObj.Charge.val = $(this).hasClass("ChargeNum") ? $(this).text() : null;
             EventObj.Coeff.val = $(this).hasClass("CoeffNum") ? $(this).text() : null;
 
-            // if (EventObj.Element.AtomNum !== null) TotResultObj.LastDropped = "DropElement";
-            // if (EventObj.Index.val !== null) TotResultObj.LastDropped = "DropIndex";
-            // if (EventObj.Charge.val !== null) TotResultObj.LastDropped = "DropCharge";
-            // if (EventObj.Coeff.val !== null) TotResultObj.LastDropped = "DropCoeff";
-
-            // console.log("TotResultObj: " + JSON.stringify(TotResultObj) + "\nEventObj: " + JSON.stringify(EventObj) );
-
-            // console.log("EventObj.this: " + JSON.stringify(this) );      // FEJL i Chrome + Safari
-            // console.log("start.ui: " + JSON.stringify(ui));                // FEJL i Chrome + Safari
-            // console.log("start.ui.helper: " + JSON.stringify(ui.helper));  // FEJL i Chrome + Safari
+            // // Hide .AtomNum, .AtomName, .AtomWeight "on drag" instead of hide "on mousedown":
+            // if ($( ".draggable" ).draggable('option', 'disabled') != true){
+            //     $(".AtomNum, .AtomName, .AtomWeight", this).hide();
+            //     $(".AtomSymbol", this).css("font-size", "400%");
+            //     console.log("XXX TEST");
+            // }
         },
 
         // SEQUENCE 3:
@@ -1017,6 +1117,9 @@ $( document ).ready(function() {
                 }
             }
 
+            if (TotResultObj.LastDraggableAccepted)
+                $(this).addClass("Dropped"); // Add class "Dropped", which is used for avoiding cloning once dropped.
+
             console.log("ErrStr: " + ErrStr);
             ErrStr = "";
 
@@ -1027,28 +1130,97 @@ $( document ).ready(function() {
             GiveNegativeFeedback(JsonObj_Questions, ResultObj, TotResultObj);
 
             // Reset EventObj:
-            EventObj = {    Element: {AtomNum: null, AtomName: null, drop: false}, 
+            EventObj = {    
+                            Dragging: false,
+                            DraggableLeft: null,
+                            DraggableTop: null,
+                            Element: {AtomNum: null, AtomName: null, drop: false}, 
                             Index: {val: null, drop: false },
                             Charge: {val: null, drop: false },
                             Coeff: {val: null, drop: false }
                         };
+
+            DestroyIdenticalClones();
         },
 
-        drag: function(){
+        drag: function(event, ui){
 
-            $("#Feedbackhide").slideUp( "slow" ); // Hide the negative student feedback if present
+            var TestEvent = jQuery.extend(true, {}, event); 
 
             var offset = $(this).offset();
             var Left = offset.left;
             var Top = offset.top;
             var Width = $(this).width();
             var Height = $(this).height();
-            TotResultObj.LastDragged.Left = Left + Math.round(Width/2);
-            TotResultObj.LastDragged.Top = Top + Math.round(Height/2);
+            TotResultObj.LastDragged.Left = Left + Math.round(Width/2); // Pass on center-point
+            TotResultObj.LastDragged.Top = Top + Math.round(Height/2);  // Pass on center-point
             $('#DragLeft').text(Left);
             $('#DragTop').text(Top);
+
+            var LeftFirst = null; var TopFirst = null;
+            var Pos = $(this).position();
+            if (!EventObj.Dragging) EventObj.DraggableLeft = String(Pos.left);
+            if (!EventObj.Dragging) EventObj.DraggableTop = String(Pos.top);
+            console.log("EventObj - drag: " + JSON.stringify( EventObj ));
+
+            if ( (!EventObj.Dragging) && (!$(this).hasClass("Dropped")) ) {  // Only clone the element if it has not been dropped
+
+                var IdStr = "Clone_" + String(ReturnLowestCloneNum(MemObj));
+                var Clone = $(this).clone();
+                // var Clone = $(this).clone(true); // VIRKER IKKE EFTER HENSIGTEN
+                $(this).after(Clone);
+                $(this).next().prop( "id", IdStr );
+                $(this).next().addClass("Clone");  // Add class "Clone" for easily destruction of the Clone elements.
+                // $(this).next().addClass("Clone draggable");  // TEST TEST TEST 
+                $(this).next().removeClass("ui-draggable-dragging"); // Remove the class ui-draggable-dragging automatically given to dragged draggables.
+                $(this).addClass("HasClone");
+
+                EventObj.Dragging = true;
+                $("#"+IdStr).css({position: "absolute", left: EventObj.DraggableLeft+"px", top: EventObj.DraggableTop+"px"});
+                $("#"+IdStr).height( $(this).width() );
+                $(".Clone").draggable({
+                    helper: 'clone',      // SE: http://stackoverflow.com/questions/2458817/jquery-ui-drag-and-clone-from-original-div-but-keep-clones
+                    revert: 'invalid',
+                    drag: function(){
+                        // if ($( ".draggable" ).draggable('option', 'disabled') != true){
+                            // $(".AtomNum, .AtomName, .AtomWeight", this).hide();
+                            // $(".AtomSymbol", this).css("font-size", "400%");
+                            // console.log("XXX TEST2");
+                        // }
+                        
+                    },
+                    start: function(event, ui){
+                        // if ($( ".draggable" ).draggable('option', 'disabled') != true){
+                            $(".AtomNum, .AtomName, .AtomWeight", this).hide();
+                            $(".AtomSymbol", this).css("font-size", "400%");
+                            console.log("XXX TEST2");
+                        // }
+
+                        console.log("ui 1: " + JSON.stringify( ui ));
+                        console.log("event.target 1: " + JSON.stringify( event.target ));
+                    },
+                    stop: function(){
+                        // DestroyIdenticalClones();
+                    }
+                });  
+                $("#"+IdStr).removeClass("Elem_OK Index_OK Char_OK Coeff_OK");   // Remove acceptedness of the elements
+                console.log("XTEST - drag: " + $("#"+IdStr).length);
+
+                console.log("ui 2: " + JSON.stringify( ui ));
+                console.log("event.target 2: " + JSON.stringify(  event.target ));
+            }
+
+            // Hide .AtomNum, .AtomName, .AtomWeight "on drag" instead of hide "on mousedown":
+            if ($( ".draggable" ).draggable('option', 'disabled') != true){
+                $(".AtomNum, .AtomName, .AtomWeight", this).hide();
+                $(".AtomSymbol", this).css("font-size", "400%");
+                console.log("XXX TEST");
+            }
+
+           
         }
     });
+
 
     $( ".DropElement" ).droppable({
         accept: ".Elem_OK",
@@ -1059,10 +1231,20 @@ $( document ).ready(function() {
             ResultStr += "Drop";
             EventObj.Element.drop = true;
             console.log("EventObj X: " + JSON.stringify( EventObj ));
+
+            // TEST TEST TEST:
+            // Access the currently dragged element and its clone:  http://stackoverflow.com/questions/16733241/removing-clone-and-deleting-draggable-in-jquerys-drag-and-drop
+            // var drag_id = $(ui.draggable).attr("id");
+            // var targetElem = $(this).attr("id");
+            var drag_text = $(ui.draggable).text();
+            var target_text = $(this).text();
+            var drag_obj = $(ui.draggable);
+            console.log("drag_text: " + drag_text + ", target_text: " + target_text + "\ndrag_obj: " + JSON.stringify(drag_obj) );
         }
     });
     $( ".DropCoeff" ).droppable({
         accept: ".Coeff_OK",
+        // accept: ".Coeff_OK, .draggable",  // <-------- TEST
         drop: function( event, ui ) {
             // $( this ).addClass( "DropHighlight" );
             EventObj.Coeff.drop = true;
