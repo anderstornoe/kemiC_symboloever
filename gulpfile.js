@@ -80,16 +80,15 @@ gulp.task('css', function() {
 
 gulp.task('lint', function() {
     return gulp.src(jsSources)
-        //.pipe(jshint())
+        .pipe(jshint())
         .pipe(jshint.reporter('default'));
 });
 
 gulp.task('watch', function() {
     gulp.watch(jsSources, ['js', 'lint', 'html']);
     gulp.watch('builds/development/*.html', ['html', 'lint']);
+    gulp.watch('builds/development/*.js', ['js', 'lint']);  // Tilfoejet af THAN d. 18-05-2015
     gulp.watch(cssSources, ['css', 'lint']);
-
-
 });
 /*
 gulp.task('connect', function() {
