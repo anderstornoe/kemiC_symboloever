@@ -267,27 +267,26 @@ function loadData(url) {
 // NOTE: The delimiter should be a character (eg. "#"), or a combination of characters (eg. "-X-"), that does not exist in the target text.
 // IMPORTANT: HTML-tags must not be present in the target-text. This could result in invalid/broken markup.
 // EXAMPLE CALL:
-//          MarkCertainLettersAsSpecial(JsonObj_PeriodicTable, ["name", "sym"], ["L","H"], ["FontRed", "FontGreen"], "#");
-// - which will make all L's red and all H's green in the text-strings associated with the object-keynames "name" and "sym".
-function MarkCertainLettersAsSpecial(JsonObj_PeriodicTable, ObjKeyArray, LetterArray, LetterClassArray, Delimiter){
-    for (var j in JsonObj_PeriodicTable){
-        for (var o in ObjKeyArray){
+//          MarkCertainCharactersAsSpecial([".AtomName", ".AtomSymbol"], ["H","L", "S"], ["FontGreen", "FontRed", "FontBlue"], "#");
+// - which will make all L's red and all H's green in the text-strings associated with the target CSS classes ".AtomName" and ".AtomSymbol".
+function MarkCertainCharactersAsSpecial(TargetSelectorArray, LetterArray, LetterClassArray, Delimiter){
+    for (var TargetSelector in TargetSelectorArray){
+        $(TargetSelectorArray[TargetSelector]).each(function( index, element ) {
             for (var l in LetterArray){ // First surround all letters (or clusters of letters) in LetterArray with delimiters, eg. If letter = L and delimiter = #, then #L#.
-                JsonObj_PeriodicTable[j][ObjKeyArray[o]] = JsonObj_PeriodicTable[j][ObjKeyArray[o]].replace(LetterArray[l], Delimiter + LetterArray[l] + Delimiter);
+                var ElementText = $(element).text();
+                if (ElementText.indexOf(LetterArray[l]) !== -1){
+                    $(element).html( ElementText.replace(LetterArray[l], Delimiter + LetterArray[l] + Delimiter) );
+                }
             }
 
             for (var l in LetterArray){// second, replace all delimited letters, eg. #L#, with <span class="MyClass">L</span>
                 var LetterClass = (LetterClassArray.length == LetterArray.length) ? LetterClassArray[l] : LetterClassArray[0]; 
-
-                JsonObj_PeriodicTable[j][ObjKeyArray[o]] = JsonObj_PeriodicTable[j][ObjKeyArray[o]].replace(Delimiter + LetterArray[l] + Delimiter, '<span class="'+LetterClass+'">'+LetterArray[l]+'</span>');
-
-                console.log("MarkCertainLettersAsSpecial - j: " + j + 
-                            "\no: " + o + ", ObjKeyArray["+o+"]: " + ObjKeyArray[o] + 
-                            "\nl: " + l + ", LetterArray["+l+"]: " + LetterArray[l] + 
-                            "\nJsonObj_PeriodicTable["+j+"]: " + JSON.stringify( JsonObj_PeriodicTable[j] ) + 
-                            "\nJsonObj_PeriodicTable["+j+"][ObjKeyArray["+o+"]]: " + JsonObj_PeriodicTable[j][ObjKeyArray[o]]);
+                var ElementText = $(element).text();
+                if (ElementText.indexOf(LetterArray[l]) !== -1){
+                    $(element).html( ElementText.replace( Delimiter + LetterArray[l] + Delimiter, '<span class="'+LetterClass+'">'+LetterArray[l]+'</span>' ) );
+                }
             }
-        }
+        });
     }
 }
 
@@ -899,10 +898,6 @@ function DestroyIdenticalClones(){
 
 $( document ).ready(function() {  // CapitalI
 
-    MarkCertainLettersAsSpecial(JsonObj_PeriodicTable, ["name", "sym"], ["I"], ["CapitalI"], "#");
-    // MarkCertainLettersAsSpecial(JsonObj_PeriodicTable, ["name", "sym"], ["H","L", "S"], ["FontRed", "FontGreen", "FontBlue"], "#");
-
-
     MakeQuestionObj(JsonObj_Questions, QuestionObj);
 
 
@@ -913,6 +908,9 @@ $( document ).ready(function() {  // CapitalI
 
     // Create the periodic table:
     MakePeriodicTable(JsonObj_PeriodicTable);
+
+    // MarkCertainCharactersAsSpecial([".AtomName", ".AtomSymbol"], ["I"], ["CapitalI"], "#");
+    MarkCertainCharactersAsSpecial([".AtomName", ".AtomSymbol"], ["H","L", "S", "I"], ["FontRed", "FontGreen", "FontBlue", "CapitalI"], "#");
 
     // Make the H1 heading, eg. "Princip 1...", and the H2 question, eg. "Skriv formlen for stoffet der..."
     GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum);
@@ -1190,11 +1188,12 @@ $( document ).ready(function() {  // CapitalI
                         
                     },
                     start: function(event, ui){
-                        // if ($( ".draggable" ).draggable('option', 'disabled') != true){
-                            $(".AtomNum, .AtomName, .AtomWeight", this).hide();
-                            $(".AtomSymbol", this).css("font-size", "400%");
+                        if ($( ".draggable" ).draggable('option', 'disabled') != true){
+                            var CloneObj = $(".ui-draggable-dragging");
+                            $(".AtomNum, .AtomName, .AtomWeight", CloneObj).hide();
+                            $(".AtomSymbol", CloneObj).css("font-size", "400%");
                             console.log("XXX TEST2");
-                        // }
+                        }
 
                         console.log("ui 1: " + JSON.stringify( ui ));
                         console.log("event.target 1: " + JSON.stringify( event.target ));
