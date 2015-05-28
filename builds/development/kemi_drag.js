@@ -414,10 +414,13 @@ function GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum){
             event.preventDefault();  // Prevents sending the user to "href".
 
 
-            // if ( ResultObj.Correct < 2) {
-            //     alert("Du skal placere både grundstof og indeks tal korrekt før du kan fortsætte!");
-            //     return 0;
-            // }
+            if ( ResultObj.Correct < 2) {
+                // alert("Du skal placere både grundstof og indeks tal korrekt før du kan fortsætte!");
+                UserMsgBox("Du skal placere både grundstof og indeks tal korrekt før du kan fortsætte!");
+                return 0;
+            }
+
+            
             // console.log("GiveQuestion - ResultObj" + JSON.stringify(ResultObj) )
 
             ResetQuiz(500);
@@ -428,7 +431,43 @@ function GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum){
 
             FontSizeScalerNew([".AtomSymbol", ".NumberHeading", ".ElementBox", ".DragNum", ".ScoreHeaderH3", 
                             ".ScoreHeader", ".ScoreNum", ".TryAgain", ".NextQuestion", ".QuizHeadingText h2", 
-                            ".QuizHeadingText h1", ".QuizHeadingTextCount"], 1425);
+                            ".QuizHeadingText h1", ".QuizHeadingTextCount", "#Feedbackhide"], 1425);
+
+            if ( Qcount == 9) {  // NOTE: Due to the placement of the ++Qcount increasement, Qcount == 9 equals 10 questions.
+                // alert("Du skal placere både grundstof og indeks tal korrekt før du kan fortsætte!");
+
+                var HTML = '';  
+
+                HTML += '<div class="ScoreWrapper">';
+                    HTML += '<h3 class="ScoreHeaderH3">Resultater</h3>';
+                    HTML += '<div>';
+                        HTML += '<span class="ScoreHeader left">Forsøg:</span><span class="ScoreAttempts ScoreNum right">0</span>';
+                        HTML += '<div class="clear"></div>';
+                    HTML += '</div>';
+                    HTML += '<div>';
+                        HTML += '<span class="ScoreHeader left">Korrekt:</span><span class="ScoreCorrect ScoreNum right">0</span>';
+                        HTML += '<div class="clear"></div>';
+                    HTML += '</div>';
+                    HTML += '<div>';
+                        HTML += '<span class="ScoreHeader left">Fejl:</span><span class="ScoreFail ScoreNum right">0</span>';
+                        HTML += '<div class="clear"></div>';
+                    HTML += '</div>';
+                    HTML += '<div>';
+                        HTML += '<span class="ScoreHeader left">Score:</span><span class="ScoreStat ScoreNum right">0%</span>';
+                        HTML += '<div class="clear"></div>';
+                    HTML += '</div>';
+                HTML += '</div>';
+
+                UserMsgBox("Du klarede det med " + TotResultObj.TotFail + " fejl Se resultaterne her <br/>" + HTML);
+
+                // Update numbers:
+                $(".ScoreAttempts").text( TotResultObj.TotAttempt ); 
+                $(".ScoreCorrect").text( TotResultObj.TotCorrect );
+                $(".ScoreFail").text( TotResultObj.TotFail );
+                $(".ScoreStat").text( (TotResultObj.TotCorrect/TotResultObj.TotAttempt*100).toFixed(2) + "%" ); 
+
+                return 0;
+            }
             
             // $(".QuestionWrap").append( "<span class='QuizHeadingTextCount'>" + String(Qcount + 1) + "/" + String(ArrayLength) + "</span>");
         });
@@ -482,7 +521,7 @@ function GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum){
 
             FontSizeScalerNew([".AtomSymbol", ".NumberHeading", ".ElementBox", ".DragNum", ".ScoreHeaderH3", 
                             ".ScoreHeader", ".ScoreNum", ".TryAgain", ".NextQuestion", ".QuizHeadingText h2", 
-                            ".QuizHeadingText h1", ".QuizHeadingTextCount"], 1425);
+                            ".QuizHeadingText h1", ".QuizHeadingTextCount", "#Feedbackhide"], 1425);
             
             // $(".QuestionWrap").append( "<span class='QuizHeadingTextCount'>" + String(Qcount + 1) + "/" + String(ArrayLength) + "</span>");
         });
@@ -520,7 +559,7 @@ function GivePosetiveFeedback(JsonObj_Questions, ResultObj){
         // Get 
         if ($.isEmptyObject(CssObj)){
             CssObj.Element = $(".ElementBox").css(["background-color"]);
-            CssObj.Index =  $(".IndexNum").css(["background-color"]);
+            CssObj.Index =  $(".IndexNum").css(["background-color", "border-top-color", "border-right-color", "border-bottom-color", "border-left-color", "color"]);
             CssObj.Charge =  $(".ChargeNum").css(["background-color"]);
             CssObj.Coeff =  $(".CoeffNum").css(["background-color"]);
             CssObj.lbox =  $(".lbox").css(["border-top-color", "border-right-color", "border-bottom-color", "border-left-color"]); // Note: "border-color" will not work, you have to explicitly name the sides
@@ -539,7 +578,11 @@ function GivePosetiveFeedback(JsonObj_Questions, ResultObj){
         if (ResultObj.Dropped.Coeff)  $(".Coeff_OK").animate({"background-color": "transparent"}, 500);
 
         if (ResultObj.Dropped.Index) { // If the value of the index number equal 1, then it need to fadeout in order to be chemically correct:
-            // if (parseInt($(".Index_OK").text()) == 1) $(".Index_OK").fadeOut(500);
+            if (parseInt($(".Index_OK").text()) == 1){ 
+                // $(".Index_OK").fadeOut(500);
+                $(".Index_OK").animate({"color": "transparent", "border-color": "transparent"}, 500);
+                // $(".Index_OK").animate({"border-color": "transparent"}, 500);
+            }
         }
 
         console.log("IndexNumValue: " + typeof($(".Index_OK").text()) );
@@ -583,11 +626,42 @@ function GivePosetiveFeedback(JsonObj_Questions, ResultObj){
 }
 
 
+function UserMsgBox(ExternalHTML){
+
+    var HTML = "<h6 id='Feedbackhide'>";
+    HTML += '<span class="LukClass right glyphicon glyphicon-remove"></span><span class="clear"></span>';
+    HTML += ExternalHTML;
+    HTML += "</h6> ";
+
+    $(".FeedbackWrap").append(HTML);
+
+    FontSizeScalerNew([".NumberHeading", ".ElementBox", ".DragNum", ".ScoreHeaderH3", 
+                            ".ScoreHeader", ".ScoreNum", ".TryAgain", ".NextQuestion", ".QuizHeadingText h2", 
+                            ".QuizHeadingText h1", ".QuizHeadingTextCount", "#Feedbackhide", ".ScoreWrapper"], 1425);
+
+    $("#Feedbackhide").fadeIn( "slow", function() {
+
+        $( ".draggable" ).draggable( "disable" ); // Disable all draggables. This is the simplest way of advoiding errors due to unexpected user behavior.
+
+    });
+
+    $( document ).on('click', "#Feedbackhide", function(event){
+        event.preventDefault();  // Prevents sending the user to "href".
+        $("#Feedbackhide").fadeOut( "slow" , function() {
+
+            $( ".draggable" ).draggable( "enable" ); // Enable all draggables
+
+        });
+    });
+}
+
+
+
 function GiveNegativeFeedback(JsonObj_Questions, ResultObj, TotResultObj){
     if ((TotResultObj.TotFail >= 3) && (TotResultObj.LastDraggableAccepted == false)){  // LastDraggableAccepted == false prevent error message if you ajust the draggables position in the droppable.
         var Inx = ResultObj.PrincipleArray[ResultObj.Qcount]; 
         var JOQ = JsonObj_Questions;
-        var HTML = "<h2 id='Feedbackhide'>";
+        var HTML = '';
         if (TotResultObj.LastDropped == "Coeff") 
             HTML += "Denne kasse er til koefficienter, som angiver hvor mange <b>"+(((JOQ[Inx]["AtomNum"]==2)||(JOQ[Inx]["AtomNum"]==10))?"atomer":"molekyler")+"</b> der er. Her er der kun tale om et molekyle, derfor skal der ikke stå noget tal.";
         if (TotResultObj.LastDropped == "Element") 
@@ -596,32 +670,13 @@ function GiveNegativeFeedback(JsonObj_Questions, ResultObj, TotResultObj){
             HTML += "Denne kasse er til ladninger, men da <b>"+(((JOQ[Inx]["AtomNum"]==2)||(JOQ[Inx]["AtomNum"]==10))?"atomer":"molekyler")+"</b> er uden ladninger, skal der ikke stå noget her.";
         if (TotResultObj.LastDropped == "Index")
             HTML += "Denne kasse er til indekstal, tallet der skal stå her angiver hvor mange atomer der er i molekylet. Find tallet til højre og træk det hen i kassen.";
-        HTML += "</h2> ";
+        
 
         if ( (TotResultObj.LastDropped != TotResultObj.LastDragged.Type) && (TotResultObj.LastDropped !== null) ){ // LastDropped != LastDragged.Type: Do not give wrong-type feedback if e.g. index = 3 is dragged to the .DropIndex instead of index = 2
-            $(".FeedbackWrap").html(HTML);                                                                         // LastDropped = null if a draggable is not dropped in a droppable.
-
-            $("#Feedbackhide").slideDown( "slow", function() {
-                $("#Feedbackhide").append('<a class="FeekbackOkBtn btn-default btn btn-default" href="#">OK</a>');
-
-                $( ".draggable" ).draggable( "disable" ); // Disable all draggables. This is the simplest way of advoiding errors due to unexpected user behavior.
-
-            });
+                                                                                                                   // LastDropped = null if a draggable is not dropped in a droppable.
+            UserMsgBox(HTML);
         }
-
-        $( document ).on('click', ".FeekbackOkBtn", function(event){
-            event.preventDefault();  // Prevents sending the user to "href".
-            $("#Feedbackhide").slideUp( "slow" , function() {
-
-                $( ".draggable" ).draggable( "enable" ); // Enable all draggables
-
-            });
-        });
-
     }
-
-    var TTT = $( ".draggable" ).draggable('option', 'enable');
-    console.log("TTT: " + JSON.stringify(TTT));
 } 
 
 
@@ -701,8 +756,10 @@ function FontSizeScalerNew(SelectorClassArr, NativeWindowWidth){
     // Resize all fonts:
     var WindowWidth = $( window ).width();
     var Ratio = Math.round(1000*( WindowWidth/NativeWindowWidth ))/1000; // Rounded to 3 digit precision.
+    var ArgStr = SelectorClassArr.join();
     for (var Selector in FontSizeScalerObj ) { 
-        $( Selector ).css("font-size", String(FontSizeScalerObj[ Selector ]*Ratio)+"px");
+        if (ArgStr.indexOf(Selector) !== -1)  // Only ajust the fontsizes given in SelectorClassArr:
+            $( Selector ).css("font-size", String(FontSizeScalerObj[ Selector ]*Ratio)+"px");
     }
     console.log("FontSizeScalerObj 2:" + JSON.stringify(FontSizeScalerObj) );
 }
@@ -758,10 +815,11 @@ function UpdateResultFeedback(ResultObj, TotResultObj, ObjKey ,BoolCorrectOrFail
         TotResultObj[ObjKey].Fail += 1;
         TotResultObj.LastDraggableAccepted = false;
     }
-    $(".ScoreAttempts").text( ResultObj.Attempt ); 
-    $(".ScoreCorrect").text( ResultObj.Correct );
-    $(".ScoreFail").text( ResultObj.Fail );
-    $(".ScoreStat").text( (ResultObj.Correct/ResultObj.Attempt*100).toFixed(2) + "%" ); 
+    // $(".ScoreAttempts").text( ResultObj.Attempt ); 
+    // $(".ScoreCorrect").text( ResultObj.Correct );
+    // $(".ScoreFail").text( ResultObj.Fail );
+    // $(".ScoreStat").text( (ResultObj.Correct/ResultObj.Attempt*100).toFixed(2) + "%" ); 
+
     // alert(typeof((ResultObj.Correct/ResultObj.Attempt*100).toFixed(2)))     
     console.log("TotResultObj: " + JSON.stringify(TotResultObj));          
 }
@@ -781,6 +839,7 @@ function ResetQuiz(Milliseconds){
     // Reset element when an unaccepted element returns to its position in the periodic table
     $(".AtomNum, .AtomName, .AtomWeight Index_OK").show(); // Index_OK needs to be showen since all indexvalues = 1 is hidden.
     $(".AtomSymbol").css("font-size", "160%");
+    // $(".Index_OK").css({"color": CssObj.IndexNum["color"], "border-color": CssObj.IndexNum["border-color"]});
 
 
     // Make borders and background-color on the draggables visible: 
@@ -821,15 +880,15 @@ function ResetQuiz(Milliseconds){
                 };
 
     // Reset counters:
-    $(".ScoreAttempts").text( 0 ); 
-    $(".ScoreCorrect").text( 0 );
-    $(".ScoreFail").text( 0 );
-    $(".ScoreStat").text( "0%" ); 
+    // $(".ScoreAttempts").text( 0 ); 
+    // $(".ScoreCorrect").text( 0 );
+    // $(".ScoreFail").text( 0 );
+    // $(".ScoreStat").text( "0%" ); 
 
     // Remove all Clone droppables
     $(".Clone").remove();
 
-    $(".draggable").removeClass("Dropped");
+    $(".draggable").removeClass("Dropped HasClone");
 
     // Remove background-color from the correct droppables:  Dropped
     $(".droppable").removeClass( "DropHighlight" );
@@ -876,14 +935,41 @@ function ReturnLowestCloneNum(MemObj){
 }
 
 
+function ReturnLowestCloneNum_2(){
+    var Count = 1;
+    var NumOfClones = $(".Clone").length;
+    console.log("ReturnLowestCloneNum_2 - NumOfClones: " + NumOfClones);
+    return Count;
+}
+
+
 // Problem: Several clones of a clone can be made. These clones are identified by having classes ".HasClone" and ".Clone" and 
 // having the same absolute position.
 function DestroyIdenticalClones(){
     var CloneObj = {};
     var Count = 0;
+    var Tol = 3; // Tolerance given as number of pixles
     $(".Clone").each(function( index, element ) {  // First populate CloneObj with the absolute position of all DOM elements with classes ".HasClone" and ".Clone"
         // if ($(this).hasClass(".HasClone")){
-            CloneObj[Count] = $(this).offset();
+            CloneObj[Count] = {};
+            CloneObj[Count].id = $(this).prop("id");
+            CloneObj[Count].offset = $(this).offset();
+
+            var Top = CloneObj[Count].offset.top;
+            var Left = CloneObj[Count].offset.left;
+
+            var CloneCount = 0;
+            for (var Clone in CloneObj){
+                var TTop = CloneObj[Clone].offset.top;
+                var TLeft = CloneObj[Clone].offset.left;
+                if ((Top-Tol <= TTop) && (TTop <= Top+Tol) && (Left-Tol <= TLeft) && (TLeft <= Left+Tol)){
+                    ++CloneCount;
+                    if (CloneCount > 1)  // If there is more than one clone, remove the extra clone.
+                        $("#"+CloneObj[Clone].id).remove();
+                    console.log("DestroyIdenticalClones - CloneObj: " + CloneObj[Clone].id + " removed!" );
+                }
+            }
+
             ++Count;
         // }
     });
@@ -909,8 +995,8 @@ $( document ).ready(function() {  // CapitalI
     // Create the periodic table:
     MakePeriodicTable(JsonObj_PeriodicTable);
 
-    // MarkCertainCharactersAsSpecial([".AtomName", ".AtomSymbol"], ["I"], ["CapitalI"], "#");
-    MarkCertainCharactersAsSpecial([".AtomName", ".AtomSymbol"], ["H","L", "S", "I"], ["FontRed", "FontGreen", "FontBlue", "CapitalI"], "#");
+    MarkCertainCharactersAsSpecial([".AtomName", ".AtomSymbol"], ["I"], ["CapitalI"], "#");
+    // MarkCertainCharactersAsSpecial([".AtomName", ".AtomSymbol"], ["H","L", "S", "I"], ["FontRed", "FontGreen", "FontBlue", "CapitalI"], "#");
 
     // Make the H1 heading, eg. "Princip 1...", and the H2 question, eg. "Skriv formlen for stoffet der..."
     GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum);
@@ -929,7 +1015,7 @@ $( document ).ready(function() {  // CapitalI
 
         FontSizeScalerNew([".AtomSymbol", ".NumberHeading", ".ElementBox", ".DragNum", ".ScoreHeaderH3", 
                             ".ScoreHeader", ".ScoreNum", ".TryAgain", ".NextQuestion", ".QuizHeadingText h2", 
-                            ".QuizHeadingText h1", ".QuizHeadingTextCount"], 1425);
+                            ".QuizHeadingText h1", ".QuizHeadingTextCount", "#Feedbackhide", ".ScoreWrapper"], 1425);
 
         $( ".DragNum" ).width( $( ".DragNum" ).height() );
 
@@ -952,7 +1038,7 @@ $( document ).ready(function() {  // CapitalI
 
         FontSizeScalerNew([".AtomSymbol", ".NumberHeading", ".ElementBox", ".DragNum", ".ScoreHeaderH3", 
                             ".ScoreHeader", ".ScoreNum", ".TryAgain", ".NextQuestion", ".QuizHeadingText h2", 
-                            ".QuizHeadingText h1", ".QuizHeadingTextCount"], 1425);
+                            ".QuizHeadingText h1", ".QuizHeadingTextCount", "#Feedbackhide", ".ScoreWrapper"], 1425);
 
         $( ".DragNum" ).width( $( ".DragNum" ).height() );
     });
@@ -1139,6 +1225,8 @@ $( document ).ready(function() {  // CapitalI
                         };
 
             DestroyIdenticalClones();
+
+            // ReturnLowestCloneNum_2();
         },
 
         drag: function(event, ui){
@@ -1188,7 +1276,7 @@ $( document ).ready(function() {  // CapitalI
                         
                     },
                     start: function(event, ui){
-                        if ($( ".draggable" ).draggable('option', 'disabled') != true){
+                        if ($( ".draggable" ).draggable('option', 'disabled') != true){  // This code enlarges the AtomSymbol when a clone is dragged.
                             var CloneObj = $(".ui-draggable-dragging");
                             $(".AtomNum, .AtomName, .AtomWeight", CloneObj).hide();
                             $(".AtomSymbol", CloneObj).css("font-size", "400%");
@@ -1230,15 +1318,6 @@ $( document ).ready(function() {  // CapitalI
             ResultStr += "Drop";
             EventObj.Element.drop = true;
             console.log("EventObj X: " + JSON.stringify( EventObj ));
-
-            // TEST TEST TEST:
-            // Access the currently dragged element and its clone:  http://stackoverflow.com/questions/16733241/removing-clone-and-deleting-draggable-in-jquerys-drag-and-drop
-            // var drag_id = $(ui.draggable).attr("id");
-            // var targetElem = $(this).attr("id");
-            var drag_text = $(ui.draggable).text();
-            var target_text = $(this).text();
-            var drag_obj = $(ui.draggable);
-            console.log("drag_text: " + drag_text + ", target_text: " + target_text + "\ndrag_obj: " + JSON.stringify(drag_obj) );
         }
     });
     $( ".DropCoeff" ).droppable({
