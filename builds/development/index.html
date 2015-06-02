@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
 
 
-    <link rel="stylesheet" href="../../../library/styles.css" type="text/css" />
+    <link rel="stylesheet" href="../../../library/css/styles.css" type="text/css" />
     
     <link rel="stylesheet" href="kemi_drag.css" type="text/css" />
     <!-- Date: 2012-08-07 -->
@@ -41,7 +41,38 @@
         <div class="col-xs-12">
 
             <div class="DropZone"> 
-                <span class="DropWrap">
+
+                <span id="DropWrap1"  class="Hide">
+                    <div class="DropCoeff lbox droppable"> 
+                    </div>
+                    <div class="DropElement lbox droppable"> 
+                    </div>
+                    <div class="DropChargeAndIndex xlbox">
+                        <div class="DropCharge sbox droppable"> 
+                        </div> 
+                        <div class="DropSpacer"> 
+                        </div>
+                        <div class="DropIndex sbox droppable"> 
+                        </div> 
+                    </div> 
+                </span>
+
+                <span id="DropWrap2" class="Hide">
+                    <div class="DropCoeff lbox droppable"> 
+                    </div>
+                    <div class="DropElement lbox droppable"> 
+                    </div>
+                    <div class="DropChargeAndIndex xlbox">
+                        <div class="DropCharge sbox droppable"> 
+                        </div> 
+                        <div class="DropSpacer"> 
+                        </div>
+                        <div class="DropIndex sbox droppable"> 
+                        </div> 
+                    </div> 
+                </span>
+
+                <span id="DropWrap3" class="Hide">
                     <div class="DropCoeff lbox droppable"> 
                     </div>
                     <div class="DropElement lbox droppable"> 
@@ -56,30 +87,7 @@
                     </div> 
                 </span>
                  
-                <div class="NumbersWrapper"> 
-                    <div class="NumberHeading">
-                        Indeks tal:
-                    </div>
-                    <div class="IndexWrapper"> 
-                        No index numbers...
-                    </div>
-                    
-                    <div class="NumberHeading">
-                        Ladning:
-                    </div>
-                    <div class="ChargeWrapper"> 
-                        No charges...
-                    </div>
-
-                    <div class="NumberHeading CoeffHeadingWrapper">
-                        Koefficient:
-                    </div>
-                    <div class="CoeffWrapper"> 
-                        No Coefficients...
-                    </div>
-
-                </div> 
-
+                
 <!--  
                 <div>
                     <a class="TryAgain btn-default btn btn-default" href="#">
@@ -92,7 +100,34 @@
                     Næste spørgsmål
                 </a>
   -->              
+
+
             </div>
+
+            <div class="NumbersWrapper"> 
+                <div class="NumberHeading">
+                    Indeks tal:
+                </div>
+                <div class="IndexWrapper"> 
+                    No index numbers...
+                </div>
+                
+                <div class="NumberHeading">
+                    Ladning:
+                </div>
+                <div class="ChargeWrapper"> 
+                    No charges...
+                </div>
+
+                <div class="NumberHeading CoeffHeadingWrapper">
+                    Koefficient:
+                </div>
+                <div class="CoeffWrapper"> 
+                    No Coefficients...
+                </div>
+
+            </div> 
+
 <!-- 
             <div class="DropZone">    
                 <div class="NumbersWrapper"> 
@@ -143,8 +178,15 @@
                 </div>
             </div>
  -->            
+        
         </div>
     </div>
+
+    <div id="TestOutput1">
+    </div>
+    <div id="TestOutput2">
+    </div>
+
 
     <!-- Midlertidig: Nedenstående skal ikke køres fra CDN -->  
 <!--     
