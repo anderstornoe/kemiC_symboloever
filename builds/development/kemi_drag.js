@@ -1389,7 +1389,8 @@ function CloneAndSwitchPositions(DraggableObj){
     // $("#Original_"+String(MemObj.NewestOriginal)).css({top: "0px", left: "0px"});
     $(DraggableObj).css({top: "0px", left: "0px"});
     // $("#Clone_"+String(MemObj.NewestClone)).css({position: "absolute", top: PosOrg.top+"px", left: PosOrg.left+"px", color: "#F00"});
-    DraggableObj.next().css({position: "absolute", top: PosOrg.top+"px", left: PosOrg.left+"px", color: "#F00"});
+    // DraggableObj.next().css({position: "absolute", top: PosOrg.top+"px", left: PosOrg.left+"px", color: "#F00"});
+    DraggableObj.next().css({position: "absolute", top: PosOrg.top+"px", left: PosOrg.left+"px"});
 
     // $(".draggable").removeClass("ui-draggable-dragging");
 }
