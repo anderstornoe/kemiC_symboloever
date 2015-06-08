@@ -36,14 +36,20 @@
         </div>
 
         <span class="ShowStudentScore"></span>
+
+        <div id="HiddenElement" class="Hide">
+            <div> THIS IS HIDDEN TEST-CONTENT</div>
+        </div>
 <!-- 
         <div>Top:<span id="DragTop"></span>, Left:<span id="DragLeft"></span></div>
  -->
+        <div id="ShowObjPosition"> </div>
+
         <div class="col-xs-12">
 
             <div class="DropZone"> 
 
-                <span id="DropWrap1"  class="Hide">
+                <span id="DropWrap1"  class="DropWrapper Hide">
                     <div class="DropCoeff lbox droppable"> 
                     </div>
                     <div class="DropElement lbox droppable"> 
@@ -58,8 +64,8 @@
                     </div> 
                 </span>
 
-                <span id="DropWrap2" class="Hide">
-                    <div class="DropCoeff lbox droppable"> 
+                <span id="DropWrap2" class="DropWrapper Hide">
+                    <div class="DropCoeff lbox droppable Hide"> 
                     </div>
                     <div class="DropElement lbox droppable"> 
                     </div>
@@ -73,8 +79,8 @@
                     </div> 
                 </span>
 
-                <span id="DropWrap3" class="Hide">
-                    <div class="DropCoeff lbox droppable"> 
+                <span id="DropWrap3" class="DropWrapper Hide">
+                    <div class="DropCoeff lbox droppable Hide"> 
                     </div>
                     <div class="DropElement lbox droppable"> 
                     </div>
@@ -106,21 +112,21 @@
             </div>
 
             <div class="NumbersWrapper"> 
-                <div class="NumberHeading">
+                <div class="IndexNumberHeading NumberHeading">
                     Indeks tal:
                 </div>
                 <div class="IndexWrapper"> 
                     No index numbers...
                 </div>
                 
-                <div class="NumberHeading">
+                <div class="ChargeNumberHeading NumberHeading">
                     Ladning:
                 </div>
                 <div class="ChargeWrapper"> 
                     No charges...
                 </div>
 
-                <div class="NumberHeading CoeffHeadingWrapper">
+                <div class="CoeffNumberHeading NumberHeading CoeffHeadingWrapper">
                     Koefficient:
                 </div>
                 <div class="CoeffWrapper"> 

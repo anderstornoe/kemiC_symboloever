@@ -58,7 +58,7 @@ h1{color: #000;}  /*Midlertigigt fix*/
 .AtomWeight  {position: relative; display: none;}
  
 .lbox{width: 6%; margin-bottom: 2.8%; border: 1px solid #717272;} /* width: 12%; margin-bottom: 3%; */
-.xlbox{/*width: 12%;*/ width: 4%; margin-right: 4%; }
+.xlbox{/*width: 12%;*/ width: 4%; margin-right: 0%; }   /*margin-right: 4%;*/
 .sbox{/*width: 33%;*/ width: 100%; border: 1px solid #717272;}
 
 .red{border: 1px solid #F00;}
@@ -67,6 +67,7 @@ h1{color: #000;}  /*Midlertigigt fix*/
 #DropWrap1{}
 #DropWrap2{}
 #DropWrap3{}
+.DropWrapper{}
 .DropCoeff{display: inline-block;}
 .DropElement{display: inline-block;}
 .DropChargeAndIndex{display: inline-block;}
