@@ -99,17 +99,7 @@ var JsonObj_PeriodicTable = [
 ];
 
 var JsonObj_Questions = [
-    // {"AtomSym": "H",   "Name": "Hydrogen", "TName": "Dihydrogen",         "AtomNum": 1,  "Principle": [1], "ChemType": "molecule", "Index": 2, "Charge":1,  "Coeff": 1},
-    // {"AtomSym": "He",  "Name": "Helium",   "TName": "Helium (ballongas)", "AtomNum": 2,  "Principle": [1], "ChemType": "molecule", "Index": 1, "Charge":0,  "Coeff": 1},
-    // {"AtomSym": "N",   "Name": "Nitrogen", "TName": "Dinitrogen",         "AtomNum": 7,  "Principle": [1], "ChemType": "molecule", "Index": 2, "Charge":0,  "Coeff": 1},
-    // {"AtomSym": "O",   "Name": "Oxygen",   "TName": "Dioxygen",           "AtomNum": 8,  "Principle": [1], "ChemType": "molecule", "Index": 2, "Charge":0,  "Coeff": 1},
-    // {"AtomSym": "O",   "Name": "Oxygen",   "TName": "Ozon",               "AtomNum": 8,  "Principle": [1], "ChemType": "molecule", "Index": 3, "Charge":0,  "Coeff": 1},
-    // {"AtomSym": "Ne",  "Name": "Neon",     "TName": "Neongas",            "AtomNum": 10, "Principle": [1], "ChemType": "molecule", "Index": 1, "Charge":0,  "Coeff": 1},
-    // {"AtomSym": "S",   "Name": "Svovl",    "TName": "Svovl",              "AtomNum": 16, "Principle": [1], "ChemType": "molecule", "Index": 8, "Charge":0,  "Coeff": 1},
-    // {"AtomSym": "Cl",  "Name": "chlor",    "TName": "Dichlor",            "AtomNum": 17, "Principle": [1], "ChemType": "molecule", "Index": 2, "Charge":-1, "Coeff": 1},
-    // {"AtomSym": "Br",  "Name": "Brom",     "TName": "Dibrom",             "AtomNum": 35, "Principle": [1], "ChemType": "molecule", "Index": 2, "Charge":-1, "Coeff": 1},
-    // {"AtomSym": "I",   "Name": "Iod",      "TName": "Diiod",              "AtomNum": 53, "Principle": [1], "ChemType": "molecule", "Index": 2, "Charge":-1, "Coeff": 1},
-
+    
     {"MolSym": "H<sub>2</sub>",  "TName": "Dihydrogen",         "Principle": [1,3], "Mol": [{"AtomSym": "H",  "Index": 2}] },
     {"MolSym": "He",             "TName": "Helium (ballongas)", "Principle": [1,3], "Mol": [{"AtomSym": "He", "Index": 1}] },
     {"MolSym": "N<sub>2</sub>",  "TName": "Dinitrogen",         "Principle": [1,3], "Mol": [{"AtomSym": "N",  "Index": 2}] },
@@ -138,24 +128,24 @@ var JsonObj_Questions = [
     {"MolSym": "HNO<sub>3</sub>O",              "TName": "Salpetersyre",                    "Principle": [2,3], "Mol": [{"AtomSym": "H", "Index": 1},{"AtomSym": "N", "Index": 1}, {"AtomSym": "O", "Index": 3}] },
     {"MolSym": "H<sub>3</sub>PO<sub>4</sub>",   "TName": "Phosphorsyre",                    "Principle": [2,3], "Mol": [{"AtomSym": "H", "Index": 3},{"AtomSym": "P", "Index": 1},{"AtomSym": "O", "Index": 4}] },
 
-    {"MolSym": "Na<sup>1+</sup>",  "TName": "Natriumion",               "Principle": [4], "Mol": [{"AtomSym": "Na",  "Index": 1, "Charge": "1+"}] },
-    {"MolSym": "K<sup>1+</sup>",   "TName": "Kaliumion",                "Principle": [4], "Mol": [{"AtomSym": "K",   "Index": 1, "Charge": "1+"}] },
-    {"MolSym": "Mg<sup>2+</sup>",  "TName": "Magnesiumion",             "Principle": [4], "Mol": [{"AtomSym": "Mg",  "Index": 1, "Charge": "2+"}] },
-    {"MolSym": "Ca<sup>3+</sup>",  "TName": "Calciumion",               "Principle": [4], "Mol": [{"AtomSym": "Ca",  "Index": 1, "Charge": "2+"}] },
-    {"MolSym": "Ba<sup>2+</sup>",  "TName": "Bariumion",                "Principle": [4], "Mol": [{"AtomSym": "Ba",  "Index": 1, "Charge": "2+"}] },
-    {"MolSym": "Al<sup>3+</sup>",  "TName": "Aluminiumion",             "Principle": [4], "Mol": [{"AtomSym": "Al",  "Index": 1, "Charge": "3+"}] },
-    {"MolSym": "Pb<sup>2+</sup>",  "TName": "Bly(&#73;&#73;)ion",       "Principle": [4], "Mol": [{"AtomSym": "Pb",  "Index": 1, "Charge": "2+"}] },
-    {"MolSym": "Cu<sup>2+</sup>",  "TName": "Kobber(&#73;&#73;)ion",    "Principle": [4], "Mol": [{"AtomSym": "Cu",  "Index": 1, "Charge": "2+"}] },
-    {"MolSym": "Cu<sup>1+</sup>",  "TName": "Kobber(&#73;)ion",         "Principle": [4], "Mol": [{"AtomSym": "Cu",  "Index": 1, "Charge": "1+"}] },
-    {"MolSym": "Ag<sup>1+</sup>",  "TName": "Sølv(&#73;)ion",           "Principle": [4], "Mol": [{"AtomSym": "Ag",  "Index": 1, "Charge": "1+"}] },
-    {"MolSym": "Fe<sup>2+</sup>",  "TName": "Jern(&#73;&#73;)ion",      "Principle": [4], "Mol": [{"AtomSym": "Fe",  "Index": 1, "Charge": "2+"}] },
-    {"MolSym": "Fe<sup>3+</sup>",  "TName": "jern(&#73;&#73;&#73;)ion", "Principle": [4], "Mol": [{"AtomSym": "Fe",  "Index": 1, "Charge": "3+"}] },
-    {"MolSym": "Cl<sup>1-</sup>",  "TName": "Chloridion",               "Principle": [4], "Mol": [{"AtomSym": "Cl",  "Index": 1, "Charge": "1-"}] },
-    {"MolSym": "O<sup>2-</sup>",   "TName": "Oxidion",                  "Principle": [4], "Mol": [{"AtomSym": "O",   "Index": 1, "Charge": "2-"}] },
-    {"MolSym": "S<sup>2-</sup>",   "TName": "Sulfidion",                "Principle": [4], "Mol": [{"AtomSym": "S",   "Index": 1, "Charge": "2-"}] },
-    {"MolSym": "F<sup>1-</sup>",   "TName": "fluoridion",               "Principle": [4], "Mol": [{"AtomSym": "F",   "Index": 1, "Charge": "1-"}] },
-    {"MolSym": "Br<sup>1-</sup>",  "TName": "Bromidion",                "Principle": [4], "Mol": [{"AtomSym": "Br",  "Index": 1, "Charge": "1-"}] },
-    {"MolSym": "I<sup>1-</sup>",   "TName": "Iodidion",                 "Principle": [4], "Mol": [{"AtomSym": "I",   "Index": 1, "Charge": "1-"}] },
+    {"MolSym": "Na<sup>1+</sup>",  "TName": "Natriumion",               "Principle": [4], "Mol": [{"AtomSym": "Na",  "Charge": "1+"}] },
+    {"MolSym": "K<sup>1+</sup>",   "TName": "Kaliumion",                "Principle": [4], "Mol": [{"AtomSym": "K",   "Charge": "1+"}] },
+    {"MolSym": "Mg<sup>2+</sup>",  "TName": "Magnesiumion",             "Principle": [4], "Mol": [{"AtomSym": "Mg",  "Charge": "2+"}] },
+    {"MolSym": "Ca<sup>3+</sup>",  "TName": "Calciumion",               "Principle": [4], "Mol": [{"AtomSym": "Ca",  "Charge": "2+"}] },
+    {"MolSym": "Ba<sup>2+</sup>",  "TName": "Bariumion",                "Principle": [4], "Mol": [{"AtomSym": "Ba",  "Charge": "2+"}] },
+    {"MolSym": "Al<sup>3+</sup>",  "TName": "Aluminiumion",             "Principle": [4], "Mol": [{"AtomSym": "Al",  "Charge": "3+"}] },
+    {"MolSym": "Pb<sup>2+</sup>",  "TName": "Bly(&#73;&#73;)ion",       "Principle": [4], "Mol": [{"AtomSym": "Pb",  "Charge": "2+"}] },
+    {"MolSym": "Cu<sup>2+</sup>",  "TName": "Kobber(&#73;&#73;)ion",    "Principle": [4], "Mol": [{"AtomSym": "Cu",  "Charge": "2+"}] },
+    {"MolSym": "Cu<sup>1+</sup>",  "TName": "Kobber(&#73;)ion",         "Principle": [4], "Mol": [{"AtomSym": "Cu",  "Charge": "1+"}] },
+    {"MolSym": "Ag<sup>1+</sup>",  "TName": "Sølv(&#73;)ion",           "Principle": [4], "Mol": [{"AtomSym": "Ag",  "Charge": "1+"}] },
+    {"MolSym": "Fe<sup>2+</sup>",  "TName": "Jern(&#73;&#73;)ion",      "Principle": [4], "Mol": [{"AtomSym": "Fe",  "Charge": "2+"}] },
+    {"MolSym": "Fe<sup>3+</sup>",  "TName": "jern(&#73;&#73;&#73;)ion", "Principle": [4], "Mol": [{"AtomSym": "Fe",  "Charge": "3+"}] },
+    {"MolSym": "Cl<sup>1-</sup>",  "TName": "Chloridion",               "Principle": [4], "Mol": [{"AtomSym": "Cl",  "Charge": "1-"}] },
+    {"MolSym": "O<sup>2-</sup>",   "TName": "Oxidion",                  "Principle": [4], "Mol": [{"AtomSym": "O",   "Charge": "2-"}] },
+    {"MolSym": "S<sup>2-</sup>",   "TName": "Sulfidion",                "Principle": [4], "Mol": [{"AtomSym": "S",   "Charge": "2-"}] },
+    {"MolSym": "F<sup>1-</sup>",   "TName": "fluoridion",               "Principle": [4], "Mol": [{"AtomSym": "F",   "Charge": "1-"}] },
+    {"MolSym": "Br<sup>1-</sup>",  "TName": "Bromidion",                "Principle": [4], "Mol": [{"AtomSym": "Br",  "Charge": "1-"}] },
+    {"MolSym": "I<sup>1-</sup>",   "TName": "Iodidion",                 "Principle": [4], "Mol": [{"AtomSym": "I",   "Charge": "1-"}] },
 
     {"MolSym": "NH<sub>4</sub><sup>+</sup>",  "TName": "Amoniumion",    "Principle": [5], "Mol": [{"AtomSym": "N", "Index": 1},{"AtomSym": "H",  "Index": 4, "Charge": "1+"}] },
     {"MolSym": "H<sub>3</sub><sup>+</sup>",   "TName": "Oxoniumion",    "Principle": [5], "Mol": [{"AtomSym": "H", "Index": 3},{"AtomSym": "O",  "Index": 1, "Charge": "1+"}] },
@@ -164,8 +154,8 @@ var JsonObj_Questions = [
     {"MolSym": "SO<sub>4</sub><sup>-</sup>",  "TName": "sulfation",     "Principle": [5], "Mol": [{"AtomSym": "S", "Index": 1},{"AtomSym": "O",  "Index": 4, "Charge": "2-"}] },
     {"MolSym": "NO<sub>2</sub><sup>-</sup>",  "TName": "nitrition",     "Principle": [5], "Mol": [{"AtomSym": "N", "Index": 1},{"AtomSym": "O",  "Index": 2, "Charge": "1-"}] },
     {"MolSym": "NO<sub>3</sub><sup>-</sup>",  "TName": "nitration",     "Principle": [5], "Mol": [{"AtomSym": "N", "Index": 1},{"AtomSym": "O",  "Index": 3, "Charge": "1-"}] },
-    {"MolSym": "PO<sub>4</sub><sup>3-</sup>", "TName": "Amoniumion",    "Principle": [5], "Mol": [{"AtomSym": "P", "Index": 1},{"AtomSym": "O",  "Index": 4, "Charge": "3-"}] },
-    {"MolSym": "CO<sub>3</sub><sup>2-</sup>", "TName": "Amoniumion",    "Principle": [5], "Mol": [{"AtomSym": "C", "Index": 1},{"AtomSym": "O",  "Index": 3, "Charge": "2-"}] }
+    {"MolSym": "PO<sub>4</sub><sup>3-</sup>", "TName": "Phosphation",    "Principle": [5], "Mol": [{"AtomSym": "P", "Index": 1},{"AtomSym": "O",  "Index": 4, "Charge": "3-"}] },
+    {"MolSym": "CO<sub>3</sub><sup>2-</sup>", "TName": "Carbonation",    "Principle": [5], "Mol": [{"AtomSym": "C", "Index": 1},{"AtomSym": "O",  "Index": 3, "Charge": "2-"}] }
 ]; 
 
 
@@ -294,7 +284,8 @@ var QuestionObj =   {
                         P2 : [],  // Princip 2 - P2-array consists of the array-index of all the JsonObj_Questions which have Principle: "1-b-1"
                         P3 : [],  // Princip 3 - P3-array consists of the array-index of all the JsonObj_Questions which have Principle: "1-b-2"
                         P4 : [],   // Princip 1+2+3 - P4-array consists of the array-index 
-                        P5 : []
+                        P5 : [],
+                        P6 : []
                     }
 
 function loadData(url) {
@@ -363,69 +354,31 @@ console.log("ReturnElementInfo: " + ReturnElementInfo(JsonObj_PeriodicTable, "Z"
 
 
 
-function Test_Write_JsonObj_Questions(JsonObj_Questions, QuestionObj, PrincipleArrayName){
-
-    // console.log("Test_Write_JsonObj_Questions - JsonObj_Questions: " + JSON.stringify(JsonObj_Questions) ); // TestOutput
-    // console.log("Test_Write_JsonObj_Questions - QuestionObj: " + JSON.stringify(QuestionObj) ); // TestOutput
-
-    var PA = QuestionObj[ PrincipleArrayName ];
-    var JOQ = JsonObj_Questions;
-    var HTML = "<br/><b class='DebugMode'> Test_Write_JsonObj_Questions </b>:<br/>";
-    for (var x in PA){
-        for (var Key in JOQ[PA[x]]){
-            HTML += Key + ": " + JSON.stringify(JOQ[PA[x]][Key]);
-        }
-        HTML += "<br/>";
-    }
-    console.log("Test_Write_JsonObj_Questions - HTML: " + HTML ); // TestOutput
-    $("#TestOutput1").html(HTML);
-}
-
-
-function Test_WriteMolecule(JsonObj_Questions, QuestionObj){
-
-    var PA = QuestionObj[ "P2" ];
-    var JOQ = JsonObj_Questions;
-    var HTML = "<br/><b class='DebugMode'> Test_WriteMolecule </b>:<br/>";
-    for (var x in PA){
-        for (var Key1 in JOQ[PA[x]]){
-            console.log("Test_WriteMolecule - JOQ[PA["+x+"]]["+Key1+"]: " + JSON.stringify(JOQ[PA[x]][Key1]) ); // TestOutput
-            if (Key1 == "MolSym"){
-                HTML +=  JOQ[PA[x]]["MolSym"] + " : ";
-            }
-            if (Key1 == "Mol"){  
-                for (var Key2 in JOQ[PA[x]][Key1]){ // Molecule Array
-                    console.log("Test_WriteMolecule - JOQ[PA["+x+"]]["+Key1+"]["+Key2+"]: " + JSON.stringify(JOQ[PA[x]][Key1][Key2]) ); // TestOutput
-                    HTML +=  JOQ[PA[x]][Key1][Key2]["AtomSym"]+"<sub>"+((JOQ[PA[x]][Key1][Key2]["Index"]!=1)?JOQ[PA[x]][Key1][Key2]["Index"]:"")+"</sub>";
-                }
-            }
-        }
-        HTML += "<br/>";
-    }
-    console.log("Test_Write_JsonObj_Questions - HTML: " + HTML ); // TestOutput
-    $("#TestOutput2").html(HTML);
-}
-
 
 // Returns a chemical structure in HTML-format (and NOT LaTex) for a molecule (eg. "H_2O" or "CO_2") from the object JsonObj_Questions:
 function ReturnMolecule(JsonObj_Questions, ResultObj){
-
-    // var PA = QuestionObj[ PrincipleArrayName ];
-    // console.log("ReturnMolecule - PA: " + PA + ", PA["+Qid+"]" + PA[Qid]);
-    var JOQ = JsonObj_Questions;
-    // console.log("ReturnMolecule - JOQ[PA["+Qid+"]] :" + JSON.stringify( JOQ[PA[Qid]] ));
-
+    var JOQ = JsonObj_Questions;    
     var JOQ_index = ResultObj.PrincipleArray[ResultObj.Qcount];
+    var MObj = JOQ[JOQ_index];
     console.log("ReturnMolecule - JOQ_index:" + JOQ_index );
-
+    var ChargeComp = "";
     var HTML = "";
-    // if (PrincipleArrayName == "P2"){  // PRINCIPLE: "1-b-1"
-        for (var Key2 in JOQ[JOQ_index]["Mol"]){ // Molecule Array
-            console.log("ReturnMolecule - JOQ["+JOQ_index+"]][Mol]["+Key2+"]: " + JSON.stringify(JOQ[JOQ_index]["Mol"][Key2]) ); // TestOutput
-            // HTML +=  JOQ[PA[Qid]]["Mol"][Key2]["AtomSym"]+"<sub>"+((JOQ[PA[Qid]]["Mol"][Key2]["Index"]!=1)?JOQ[PA[Qid]]["Mol"][Key2]["Index"]:"")+"</sub>";
-            HTML +=  JOQ[JOQ_index]["Mol"][Key2]["AtomSym"]+"<sub"+((JOQ[JOQ_index]["Mol"][Key2]["Index"]==1)?" class='IndexFadeOut'":"")+">"+JOQ[JOQ_index]["Mol"][Key2]["Index"]+"</sub>";
+    for (var Key2 in JOQ[JOQ_index]["Mol"]){ // Molecule Array
+        console.log("ReturnMolecule - JOQ["+JOQ_index+"]][Mol]["+Key2+"]: " + JSON.stringify(JOQ[JOQ_index]["Mol"][Key2]) ); // TestOutput
+
+        if ( MObj.Mol[Key2].hasOwnProperty("AtomSym") )
+            HTML +=  JOQ[JOQ_index]["Mol"][Key2]["AtomSym"];
+
+        if ( MObj.Mol[Key2].hasOwnProperty("Index") )
+            HTML +=  "<sub"+((JOQ[JOQ_index]["Mol"][Key2]["Index"]==1)?" class='IndexFadeOut'":"")+">"+JOQ[JOQ_index]["Mol"][Key2]["Index"]+"</sub>";
+
+        if ( MObj.Mol[Key2].hasOwnProperty("Charge") ){ 
+            if (JOQ[JOQ_index]["Mol"][Key2]["Charge"].replace("+","").replace("-","") == "1") 
+                HTML += "<sup class='IndexFadeOut'>1</sup><sup>"+((MObj.Mol[Key2]["Charge"].indexOf("+") !== -1)?"+":"-")+"</sup>";
+            else
+                HTML += "<sup>"+JOQ[JOQ_index]["Mol"][Key2]["Charge"]+"</sup>";
         }
-    // }
+    }
     return HTML;
 }
 
@@ -453,7 +406,7 @@ console.log( "ReturnChemicalStructureComposition - TEST: " + ReturnChemicalStruc
 
 
 
-function ReturnChemicalIonComposition(JsonObj_PeriodicTable, MoleculeObj){   // ReturnChemicalStructureComposition
+function ReturnChemicalIonComposition(JsonObj_PeriodicTable, MoleculeObj){   
     var MObj = MoleculeObj;
     var HTML = "";
     console.log("ReturnChemicalIonComposition - MObj.Mol: " + JSON.stringify(MObj.Mol) );
@@ -464,7 +417,7 @@ function ReturnChemicalIonComposition(JsonObj_PeriodicTable, MoleculeObj){   // 
         console.log("ReturnChemicalIonComposition - MObj.Mol["+Key1+"]: " + JSON.stringify(MObj.Mol[Key1]) ); 
         // for (var Key2 in MObj.Mol[Key1]){ // Molecule sub object
             var AtomName = ReturnElementInfo(JsonObj_PeriodicTable, "sym", MObj.Mol[Key1]["AtomSym"], "name");
-            if (MObj.Mol[Key1].hasOwnProperty("Charge") ) ChargeComp = " og ladningen " + ( (MObj.Mol[Key1]["Charge"].indexOf("+") !== -1) ? "+" : "-") + MObj.Mol[Key1]["Charge"].replace("+","").replace("-","") ;
+            if (MObj.Mol[Key1].hasOwnProperty("Charge") ) ChargeComp = " og har ladningen " + ( (MObj.Mol[Key1]["Charge"].indexOf("+") !== -1) ? "+" : "-") + MObj.Mol[Key1]["Charge"].replace("+","").replace("-","") ;
             HTML += MObj.Mol[Key1]["Index"]+" "+AtomName.toLowerCase() + "atom"+((MObj.Mol[Key1]["Index"]==1)?"":"er") + ChargeComp + ((Count < MolLength-1)?", ": + (Count == MolLength-1)?", ": "" );
         // }
         ++Count;
@@ -520,8 +473,9 @@ function MakeQuestionObj(JsonObj_Questions, QuestionObj){
             if (JsonObj_Questions[ElmObjNr].Principle[p] == 2) QuestionObj.P2.push( ElmObjNr );
             if (JsonObj_Questions[ElmObjNr].Principle[p] == 3) QuestionObj.P3.push( ElmObjNr );
             if (JsonObj_Questions[ElmObjNr].Principle[p] == 4) QuestionObj.P4.push( ElmObjNr );
+            if (JsonObj_Questions[ElmObjNr].Principle[p] == 5) QuestionObj.P5.push( ElmObjNr );
         }
-        QuestionObj.P5.push( ElmObjNr );
+        QuestionObj.P6.push( ElmObjNr );
     }
 
     console.log("MakeQuestionObj - QuestionObj: " + JSON.stringify(QuestionObj));
@@ -557,71 +511,19 @@ function ReturnQuestionLevel(JsonObj_PeriodicTable, MoleculeObj, Level){
 }
 
 
-function Principle1(JOQ, PrincipleArray, Qcount){
-
-    // var Inx = PrincipleArray[Qcount];
-
-    var Inx = PrincipleArray[Qcount];
-
-    if ((Debug_OnlyGiveQuestion !== null) && (DebugMode))
-        Inx = Debug_OnlyGiveQuestion;
-    console.log("Debug_OnlyGiveQuestion: " + Debug_OnlyGiveQuestion + ", Inx:" + Inx);
-
-    var MoleculeObj = JOQ[Inx];
-
-    for (var i = 1; i <= MoleculeObj.Mol.length; i++) {  // MoleculeObj.Mol.length is the number of atoms in the molecule.
-        $("#DropWrap"+String(i)).removeClass("Hide");    // Show the necessary DropWraps.
-    };
-
-    var ArrayLength = PrincipleArray.length;
-    var QuestionCountStr = "<br/><h2><span class='QuizHeadingTextCount'>" + String(Qcount + 1) + "/" + String(ArrayLength) + "</span></h2>" + 
-                           "<span class='QuizNextQuestion'>" + 
-                                '<a class="NextQuestion btn-default btn btn-default" href="#">Næste spørgsmål</a>' +
-                           "</span>";
-
-    // var QuestionLevel = "";
-    // if (Level == 1) 
-    //     QuestionLevel += "<span class='QuestionCorrect'>Lav molekylet bestående af <span class='QuestionTask'>" +
-    //                             ReturnChemicalStructureComposition(JsonObj_PeriodicTable, MoleculeObj) +
-    //                     "</span></span>"; 
-    // if (Level == 2)
-    //     QuestionLevel += "<span class='QuestionCorrect'>Lav formlen for <span class='QuestionTask'>" +
-    //                             MoleculeObj.TName.toLowerCase()+
-    //                     "</span></span>"; 
-
+function ReturnQuestionHeading(PrincipleNum, Level){
     var HTML = "";
-    HTML += (DebugMode)?'<h1 class="DebugMode">DebugMode: PRINCIP 1-A-1</h1>':'';
-    HTML += "<h1>Niveau 1: Kemiske formler - &eacute;t grundstof</h1>";
-    HTML += "<div class='QuestionWrap'>";
-    // HTML += "<h2 class='QuestionText'>" +
-    //             "Træk grundstofsymbol og indekstal til det rette felt.<br/>" +
-    //             "<span class='QuestionCorrect'>Lav molekylet bestående af <span class='QuestionTask'>"+JOQ[Inx]["Index"]+" "+JOQ[Inx]["Name"].toLowerCase()+"atom"+((JOQ[Inx]["Index"]==1)?"":"er")+"</span></span>" + 
-    //         "</h2>" + QuestionCountStr;
-    HTML += "<h2 class='QuestionText'>" +
-                "Træk grundstofsymbol og indekstal til det rette felt.<br/>" +
-                    ReturnQuestionLevel(JsonObj_PeriodicTable, MoleculeObj, Level) +
-            "</h2>" + QuestionCountStr;
-    HTML += "</div>";
-    HTML += "<div class='FeedbackWrap'></div>";
-    // HTML += "<div class='QuestionWrap'><h2 class='AnswerText'>TEST</h2></div>";
-
-    // Write the heading and question for the student:
-    $(".QuizHeadingText").html( HTML );
-
-    // $(".ElementBox").removeClass("Elem_OK");
-    // $(".DragNum").removeClass("Index_OK Char_OK Coeff_OK");
-
-    $(".draggable").removeClass("Elem_OK Index_OK Char_OK Coeff_OK Dropped");
-
-
-    // SetAcceptedElements( JOQ[Inx]["AtomNum"], "Elem_OK" );                        // The draggable element
-    // SetAcceptedNumbers(  JOQ[Inx]["Index"], ".IndexNum", "Index_OK");  // Principle 1: index numbers
-
-    SetAcceptedDraggables(MoleculeObj);
+    if (PrincipleNum == 1) HTML = "Niveau 1: Kemiske formler - &#233;t grundstof";
+    if (PrincipleNum == 2) HTML = "Niveau 2: Kemiske formler - flere grundstoffer";
+    if (PrincipleNum == 3) HTML = "Niveau 3: Kemiske formler - &#233;t og flere grundstoffer";
+    if (PrincipleNum == 4) HTML = "Simple ioner";
+    if (PrincipleNum == 5) HTML = "Sammensatte ioner";
+    HTML += " - "+((Level == 1)?"let":"svært") + " niveau."
+    return HTML;
 }
 
 
-function Principle2(JOQ, PrincipleArray, Qcount){
+function PrincipleRepeat(JOQ, PrincipleArray, Qcount, ShowObj){
 
     var Inx = PrincipleArray[Qcount];
 
@@ -642,161 +544,19 @@ function Principle2(JOQ, PrincipleArray, Qcount){
                                 '<a class="NextQuestion btn-default btn btn-default" href="#">Næste spørgsmål</a>' +
                            "</span>";
 
-    // {"MolSym": "H<sub>2</sub>CO<sub>3</sub>",   "TName": "Dihydrogencarbonat (kulsyre)",    "Principle": [2], "Mol": [{"AtomSym": "H", "Index": 2},{"AtomSym": "C", "Index": 1}, {"AtomSym": "O", "Index": 3}] },
-
-
-    // var QuestionLevel = "";
-    // if (Level == 1) 
-    //     QuestionLevel += "<span class='QuestionCorrect'>Lav molekylet bestående af <span class='QuestionTask'>" +
-    //                             ReturnChemicalStructureComposition(JsonObj_PeriodicTable, MoleculeObj) +
-    //                     "</span></span>"; 
-    // if (Level == 2)
-    //     QuestionLevel += "<span class='QuestionCorrect'>Lav formlen for <span class='QuestionTask'>" +
-    //                             MoleculeObj.TName.toLowerCase()+
-    //                     "</span></span>"; 
-
     var HTML = "";
     HTML += (DebugMode)?'<h1 class="DebugMode">DebugMode: PRINCIP 1-B-1</h1>':'';
-    HTML += "<h1>Niveau 2: Kemiske formler - flere grundstoffer</h1>";
+    HTML += "<h1>"+ReturnQuestionHeading(PrincipleNum, Level)+"</h1>";
     HTML += "<div class='QuestionWrap'>";
     HTML += "<h2 class='QuestionText'>" +
-                "Træk grundstofsymbol og indekstal til det rette felt.<br/>" +
+                "Træk grundstofsymbol"+ReturnActions(ShowObj)+" til det rette felt.<br/>" +
                     ReturnQuestionLevel(JsonObj_PeriodicTable, MoleculeObj, Level) +
             "</h2>" + QuestionCountStr;
     HTML += "</div>";
     HTML += "<div class='FeedbackWrap'></div>";
-    // HTML += "<div class='QuestionWrap'><h2 class='AnswerText'>TEST</h2></div>";
 
     // Write the heading and question for the student:
     $(".QuizHeadingText").html( HTML );
-
-    // $(".ElementBox").removeClass("Elem_OK");
-    // $(".DragNum").removeClass("Index_OK Char_OK Coeff_OK");
-    // $(".draggable").removeClass("Elem_OK Index_OK Char_OK Coeff_OK Dropped");
-
-
-    // SetAcceptedElements( JOQ[Inx]["AtomNum"], "Elem_OK" );                        // The draggable element
-    // SetAcceptedNumbers(  JOQ[Inx]["Index"], ".IndexNum", "Index_OK");  // Principle 1: index numbers
-
-    SetAcceptedDraggables(MoleculeObj);
-}
-
-
-function Principle3(JOQ, PrincipleArray, Qcount){
-
-    var Inx = PrincipleArray[Qcount];
-
-    if ((Debug_OnlyGiveQuestion !== null) && (DebugMode))
-        Inx = Debug_OnlyGiveQuestion;
-    console.log("Debug_OnlyGiveQuestion: " + Debug_OnlyGiveQuestion + ", Inx:" + Inx);
-
-    var MoleculeObj = JOQ[Inx];
-
-    for (var i = 1; i <= MoleculeObj.Mol.length; i++) {  // MoleculeObj.Mol.length is the number of atoms in the molecule.
-        $("#DropWrap"+String(i)).removeClass("Hide");    // Show the necessary DropWraps.
-    };
-        
-
-    var ArrayLength = PrincipleArray.length;
-    var QuestionCountStr = "<br/><h2><span class='QuizHeadingTextCount'>" + String(Qcount + 1) + "/" + String(ArrayLength) + "</span></h2>" + 
-                           "<span class='QuizNextQuestion'>" + 
-                                '<a class="NextQuestion btn-default btn btn-default" href="#">Næste spørgsmål</a>' +
-                           "</span>";
-
-    // {"MolSym": "H<sub>2</sub>CO<sub>3</sub>",   "TName": "Dihydrogencarbonat (kulsyre)",    "Principle": [2], "Mol": [{"AtomSym": "H", "Index": 2},{"AtomSym": "C", "Index": 1}, {"AtomSym": "O", "Index": 3}] },
-
-    // var QuestionLevel = "";
-    // if (Level == 1) 
-    //     QuestionLevel += "<span class='QuestionCorrect'>Lav molekylet bestående af <span class='QuestionTask'>" +
-    //                             ReturnChemicalStructureComposition(JsonObj_PeriodicTable, MoleculeObj) +
-    //                     "</span></span>"; 
-    // if (Level == 2)
-    //     QuestionLevel += "<span class='QuestionCorrect'>Lav formlen for <span class='QuestionTask'>" +
-    //                             MoleculeObj.TName.toLowerCase()+
-    //                     "</span></span>"; 
-
-    var HTML = "";
-    HTML += (DebugMode)?'<h1 class="DebugMode">DebugMode: PRINCIP 1-B-1</h1>':'';
-    HTML += "<h1>Niveau 2: Kemiske formler - flere grundstoffer</h1>";
-    HTML += "<div class='QuestionWrap'>";
-    HTML += "<h2 class='QuestionText'>" +
-                "Træk grundstofsymbol og indekstal til det rette felt.<br/>" +
-                    ReturnQuestionLevel(JsonObj_PeriodicTable, MoleculeObj, Level) +
-            "</h2>" + QuestionCountStr;
-    HTML += "</div>";
-    HTML += "<div class='FeedbackWrap'></div>";
-    // HTML += "<div class='QuestionWrap'><h2 class='AnswerText'>TEST</h2></div>";
-
-    // Write the heading and question for the student:
-    $(".QuizHeadingText").html( HTML );
-
-    // $(".ElementBox").removeClass("Elem_OK");
-    // $(".DragNum").removeClass("Index_OK Char_OK Coeff_OK");
-    // $(".draggable").removeClass("Elem_OK Index_OK Char_OK Coeff_OK Dropped");
-
-
-    // SetAcceptedElements( JOQ[Inx]["AtomNum"], "Elem_OK" );                        // The draggable element
-    // SetAcceptedNumbers(  JOQ[Inx]["Index"], ".IndexNum", "Index_OK");  // Principle 1: index numbers
-
-    SetAcceptedDraggables(MoleculeObj);
-}
-
-
-function Principle4(JOQ, PrincipleArray, Qcount){
-
-    var Inx = PrincipleArray[Qcount];
-
-    if ((Debug_OnlyGiveQuestion !== null) && (DebugMode))
-        Inx = Debug_OnlyGiveQuestion;
-    console.log("Debug_OnlyGiveQuestion: " + Debug_OnlyGiveQuestion + ", Inx:" + Inx);
-
-    var MoleculeObj = JOQ[Inx];
-
-    for (var i = 1; i <= MoleculeObj.Mol.length; i++) {  // MoleculeObj.Mol.length is the number of atoms in the molecule.
-        $("#DropWrap"+String(i)).removeClass("Hide");    // Show the necessary DropWraps.
-    };
-        
-
-    var ArrayLength = PrincipleArray.length;
-    var QuestionCountStr = "<br/><h2><span class='QuizHeadingTextCount'>" + String(Qcount + 1) + "/" + String(ArrayLength) + "</span></h2>" + 
-                           "<span class='QuizNextQuestion'>" + 
-                                '<a class="NextQuestion btn-default btn btn-default" href="#">Næste spørgsmål</a>' +
-                           "</span>";
-
-    // {"MolSym": "H<sub>2</sub>CO<sub>3</sub>",   "TName": "Dihydrogencarbonat (kulsyre)",    "Principle": [2], "Mol": [{"AtomSym": "H", "Index": 2},{"AtomSym": "C", "Index": 1}, {"AtomSym": "O", "Index": 3}] },
-
-    // var QuestionLevel = "";
-    // if (Level == 1) 
-    //     QuestionLevel += "<span class='QuestionCorrect'>Lav molekylet bestående af <span class='QuestionTask'>" +
-    //                             ReturnChemicalStructureComposition(JsonObj_PeriodicTable, MoleculeObj) +
-    //                     "</span></span>"; 
-    // if (Level == 2)
-    //     QuestionLevel += "<span class='QuestionCorrect'>Lav formlen for <span class='QuestionTask'>" +
-    //                             MoleculeObj.TName.toLowerCase()+
-    //                     "</span></span>"; 
-
-    var HTML = "";
-    HTML += (DebugMode)?'<h1 class="DebugMode">DebugMode: PRINCIP 1-B-1</h1>':'';
-    HTML += "<h1>Niveau 2: Kemiske formler - flere grundstoffer</h1>";
-    HTML += "<div class='QuestionWrap'>";
-    HTML += "<h2 class='QuestionText'>" +
-                "Træk grundstofsymbol og indekstal til det rette felt.<br/>" +
-                    ReturnQuestionLevel(JsonObj_PeriodicTable, MoleculeObj, Level) +
-            "</h2>" + QuestionCountStr;
-    HTML += "</div>";
-    HTML += "<div class='FeedbackWrap'></div>";
-    // HTML += "<div class='QuestionWrap'><h2 class='AnswerText'>TEST</h2></div>";
-
-    // Write the heading and question for the student:
-    $(".QuizHeadingText").html( HTML );
-
-    // $(".ElementBox").removeClass("Elem_OK");
-    // $(".DragNum").removeClass("Index_OK Char_OK Coeff_OK");
-    // $(".draggable").removeClass("Elem_OK Index_OK Char_OK Coeff_OK Dropped");
-
-
-    // SetAcceptedElements( JOQ[Inx]["AtomNum"], "Elem_OK" );                        // The draggable element
-    // SetAcceptedNumbers(  JOQ[Inx]["Index"], ".IndexNum", "Index_OK");  // Principle 1: index numbers
 
     SetAcceptedDraggables(MoleculeObj);
 }
@@ -808,231 +568,109 @@ function GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum){
     var HTML = ""; 
     var Qcount = 0;
 
-    // ###   PRINCIPLE 1-A-1   ##########################################################################################
-    if (PrincipleNum == 1){ // PRINCIPLE 1-A-1: index numbers
-        $("#DropWrap1").removeClass("Hide");  // Show only the first DropWrap
-        PrincipleArray = QuestionObj["P1"]; 
-        TPrincipleArray = ShuffelArray( PrincipleArray );  // Random index relating to the sub-objects in JsonObj_Questions.
-        ArrayLength = TPrincipleArray.length;
+    PrincipleArray = QuestionObj["P"+String(PrincipleNum)]; 
+    TPrincipleArray = ShuffelArray( PrincipleArray );  // Random index relating to the sub-objects in JsonObj_Questions.
+    ArrayLength = TPrincipleArray.length;
 
-        $(".IndexWrapper").html(CreateNumberDivs(1, 8, "IndexNum DragNum btn btn-info draggable", false));  
-        // $(".ChargeWrapper").html(CreateNumberDivs(-3, 3, "ChargeNum DragNum btn btn-info draggable", true));
+    var ShowObj = ReturnShowObj(JsonObj_Questions, TPrincipleArray, Qcount);
 
-        Principle1(JOQ, TPrincipleArray, Qcount);
+    if (ShowObj.Index) $(".IndexWrapper").html(CreateNumberDivs(1, 8, "IndexNum DragNum btn btn-info draggable", false));  
+    if (ShowObj.Charge) $(".ChargeWrapper").html(CreateNumberDivs(-3, 3, "ChargeNum DragNum btn btn-info draggable", true));
+    if (ShowObj.Coeff) $(".CoeffWrapper").html(CreateNumberDivs(1, 5, "CoeffNum DragNum btn btn-info draggable", false));
+
+    PrincipleRepeat(JOQ, TPrincipleArray, Qcount, ShowObj);
+    ResultObj.Qcount = Qcount;
+    ResultObj.PrincipleArray = TPrincipleArray; 
+
+    console.log("GiveQuestion - Qcount 1:" + Qcount + "");
+
+    $(".QuizHeadingTextCount").text( String(Qcount + 1) + "/" + String(ArrayLength) );
+
+    if (!ShowObj.Index) $(".IndexNumberHeading, .IndexWrapper").hide();  
+    if (!ShowObj.Charge) $(".ChargeNumberHeading, .ChargeWrapper").hide(); 
+    if (!ShowObj.Coeff) $(".CoeffNumberHeading, .CoeffWrapper").hide();  
+
+    $( document ).on('click', ".NextQuestion", function(event){
+        event.preventDefault();  // Prevents sending the user to "href".
+
+        console.log("GiveQuestion: Antal spm:" + ResultObj.PrincipleArray.length);
+
+        // length the student feedback:
+        if ( Qcount == ResultObj.PrincipleArray.length-1) {  // NOTE: Due to the placement of the ++Qcount increasement, Qcount == 9 equals 10 questions.
+            ShowStudentScore(true);
+        }
+
+
+        if ( ResultObj.Correct < ReturnNumOfCorrectAnswers(JsonObj_Questions, ResultObj)) {
+            // alert("Du skal placere både grundstof og indeks tal korrekt før du kan fortsætte!");
+            // UserMsgBox("body", "Du skal placere både grundstof og indeks tal korrekt før du kan fortsætte!");
+            UserMsgBox("body", "Du skal placere både grundstof"+ReturnActions(ShowObj)+" korrekt før du kan fortsætte!");
+            return 0;
+        }
+
+        // console.log("GiveQuestion - ResultObj" + JSON.stringify(ResultObj) )
+
+        ResetQuiz(500);
+        ++Qcount;
+        PrincipleRepeat(JOQ, TPrincipleArray, Qcount, ShowObj);
         ResultObj.Qcount = Qcount;
         ResultObj.PrincipleArray = TPrincipleArray; 
 
+        FontSizeScalerNew(".PeriodicTableWrapper", 
+                        [".AtomSymbol", ".NumberHeading", ".ElementBox", ".DragNum", ".ScoreHeaderH3", 
+                        ".ScoreHeader", ".ScoreNum", ".TryAgain", ".NextQuestion", ".QuizHeadingText h2", 
+                        ".QuizHeadingText h1", ".QuizHeadingTextCount", "#UserMsgBox"], 1425);
 
-        $(".QuizHeadingTextCount").text( String(Qcount + 1) + "/" + String(ArrayLength) );
+        console.log("GiveQuestion - Qcount 2:" + Qcount + "");
 
-        $(".ChargeNumberHeading, .ChargeWrapper").hide(); // Hide placeholders for the coefficients - they are not in use in principle 1 anyway.
-        $(".CoeffNumberHeading, .CoeffWrapper").hide();   // Hide placeholders for the coefficients - they are not in use in principle 1 anyway.
+    });
 
-        $( document ).on('click', ".NextQuestion", function(event){
-            event.preventDefault();  // Prevents sending the user to "href".
-
-            // Give the student feedback:
-            if ( Qcount == 9) {  // NOTE: Due to the placement of the ++Qcount increasement, Qcount == 9 equals 10 questions.
-                
-                ShowStudentScore(true);
-            }
+}
 
 
-            if ( ResultObj.Correct < 2) {
-                // alert("Du skal placere både grundstof og indeks tal korrekt før du kan fortsætte!");
-                UserMsgBox("body", "Du skal placere både grundstof og indeks tal korrekt før du kan fortsætte!");
-                return 0;
-            }
-
-            
-            // console.log("GiveQuestion - ResultObj" + JSON.stringify(ResultObj) )
-
-
-            ResetQuiz(500);
-            ++Qcount;
-            Principle1(JOQ, TPrincipleArray, Qcount);
-            ResultObj.Qcount = Qcount;
-            ResultObj.PrincipleArray = TPrincipleArray; 
-
-            FontSizeScalerNew(".PeriodicTableWrapper", 
-                            [".AtomSymbol", ".NumberHeading", ".ElementBox", ".DragNum", ".ScoreHeaderH3", 
-                            ".ScoreHeader", ".ScoreNum", ".TryAgain", ".NextQuestion", ".QuizHeadingText h2", 
-                            ".QuizHeadingText h1", ".QuizHeadingTextCount", "#UserMsgBox"], 1425);
-
-            // if ( Qcount == 2) $(".NextQuestion").text("Se din score");
-            
-            // $(".QuestionWrap").append( "<span class='QuizHeadingTextCount'>" + String(Qcount + 1) + "/" + String(ArrayLength) + "</span>");
-        });
+// Counts the number of necessary draggable numbers (Index, Coefficient and Charge) needed to complete the chemical structure. 
+function ReturnNumOfActions(ShowObj){
+    var NumOfActions = 0;
+    for (var i in ShowObj){
+        if (ShowObj[i]) ++NumOfActions;
     }
+    console.log("ReturnNumOfActions - NumOfActions: " + NumOfActions);
+    return NumOfActions;
+}
 
-    // ###   PRINCIPLE 1-B-1   ##########################################################################################
-    if (PrincipleNum == 2){ // PRINCIPLE 1-B-1: charge numbers
-        PrincipleArray = QuestionObj["P2"]; 
-        TPrincipleArray = ShuffelArray( PrincipleArray );  // Random index relating to the sub-objects in JsonObj_Questions.
-        ArrayLength = TPrincipleArray.length;
-
-        $(".IndexWrapper").html(CreateNumberDivs(1, 8, "IndexNum DragNum btn btn-info draggable", false));  
-        // $(".ChargeWrapper").html(CreateNumberDivs(-3, 3, "ChargeNum DragNum btn btn-info draggable", true));
-
-        Principle2(JOQ, TPrincipleArray, Qcount);
-        ResultObj.Qcount = Qcount;
-        ResultObj.PrincipleArray = TPrincipleArray; 
-
-        console.log("GiveQuestion - PrincipleNum:" + PrincipleNum + ", PrincipleArray" + PrincipleArray);
-
-
-        $(".QuizHeadingTextCount").text( String(Qcount + 1) + "/" + String(ArrayLength) );
-
-        $(".ChargeNumberHeading, .ChargeWrapper").hide(); // Hide placeholders for the coefficients - they are not in use in principle 1 anyway.
-        $(".CoeffNumberHeading, .CoeffWrapper").hide();  // Hide placeholders for the coefficients - they are not in use in principle 1 anyway.
-
-        $( document ).on('click', ".NextQuestion", function(event){
-            event.preventDefault();  // Prevents sending the user to "href".
-
-            console.log("GiveQuestion: Antal spm:" + ResultObj.PrincipleArray.length);
-
-            // length the student feedback:
-            if ( Qcount == ResultObj.PrincipleArray.length-1) {  // NOTE: Due to the placement of the ++Qcount increasement, Qcount == 9 equals 10 questions.
-                
-                ShowStudentScore(true);
-            }
-
-
-            if ( ResultObj.Correct < 2) {
-                // alert("Du skal placere både grundstof og indeks tal korrekt før du kan fortsætte!");
-                UserMsgBox("body", "Du skal placere både grundstof og indeks tal korrekt før du kan fortsætte!");
-                return 0;
-            }
-
-            
-            // console.log("GiveQuestion - ResultObj" + JSON.stringify(ResultObj) )
-
-            ResetQuiz(500);
-            ++Qcount;
-            Principle2(JOQ, TPrincipleArray, Qcount);
-            ResultObj.Qcount = Qcount;
-            ResultObj.PrincipleArray = TPrincipleArray; 
-
-            FontSizeScalerNew(".PeriodicTableWrapper", 
-                            [".AtomSymbol", ".NumberHeading", ".ElementBox", ".DragNum", ".ScoreHeaderH3", 
-                            ".ScoreHeader", ".ScoreNum", ".TryAgain", ".NextQuestion", ".QuizHeadingText h2", 
-                            ".QuizHeadingText h1", ".QuizHeadingTextCount", "#UserMsgBox"], 1425);
-
-            console.log("GiveQuestion - Qcount 2:" + Qcount + "");
-
-            
-            
-            // $(".QuestionWrap").append( "<span class='QuizHeadingTextCount'>" + String(Qcount + 1) + "/" + String(ArrayLength) + "</span>");
-        });
-        // SetAcceptedNumbers( JOQ[Inx]["Charge"], ".ChargeNum", "Char_OK"); // Principle 2: charge numbers
+// Counts the number of necessary draggable numbers (Index, Coefficient and Charge) needed to complete the chemical structure. 
+function ReturnActions(ShowObj){
+    var ActionStr = "";
+    var NumOfActions = 0;
+    for (var i in ShowObj){
+        if (ShowObj[i]) ++NumOfActions;
     }
-    if (PrincipleNum == 3){ // PRINCIPLE 3: coefficient numbers
-        PrincipleArray = QuestionObj["P3"]; 
-        TPrincipleArray = ShuffelArray( PrincipleArray );  // Random index relating to the sub-objects in JsonObj_Questions.
-        ArrayLength = TPrincipleArray.length;
-
-        $(".IndexWrapper").html(CreateNumberDivs(1, 8, "IndexNum DragNum btn btn-info draggable", false));  
-        // $(".ChargeWrapper").html(CreateNumberDivs(-3, 3, "ChargeNum DragNum btn btn-info draggable", true));
-
-        Principle3(JOQ, TPrincipleArray, Qcount);
-        ResultObj.Qcount = Qcount;
-        ResultObj.PrincipleArray = TPrincipleArray; 
-
-        console.log("GiveQuestion - Qcount 1:" + Qcount + "");
-
-
-        $(".QuizHeadingTextCount").text( String(Qcount + 1) + "/" + String(ArrayLength) );
-
-        $(".ChargeNumberHeading, .ChargeWrapper").hide(); // Hide placeholders for the coefficients - they are not in use in principle 1 anyway.
-        $(".CoeffNumberHeading, .CoeffWrapper").hide();  // Hide placeholders for the coefficients - they are not in use in principle 1 anyway.
-
-        $( document ).on('click', ".NextQuestion", function(event){
-            event.preventDefault();  // Prevents sending the user to "href".
-
-            console.log("GiveQuestion: Antal spm:" + ResultObj.PrincipleArray.length);
-
-            // length the student feedback:
-            if ( Qcount == ResultObj.PrincipleArray.length-1) {  // NOTE: Due to the placement of the ++Qcount increasement, Qcount == 9 equals 10 questions.
-                
-                ShowStudentScore(true);
-            }
-
-
-            if ( ResultObj.Correct < 2) {
-                // alert("Du skal placere både grundstof og indeks tal korrekt før du kan fortsætte!");
-                UserMsgBox("body", "Du skal placere både grundstof og indeks tal korrekt før du kan fortsætte!");
-                return 0;
-            }
-
-            
-            // console.log("GiveQuestion - ResultObj" + JSON.stringify(ResultObj) )
-
-            ResetQuiz(500);
-            ++Qcount;
-            Principle3(JOQ, TPrincipleArray, Qcount);
-            ResultObj.Qcount = Qcount;
-            ResultObj.PrincipleArray = TPrincipleArray; 
-
-            FontSizeScalerNew(".PeriodicTableWrapper", 
-                            [".AtomSymbol", ".NumberHeading", ".ElementBox", ".DragNum", ".ScoreHeaderH3", 
-                            ".ScoreHeader", ".ScoreNum", ".TryAgain", ".NextQuestion", ".QuizHeadingText h2", 
-                            ".QuizHeadingText h1", ".QuizHeadingTextCount", "#UserMsgBox"], 1425);
-
-            console.log("GiveQuestion - Qcount 2:" + Qcount + "");
-
-        });
+    for (var i in ShowObj){
+        if (ShowObj[i]){
+            ActionStr += ((NumOfActions > 1)? ", ":" og ")+((i == "Index")?"index tal":"")+((i == "Charge")?"ladning":"")+((i == "Coeff")?"koefficient":"");
+            --NumOfActions;
+        }
     }
-    if (PrincipleNum == 4){ // PRINCIPLE 1+2+3 - FOR TESTING 
-        PrincipleArray = QuestionObj["P4"];  // <---------------------------  HUSK AT RETTE DENNE!!!
-        TPrincipleArray = ShuffelArray( PrincipleArray );  // Random index relating to the sub-objects in JsonObj_Questions.
-        ArrayLength = TPrincipleArray.length;
-
-        // $(".IndexWrapper").html(CreateNumberDivs(1, 8, "IndexNum DragNum btn btn-info draggable", false));  
-        $(".ChargeWrapper").html(CreateNumberDivs(-3, 3, "ChargeNum DragNum btn btn-info draggable", true));
-        // $(".CoeffWrapper").html(CreateNumberDivs(1, 5, "CoeffNum DragNum btn btn-info draggable", false));
-
-        Principle4(JOQ, TPrincipleArray, Qcount);
-        ResultObj.Qcount = Qcount;
-        ResultObj.PrincipleArray = TPrincipleArray; 
-
-        $(".QuizHeadingTextCount").text( String(Qcount + 1) + "/" + String(ArrayLength) );
-
-        $(".IndexNumberHeading, .IndexWrapper").hide();  // Hide placeholders for the coefficients - they are not in use in principle 1 anyway.
-        // $(".ChargeNumberHeading, .ChargeWrapper").hide(); // Hide placeholders for the coefficients - they are not in use in principle 1 anyway.
-        $(".CoeffNumberHeading, .CoeffWrapper").hide();  // Hide placeholders for the coefficients - they are not in use in principle 1 anyway.
+    console.log("ReturnActions - NumOfActions: " + NumOfActions + ", ActionStr: " + ActionStr);
+    return ActionStr;
+}
 
 
-        $( document ).on('click', ".NextQuestion", function(event){
-            event.preventDefault();  // Prevents sending the user to "href".
-
-
-            // if ( ResultObj.Correct < 2) {
-            //     alert("Du skal placere både grundstof og indeks tal korrekt før du kan fortsætte!");
-            //     return 0;
-            // }
-            // console.log("GiveQuestion - ResultObj" + JSON.stringify(ResultObj) )
-
-            ResetQuiz(500);
-            ++Qcount;
-            Principle4(JOQ, TPrincipleArray, Qcount);
-            ResultObj.Qcount = Qcount;
-            ResultObj.PrincipleArray = TPrincipleArray; 
-
-            FontSizeScalerNew(".PeriodicTableWrapper", 
-                            [".AtomSymbol", ".NumberHeading", ".ElementBox", ".DragNum", ".ScoreHeaderH3", 
-                            ".ScoreHeader", ".ScoreNum", ".TryAgain", ".NextQuestion", ".QuizHeadingText h2", 
-                            ".QuizHeadingText h1", ".QuizHeadingTextCount", "#UserMsgBox"], 1425);
-            
-            // $(".QuestionWrap").append( "<span class='QuizHeadingTextCount'>" + String(Qcount + 1) + "/" + String(ArrayLength) + "</span>");
-        });
-
-        console.log("ScoreCorrect XXX: " + parseInt($(".ScoreCorrect").text())   );
-        console.log("ArrayLength: " + ArrayLength);
+function ReturnShowObj(JsonObj_Questions, TPrincipleArray, Qcount){
+    var ShowObj = {Index: false, Coeff: false, Charge: false};
+    var Inx = TPrincipleArray[Qcount]; 
+    var JOQ = JsonObj_Questions;
+    var MObj = JOQ[Inx];
+    for (var Key1 in MObj.Mol){
+        for (var Key2 in MObj.Mol[Key1]){
+            console.log("ReturnShowObj - MObj.Mol["+Key1+"]: " + JSON.stringify( MObj.Mol[Key1] ));
+            if (MObj.Mol[Key1].hasOwnProperty("Index")) ShowObj.Index = true;
+            if (MObj.Mol[Key1].hasOwnProperty("Coeff")) ShowObj.Coeff = true;
+            if (MObj.Mol[Key1].hasOwnProperty("Charge")) ShowObj.Charge = true;
+        }
     }
-
-    // Write the heading and question for the student:
-    // $(".QuizHeading").html( HTML );
-
+    console.log("ReturnShowObj - ShowObj: " + JSON.stringify( ShowObj ) );
+    return ShowObj;
 }
 
 
@@ -1075,13 +713,29 @@ function ShowStudentScore(Use_UserMsgBox){
 }
 
 
+
+// The number of correct answers (NumOfCorrectAnswers) is defined as being the total number of properties of a molecular data-structure. 
+// This is by far the best way of determining the number of correct answers and the type of avaliable draggable numbers (".DragNum", eg: index, 
+// charge and coefficient), since the data-structure is shared among all functions.
+// Example:
+//      "Mol": [{"AtomSym": "H", "Index": 2},{"AtomSym": "O", "Index": 1}]  has NumOfCorrectAnswers = 4 
+//      "Mol": [{"AtomSym": "N", "Index": 1},{"AtomSym": "H",  "Index": 4, "Charge": "1+"}]  has NumOfCorrectAnswers = 5 
+// NOTE: At a later point in the development, a function that turns a LaTex molecular expression into the above data-structure may be devised.
+//       Here properties may be added that this definition does not support - therefore remove all unnecessary properties from the data-structure, 
+//       so the definition can still be used. 
 function ReturnNumOfCorrectAnswers(JsonObj_Questions, ResultObj){
-    var JOQ_index = ResultObj.PrincipleArray[ResultObj.Qcount];
-    console.log("ReturnNumOfCorrectAnswers - JOQ_index: " + JOQ_index );
-    console.log("ReturnNumOfCorrectAnswers - ResultObj.PrincipleArray: " + JSON.stringify(ResultObj.PrincipleArray) );
-    console.log("ReturnNumOfCorrectAnswers - JsonObj_Questions["+JOQ_index+"]: " + JSON.stringify(JsonObj_Questions[JOQ_index]) );
-    console.log("ReturnNumOfCorrectAnswers - JsonObj_Questions["+JOQ_index+"].Mol.length * 2: " + JsonObj_Questions[JOQ_index].Mol.length * 2 );
-    return JsonObj_Questions[JOQ_index].Mol.length * 2;
+    var Inx = ResultObj.PrincipleArray[ResultObj.Qcount]; 
+    var JOQ = JsonObj_Questions;
+    var MObj = JOQ[Inx];
+    var Count = 0;
+    for (var Key1 in MObj.Mol){
+        for (var Key2 in MObj.Mol[Key1]){
+            console.log("ReturnNumOfCorrectAnswers - MObj.Mol["+Key1+"]: " + JSON.stringify( MObj.Mol[Key1] ));
+            ++Count;
+        }
+    }
+    console.log("ReturnNumOfCorrectAnswers - Count: " + Count );
+    return Count;
 }
 
 
@@ -1091,15 +745,7 @@ function GivePosetiveFeedback(JsonObj_Questions, ResultObj){
 
     console.log("GivePosetiveFeedback - Current question:" + ResultObj.PrincipleArray[ResultObj.Qcount]);  
 
-    // ReturnNumOfCorrectAnswers(JsonObj_Questions, ResultObj);  // TEST  
-
-    var NumOfCorrectAnswers;
-    if (PrincipleNum == 1) NumOfCorrectAnswers = 2;
-    if (PrincipleNum == 2) NumOfCorrectAnswers = ReturnNumOfCorrectAnswers(JsonObj_Questions, ResultObj);  
-    if (PrincipleNum == 3) NumOfCorrectAnswers = ReturnNumOfCorrectAnswers(JsonObj_Questions, ResultObj);  
-    if (PrincipleNum == 4) NumOfCorrectAnswers = ReturnNumOfCorrectAnswers(JsonObj_Questions, ResultObj);  
-
-    if (ResultObj.Correct == NumOfCorrectAnswers){
+    if ( ResultObj.Correct == ReturnNumOfCorrectAnswers(JsonObj_Questions, ResultObj) ){
 
         ArrayIndex = ResultObj.PrincipleArray[ ResultObj.Qcount ];
 
@@ -1134,94 +780,22 @@ function GivePosetiveFeedback(JsonObj_Questions, ResultObj){
         $( ".lbox, .sbox" ).animate({
             "border-color": "transparent"
         }, 500 );
-        
-        // if (ResultObj.Dropped.Element) $(".Elem_OK").animate( CssSet, 500);
-        // if (ResultObj.Dropped.Index)  $(".Index_OK").animate( CssSet, 500);
-        // if (ResultObj.Dropped.Charge)  $(".Char_OK").animate( CssSet, 500);
-        // if (ResultObj.Dropped.Coeff)  $(".Coeff_OK").animate( CssSet, 500);
 
         $(".Clone").animate( CssSet, 500);  // This fades the clones.
         
-
         $("#DropWrap1").before('<span class="MoleculeHtmlStr">' + ReturnMolecule(JsonObj_Questions, ResultObj) + '</span>');
 
         SetTimerAndFadeout(".IndexFadeOut", 500, 1000);  // If index = 1 the timeout the index-number after a delay
 
-        // console.log("GivePosetiveFeedback - MoleculeHtmlStr: " + MoleculeHtmlStr );
-
-
-
-        // if (ResultObj.Dropped.Index) { // If the value of the index number equal 1, then it need to fadeout in order to be chemically correct:
-        //     if (parseInt($(".Index_OK").text()) == 1){ 
-        //         // $(".Index_OK").fadeOut(500);
-        //         $(".Index_OK").animate({"color": "transparent", "border-color": "transparent"}, 500);
-        //         // $(".Index_OK").animate({"border-color": "transparent"}, 500);
-        //     }
-        // }
-
+        
         console.log("IndexNumValue: " + typeof($(".Index_OK").text()) );
 
     }
 }
 
 
-function UserMsgBox_DISABLED(TargetSelector, UserMsg){
-
-    var HTML = "<h6 id='UserMsgBox'>";
-    HTML += '<span class="LukClass right glyphicon glyphicon-remove"></span><span class="clear"></span>';
-    HTML += UserMsg;
-    HTML += "</h6> ";
-
-    $(TargetSelector).html(HTML);  // ".FeedbackWrap"
-
-    FontSizeScalerNew(".PeriodicTableWrapper", 
-                            [".NumberHeading", ".ElementBox", ".DragNum", ".ScoreHeaderH3", 
-                            ".ScoreHeader", ".ScoreNum", ".TryAgain", ".NextQuestion", ".QuizHeadingText h2", 
-                            ".QuizHeadingText h1", ".QuizHeadingTextCount", "#UserMsgBox", ".ScoreWrapper"], 1425);
-
-    $("#UserMsgBox").fadeIn( "slow", function() {
-
-        $( ".draggable" ).draggable( "disable" ); // Disable all draggables. This is the simplest way of advoiding errors due to unexpected user behavior.
-
-    });
-
-    $( document ).on('click', "#UserMsgBox", function(event){
-        // event.preventDefault();  // Prevents sending the user to "href".
-        $("#UserMsgBox").fadeOut( "slow" , function() {
-
-            $( ".draggable" ).draggable( "enable" ); // Enable all draggables
-
-        });
-    });
-}
-
-
 
 function GiveNegativeFeedback(JsonObj_Questions, ResultObj, TotResultObj){
-    if ((TotResultObj.TotFail >= 3) && (TotResultObj.LastDraggableAccepted == false)){  // LastDraggableAccepted == false prevent error message if you ajust the draggables position in the droppable.
-        var Inx = ResultObj.PrincipleArray[ResultObj.Qcount]; 
-        var JOQ = JsonObj_Questions;
-        var HTML = '';
-        if (TotResultObj.LastAttemptedDroppedOn == "Coeff") 
-            HTML += "Denne kasse er til koefficienter, som angiver hvor mange <b>"+(((JOQ[Inx]["AtomNum"]==2)||(JOQ[Inx]["AtomNum"]==10))?"atomer":"molekyler")+"</b> der er. Her er der kun tale om et molekyle, derfor skal der ikke stå noget tal.";
-        if (TotResultObj.LastAttemptedDroppedOn == "Element") 
-            HTML += "Denne kasse er til atomsymbolet. Find symbolet for <b>"+JOQ[Inx]["Name"].toLowerCase()+"atomet</b> i grundstoffernes periodesystem og træk det op i kassen.";
-        if (TotResultObj.LastAttemptedDroppedOn == "Charge") 
-            HTML += "Denne kasse er til ladninger, men da <b>"+(((JOQ[Inx]["AtomNum"]==2)||(JOQ[Inx]["AtomNum"]==10))?"atomer":"molekyler")+"</b> er uden ladninger, skal der ikke stå noget her.";
-        if (TotResultObj.LastAttemptedDroppedOn == "Index")
-            HTML += "Denne kasse er til indekstal, tallet der skal stå her angiver hvor mange atomer der er i molekylet. Find tallet til højre og træk det hen i kassen.";
-        
-        if ( (TotResultObj.LastAttemptedDroppedOn != TotResultObj.LastDragged.Type) && (TotResultObj.LastAttemptedDroppedOn !== null) ){ // LastAttemptedDroppedOn != LastDragged.Type: Do not give wrong-type feedback if e.g. index = 3 is dragged to the .DropIndex instead of index = 2
-                                                                                                                   // LastAttemptedDroppedOn = null if a draggable is not dropped in a droppable.
-            // UserMsgBox(".FeedbackWrap", HTML);
-            UserMsgBox("body", HTML);
-        }
-    }
-} 
-
-
-
-function GiveNegativeFeedback_2(JsonObj_Questions, ResultObj, TotResultObj){
     if ((TotResultObj.TotFail >= 3) && (TotResultObj.LastDraggableAccepted == false)){  // LastDraggableAccepted == false prevent error message if you ajust the draggables position in the droppable.
         var Inx = ResultObj.PrincipleArray[ResultObj.Qcount]; 
         var JOQ = JsonObj_Questions;
@@ -1497,12 +1071,6 @@ function ResetQuiz(Milliseconds){
                     Dropped: {Element: false, Index: false, Charge: false, Coeff: false} 
                 };
 
-    // Reset counters:
-    // $(".ScoreAttempts").text( 0 ); 
-    // $(".ScoreCorrect").text( 0 );
-    // $(".ScoreFail").text( 0 );
-    // $(".ScoreStat").text( "0%" ); 
-
     // Remove all Clone droppables
     $(".Clone").remove();
 
@@ -1524,6 +1092,7 @@ function ResetQuiz(Milliseconds){
     
 }
 
+
 function IsInsideBox(Selector, Left, Top){
     var Con  = $(Selector).offset(); 
     Con.width = $(Selector).width();
@@ -1533,6 +1102,7 @@ function IsInsideBox(Selector, Left, Top){
     else
         return false;
 }
+
 
 function FindAttemptedDroppable(TotResultObj){
     var Left = TotResultObj.LastDragged.Left;
@@ -1564,294 +1134,12 @@ function FindAttemptedDroppable(TotResultObj){
 }
 
 
-
-function ReturnLowestCloneNum(MemObj){
-    MemObj.CloneArray = MemObj.CloneArray.sort(); // Sort the array
-    var Count = 1;
-    for (var Num in MemObj.CloneArray){
-        if (Count < MemObj.CloneArray[Num]){  // Compare elements
-            MemObj.CloneArray.push(Count);
-            console.log("ReturnLowestCloneNum 1 - Num: " + MemObj.CloneArray[Num] + ", CloneArray: " + MemObj.CloneArray);
-            return Count;
-        }
-        ++Count;
-    }
-    console.log("ReturnLowestCloneNum 2 - CloneArray: " + MemObj.CloneArray);
-    MemObj.CloneArray.push(Count);
-    return Count;
-}
-
-
-function ReturnLowestCloneNum_2(){
-    var Count = 1;
-    var NumOfClones = $(".Clone").length;
-    console.log("ReturnLowestCloneNum_2 - NumOfClones: " + NumOfClones);
-    return Count;
-}
-
-
-function ReturnHighestCloneNum(MemObj){
-    
-}
-
-
-// Problem: Several clones of a clone can be made. These clones are identified by having classes ".HasClone" and ".Clone" and 
-// having the same absolute position.
-function DestroyIdenticalClones(){
-    var CloneObj = {};
-    var Count = 0;
-    var Tol = 3; // Tolerance given as number of pixles
-    $(".Clone").each(function( index, element ) {  // First populate CloneObj with the absolute position of all DOM elements with classes ".HasClone" and ".Clone"
-        // if ($(this).hasClass(".HasClone")){
-            CloneObj[Count] = {};
-            CloneObj[Count].id = $(this).prop("id");
-            CloneObj[Count].offset = $(this).offset();
-
-            var Top = CloneObj[Count].offset.top;
-            var Left = CloneObj[Count].offset.left;
-
-            var CloneCount = 0;
-            for (var Clone in CloneObj){
-                var TTop = CloneObj[Clone].offset.top;
-                var TLeft = CloneObj[Clone].offset.left;
-                if ((Top-Tol <= TTop) && (TTop <= Top+Tol) && (Left-Tol <= TLeft) && (TLeft <= Left+Tol)){
-                    ++CloneCount;
-                    if (CloneCount > 1)  // If there is more than one clone, remove the extra clone.
-                        $("#"+CloneObj[Clone].id).remove();
-                    console.log("DestroyIdenticalClones - CloneObj: " + CloneObj[Clone].id + " removed!" );
-                }
-            }
-
-            ++Count;
-        // }
-    });
-    console.log("DestroyIdenticalClones - CloneObj: " + JSON.stringify(CloneObj) );
-}
-
-
-function Test_WritePositions(Selector, ThisObj){
-    var Pos = $(ThisObj).position();
-    var Off = $(ThisObj).offset();
-
-    var DiffX = Off.left - Pos.left;
-    var DiffY = Off.top - Pos.top;
-
-    if ($(Selector + " .Test_WritePositions").length == 0){
-        $(Selector).append('<span class="Test_WritePositions">' +
-                                'Position: <span class="PosX"></span>, <span class="PosY"></span><br/>' + 
-                                'Offset: <span class="OffX"></span>, <span class="OffY"></span><br/>'+
-                                'Diff: <span class="DiffX"></span>, <span class="DiffY"></span>'+
-                            '</span>');
-    }
-    $(Selector + " .OffX").text(Off.left);
-    $(Selector + " .OffY").text(Off.top);
-    $(Selector + " .PosX").text(Pos.left);
-    $(Selector + " .PosY").text(Pos.top);
-    $(Selector + " .DiffX").text(DiffX);
-    $(Selector + " .DiffY").text(DiffY);
-}
-
-
-function SnapToCenterOfRectangle(SelectorLargeRectangle, SelectorSmallRectangle){
-    var OLRec = $(SelectorLargeRectangle).offset();
-    // var PLRec = $(SelectorLargeRectangle).position();
-
-    var OSRec = $(SelectorSmallRectangle).offset();
-    var PSRec = $(SelectorSmallRectangle).position();
-
-    var HalfDiffWidth =  ( $(SelectorLargeRectangle).width() - $(SelectorSmallRectangle).width() )/2;    // (LRWidth - SRWidth)/2;
-    var HalfDiffHeight = 5*( $(SelectorLargeRectangle).height() - $(SelectorSmallRectangle).height() )/2;  // (LRHeight - SRHeight)/2;
-
-    var DiffLeft =  OLRec.left - OSRec.left + 0;   
-    var DiffTop = OLRec.top - OSRec.top + 0;  
-    // var DiffLeft =  OSRec.left -  OLRec.left+ 0;   
-    // var DiffTop = OSRec.top - OLRec.top + 0;  
-
-    $("#Clone_"+MemObj.NewestClone).animate({position: "absolute", top: DiffTop+"px", left: DiffLeft+"px", color: "#00F"});
-
-    console.log("SnapToCenterOfRectangle - DiffLeft: " + DiffLeft + ", DiffTop: " + DiffTop);
-
-    // $("#Clone_"+MemObj.NewestClone).css({position: "absolute", top: OLRec.top+"px", left: OLRec.left+"px", color: "#00F"});
-}
-
-
 // IMPORTANT: Class "draggable" (and NOT clases: "ui-draggable", "ui-draggable-handle" and "ui-draggable-dragging") makes all the problems of cloning from ouside and into a droppable.
 function SimpleClone(TargetSelector){
     var Clone = $(TargetSelector).clone().removeClass("draggable").css({'position':'absolute', 'top': 'auto', 'left': 'auto'});  // This is necessary for cloning inside the droppable to work properly!!!
     Clone = Clone.removeAttr("id").removeClass("ui-draggable ui-draggable-handle ui-draggable-dragging"); // This just cleans the attributes so the DOM-element looks nicer.
     // Clone = Clone.addClass("Clone");
     return Clone;
-}
-
-
-function MoveCloneInsideDroppable(SelectorClone, SelectorDroppable){
-    // $( SelectorClone ).draggable( "enable" );
-
-    $(SelectorDroppable).append(SimpleClone(SelectorClone));
-
-    // $(SelectorClone).detach().appendTo(SelectorDroppable);
-    console.log("MoveCloneInsideDroppable - SelectorClone: " + SelectorClone + ", SelectorDroppable: " + SelectorDroppable);
-}
-
-
-function SnapToGrid(){
-
-    var Left = TotResultObj.LastDragged.Left;
-    var Top = TotResultObj.LastDragged.Top;
-
-    var Selector = null;
-    var x = 1;
-    var y = 1;
-
-    $(".DropWrapper").each(function( index, element ) { 
-        var Id = $(element).prop("id");
-        if (IsInsideBox("#"+Id+" .DropCoeff", Left, Top))   Selector = "#"+Id+" .DropCoeff";
-        if (IsInsideBox("#"+Id+" .DropElement", Left, Top)) Selector = "#"+Id+" .DropElement";
-        if (IsInsideBox("#"+Id+" .DropCharge", Left, Top))  Selector = "#"+Id+" .DropCharge";
-        if (IsInsideBox("#"+Id+" .DropIndex", Left, Top))   Selector = "#"+Id+" .DropIndex";
-    });
-    
-    console.log("SnapToGrid - TotResultObj: " + JSON.stringify(TotResultObj) );
-
-    // $( ".draggable" ).draggable( "option", "grid", [ x, y ] );   // SEE:   http://api.jqueryui.com/draggable/#option-grid
-}
-
-
-function Test_CtrateDuplicatAtSamePosition(Selector, Class_OK){
-    $(Selector).each(function( index, element ) {
-        if ($(element).hasClass(Class_OK)){
-            var Offset = $(element).position();
-            // var Offset = $(element).offset();
-            console.log("Test_CtrateDuplicatAtSamePosition - Offset: " + JSON.stringify(Offset) );
-            var Duplicate = $(element).clone();
-            $(this).after(Duplicate);
-            // $(this).next().prop( "id", IdStr );
-            $(this).next().addClass("Duplicate"); 
-            // $("#"+IdStr).css({left: Offset.left+"px", top: Offset.top+"px"});
-            // $(".Duplicate").css({position: "absolute", left: Offset.left+"px", top: Offset.top+"px"});
-            Offset.top = Offset.top - 7;
-            $(".Duplicate").css({position: "absolute", left: Offset.left+"px", top: Offset.top+"px"});
-
-            // $(".Duplicate").animate({
-            //     top: Offset.top+"px",
-            //     left: Offset.left+"px"
-            // }, 1);
-        }
-    });
-}
-
-
-
-function CloneAndSwitchPositions(DraggableObj){
-    var PosOrg = DraggableObj.position();
-    DraggableObj.prop("id", "Original_"+String(MemObj.NewestOriginal));
-    DraggableObj.addClass("Original");
-   
-    var Clone = DraggableObj.clone();
-
-    DraggableObj.after(Clone);
-    DraggableObj.next().prop( "id", "Clone_"+String(MemObj.NewestClone) );
-    DraggableObj.next().addClass("Clone");
-
-    $("#Original_"+String(MemObj.NewestOriginal)).css({top: "0px", left: "0px"});
-    // $(DraggableObj).css({top: "0px", left: "0px"});
-    
-    $("#Clone_"+String(MemObj.NewestClone)).css({position: "absolute", top: PosOrg.top+"px", left: PosOrg.left+"px", color: "#F00"});
-    // DraggableObj.next().css({position: "absolute", top: PosOrg.top+"px", left: PosOrg.left+"px", color: "#F00"});
-}
-
-
-// DEFFINITIONS:
-//      An original can be an Element, Index, Charge or a Coefficient.
-//      A clone is a copy/clone of a original.
-// RULES (describing what happens when an original is cloned): 
-//      Upon cloning, the clone gets the class "Clone" AND a unique id "Clone_X", where X is a number. The id Clone_X is stored in MemObj and the number X is increasing for every new clone.
-//      Upon cloning, the cloned original gets the class "Original" AND a unique id "Original_Y", where Y is a number. The id Original_Y is stored in MemObj and the number Y is increasing for every new cloned original.
-// BOOKKEEPING: (How to keep track of relations between originals and clones in MemObj - a "One to many" relation"):
-//      One clone can only have association with one original.
-//      One original can have association to many clones 
-//      MemObj.NewestClone: X.      (the latest clone)
-//      MemObj.NewestOriginal: Y.     (the latest cloned orignal)
-//      MemObj.OrgCloneAssoc: {Y1: [X1,X2,X3], Y2: [X4,X5], Y3: [X6,X7], ...}  which will be implementet like: MemObj.CloneAssoc: {1:[1,2,3], 2:[4,5], 3:[6,7], ...}
-function UpdateOrgCloneAssoc(DraggableObj){
-
-    console.log("UpdateOrgCloneAssoc - MemObj 1: " +  JSON.stringify( MemObj) );
-
-    var ErrStr = "";
-
-    var Id = null;
-    if (DraggableObj.prop("id") != ""){ // If DraggableObj has an id:
-        ErrStr += "1 ";
-        Id = DraggableObj.prop("id").replace("Original_", "");
-    } else {  // If DraggableObj does NOT have an id:
-        ErrStr += "2 ";
-        // Id = "1"; // The first original to be cloned.
-        if (MemObj.NewestOriginal !== null){ // If DraggableObj is NOT the first original to be cloned:
-            ErrStr += "3 ";
-            // DraggableObj.prop( "id", "Original_"+String(MemObj.NewestOriginal+1) );
-            MemObj.NewestOriginal += 1;
-            MemObj.OrgCloneAssoc[MemObj.NewestOriginal] = [];  // Make an empty array.
-            Id = MemObj.NewestOriginal;
-        } else {
-            ErrStr += "4 ";
-            Id = "1"; // The first original to be cloned.
-            // DraggableObj.prop( "id", "Original_1" );
-            MemObj.NewestOriginal = 1;
-            MemObj.OrgCloneAssoc[1] = [];  // Make an empty array.
-        }
-    }
-
-    if (MemObj.NewestClone !== null){ // If it is NOT the first clone to be made:
-        ErrStr += "5 ";
-        MemObj.NewestClone += 1;
-    } else {
-        ErrStr += "6 ";
-        MemObj.NewestClone = 1;
-    }
-    console.log("UpdateOrgCloneAssoc - Id: " +  Id );
-    console.log("UpdateOrgCloneAssoc - MemObj 2: " +  JSON.stringify( MemObj) );
-    
-    if (MemObj.OrgCloneAssoc.hasOwnProperty(Id)){
-        ErrStr += "7 ";
-        MemObj.OrgCloneAssoc[Id].push(MemObj.NewestClone);
-    } else {
-        ErrStr += "8 ";
-        MemObj.OrgCloneAssoc[Id] = [];
-        MemObj.OrgCloneAssoc[Id].push(MemObj.NewestClone);
-        // alert("UpdateOrgCloneAssoc - ERROR: MemObj.OrgCloneAssoc["+Id+"] does not exist!");
-    }
-    console.log("UpdateOrgCloneAssoc - MemObj 3: " +  JSON.stringify( MemObj) );
-    console.log("UpdateOrgCloneAssoc - ErrStr: " +  ErrStr );
-    console.log("UpdateOrgCloneAssoc ---------------------------------------------------");
-}
-
-
-
-function SetDroppables(MaxNumberOfDropZones){
-    var ParentName = "DropWrap";
-    var DroppableNameArray = ["DropElement", "DropCoeff", "DropCharge", "DropIndex"];
-    var AcceptNameArray =    ["Elem_OK",     "Coeff_OK",  "Char_OK",    "Index_OK"];
-
-    for (var i = 1; i <= MaxNumberOfDropZones; i++) {
-        for (var k in DroppableNameArray){
-            console.log("SetDroppables - i: " + i + ", DroppableNameArray["+k+"]: " + DroppableNameArray[k] + ", AcceptNameArray["+k+"]: " + AcceptNameArray[k]);
-            $( "#"+ParentName+i+" ."+DroppableNameArray[k]).droppable({
-                accept: "."+AcceptNameArray[k],
-
-                // SEQUENCE 2:
-                drop: function( event, ui ) {
-                    // $( this ).addClass( "DropHighlight" );
-                    ResultStr += "Drop ";
-                    EventObj.Element.drop = true;
-                    console.log("EventObj X: " + JSON.stringify( EventObj ));
-
-                    EventObj.LastDroppedOn = DroppableNameArray[k];  // The class name
-                    EventObj.LastDroppedOnParent = $(this).closest(".DropWrapper").prop("id"); // The id name
-
-                }
-            });
-        }; 
-     }; 
 }
 
 
@@ -1880,7 +1168,7 @@ function ReturnURLPerameters(){
 // file:///Users/THAN/main-gulp-folder/objekter/kemi_drag/builds/development/index.html?pn=1&dm=1    NOTE: 0 = false, 1 = true
 // file:///Users/THAN/main-gulp-folder/objekter/kemi_drag/builds/development/index.html?pn=1&dm=0    NOTE: 0 = false, 1 = true
 function SetProgramPerameter(UlrVarObj){
-    if (UlrVarObj.hasOwnProperty("pn") && (1 <= UlrVarObj["pn"]) && (UlrVarObj["pn"] <= 4)) PrincipleNum = UlrVarObj["pn"];  // PrincipleNum  =  pn
+    if (UlrVarObj.hasOwnProperty("pn") && (1 <= UlrVarObj["pn"]) && (UlrVarObj["pn"] <= 5)) PrincipleNum = UlrVarObj["pn"];  // PrincipleNum  =  pn
     // if (UlrVarObj.hasOwnProperty("dm") && ((UlrVarObj["dm"] == true) || (UlrVarObj["dm"] == false)) ) DebugMode =  UlrVarObj["dm"];     // DebugMode  =  dm, NOTE: 0 = false, 1 = true
     if (UlrVarObj.hasOwnProperty("l") && ((UlrVarObj["l"] == 1) || (UlrVarObj["l"] == 2))) Level = UlrVarObj["l"];  // PrincipleNum  =  pn
     console.log("SetProgramPerameter - ReturnURLPerameters- PrincipleNum: " + PrincipleNum + ", DebugMode: " + DebugMode + ", Debug_OnlyGiveQuestion: " + Debug_OnlyGiveQuestion ); 
@@ -1897,11 +1185,7 @@ $( document ).ready(function() {  // CapitalI
     var UlrVarObj = ReturnURLPerameters();
     SetProgramPerameter(UlrVarObj);
 
-    MakeQuestionObj(JsonObj_Questions, QuestionObj);
-
-    if (DebugMode) Test_Write_JsonObj_Questions(JsonObj_Questions, QuestionObj, "P2");  // TEST FUNCTION  
-    if (DebugMode) Test_WriteMolecule(JsonObj_Questions, QuestionObj);  // TEST FUNCTION
-    
+    MakeQuestionObj(JsonObj_Questions, QuestionObj); 
 
     if (DebugMode) ShowStudentScore(false);  // TEST
 
@@ -1968,23 +1252,11 @@ $( document ).ready(function() {  // CapitalI
     });
 
 
-    // if (DebugMode) Test_CtrateDuplicatAtSamePosition(".IndexNum", "Index_OK"); // TEST FUNCTION
-
-
     // Nedenstaaende udfoeres naar der trykkes paa TryAgain anchor-tag'et:
     $( document ).on('click', ".TryAgain", function(event){
         event.preventDefault();  // Prevents sending the user to "href".
 
         ResetQuiz(500);
-    });
-
-    // Format the ElementBox to reprecent an element seen in chemical equations:
-    $( document ).on('mousedown', ".ElementBox", function(event){
-
-        // if ($( ".draggable" ).draggable('option', 'disabled') != true){
-        //     $(".AtomNum, .AtomName, .AtomWeight", this).hide();
-        //     $(".AtomSymbol", this).css("font-size", "400%");
-        // }
     });
 
 
@@ -2052,8 +1324,8 @@ $( document ).ready(function() {  // CapitalI
                 if (EventObj.Element.AtomNum != ResultObj.Element.AtomNum){ // if not equal to accepted draggable.
                     ErrStr += "B4,";
                     // Reset element when an unaccepted element returns to its position in the periodic table
-                    $(".AtomNum, .AtomName, .AtomWeight", this).show();
-                    $(".AtomSymbol", this).css("font-size", "160%");
+                    // $(".AtomNum, .AtomName, .AtomWeight", this).show();
+                    // $(".AtomSymbol", this).css("font-size", "160%");
                 }
             }
 
@@ -2142,17 +1414,21 @@ $( document ).ready(function() {  // CapitalI
                 $(this).addClass("Dropped"); // Add class "Dropped", which is used for avoiding cloning once dropped.
                 console.log("TotResultObj.LastDraggableAccepted: OK");
 
-                // UpdateOrgCloneAssoc($(this));        // Since the advent of SimpleClone(), this has become redundant 
-                // CloneAndSwitchPositions($(this));    // Since the advent of SimpleClone(), this has become redundant 
-
                 $(this).css({top: "0px", left: "0px"}); // Move the original back to its origanal position.
                 $("#"+EventObj.LastDroppedOnParent+" "+"."+EventObj.LastDroppedOn).append( SimpleClone($(this)).addClass("Clone") ); // Place a clone inside the droppable and add class "Clone" to it.
                 
-                // Reset element when an unaccepted element returns to its position in the periodic table
-                $(".AtomNum, .AtomName, .AtomWeight", this).show();
-                $(".AtomSymbol", this).css("font-size", "160%");
+                // // Reset element when an unaccepted element returns to its position in the periodic table
+                // $(".AtomNum, .AtomName, .AtomWeight", this).show();
+                // $(".AtomSymbol", this).css("font-size", "160%");
 
                 TotResultObj.LastDraggableAccepted = false;
+            }
+
+
+            // Reset element when an unaccepted element (does not have class "Clone") returns to its position in the periodic table.
+            if (!$(this).hasClass("ElementBox Clone")){  
+                $(".AtomNum, .AtomName, .AtomWeight", this).show();
+                $(".AtomSymbol", this).css("font-size", "160%");
             }
 
             console.log("ErrStr: " + ErrStr);
@@ -2162,7 +1438,7 @@ $( document ).ready(function() {  // CapitalI
 
             // FindAttemptedDroppable(TotResultObj);
 
-            GiveNegativeFeedback_2(JsonObj_Questions, ResultObj, TotResultObj);
+            GiveNegativeFeedback(JsonObj_Questions, ResultObj, TotResultObj);
 
             if (DebugMode) ShowStudentScore(false);  // TEST
 
@@ -2183,15 +1459,6 @@ $( document ).ready(function() {  // CapitalI
                         };
 
 
-            // DestroyIdenticalClones();
-
-            // ReturnLowestCloneNum_2();
-
-            // $('.Clone').draggable().data()["ui-draggable"].cancelHelperRemoval = true;  // THE SOLUTION TO ALL MY SORROWS - THANKS JAHA!!!
-            // $('.DragNum').draggable().data()["ui-draggable"].cancelHelperRemoval = true;  // THE SOLUTION TO ALL MY SORROWS - THANKS JAHA!!!
-            // var ObjData = $('.Clone').draggable().data()["ui-draggable"];
-            // console.log("ObjData: " + JSON.stringify( ObjData ) );   // FEJL - "cyclic refrence error"
-
             console.log("ProgramEnd - Content of HiddenElement: " + $("#HiddenElement").html());
         },
 
@@ -2210,8 +1477,6 @@ $( document ).ready(function() {  // CapitalI
             $('#DragLeft').text(Left);
             $('#DragTop').text(Top);
             // console.log("DRAG - offset: " + JSON.stringify( offset ));
-            // Test_WritePositions("#ShowObjPosition", this);
-            // SnapToGrid();
 
             var LeftFirst = null; var TopFirst = null;
             var Pos = $(this).position();
@@ -2219,127 +1484,10 @@ $( document ).ready(function() {  // CapitalI
             if (!EventObj.Dragging) EventObj.DraggableTop = String(Pos.top);
             console.log("EventObj - drag: " + JSON.stringify( EventObj ));
 
-            if ( (!EventObj.Dragging) && (!$(this).hasClass("Dropped")) ) {  // Only clone the element if it has not been dropped
-
-// var IdStr = "Clone_" + String(ReturnLowestCloneNum(MemObj));
-// var Clone = $(this).clone();
-// // var Clone = $(this).clone(true); // VIRKER IKKE EFTER HENSIGTEN
-// $(this).after(Clone);
-// $(this).next().prop( "id", IdStr );
-// $(this).next().addClass("Clone");  // Add class "Clone" for easily destruction of the Clone elements.
-// // $(this).next().addClass("Clone draggable");  // TEST TEST TEST 
-// $(this).next().removeClass("ui-draggable-dragging"); // Remove the class ui-draggable-dragging automatically given to dragged draggables.
-// $(this).addClass("HasClone "+IdStr);
-
-// EventObj.Dragging = true;
-// $("#"+IdStr).css({position: "absolute", left: EventObj.DraggableLeft+"px", top: EventObj.DraggableTop+"px"});
-// $("#"+IdStr).height( $(this).width() );
-
-                $(".Clone_DISABLED").draggable({
-                    helper: 'clone',      // SE: http://stackoverflow.com/questions/2458817/jquery-ui-drag-and-clone-from-original-div-but-keep-clones
-                    revert: 'invalid',
-                    drag: function(){
-                        // if ($( ".draggable" ).draggable('option', 'disabled') != true){
-                            // $(".AtomNum, .AtomName, .AtomWeight", this).hide();
-                            // $(".AtomSymbol", this).css("font-size", "400%");
-                            // console.log("XXX TEST2");
-                        // }
-
-                        // var offset = $(this).offset();
-                        // var Left = offset.left;
-                        // var Top = offset.top;
-                        // var Width = $(this).width();
-                        // var Height = $(this).height();
-                        // TotResultObj.LastDragged.Left = Left + Math.round(Width/2); // Pass on center-point
-                        // TotResultObj.LastDragged.Top = Top + Math.round(Height/2);  // Pass on center-point
-                        
-                    },
-                    start: function(event, ui){
-                        if ($( ".draggable" ).draggable('option', 'disabled') != true){  // This code enlarges the AtomSymbol when a clone is dragged.
-                            var CloneObj = $(".ui-draggable-dragging");
-                            $(".AtomNum, .AtomName, .AtomWeight", CloneObj).hide();
-                            $(".AtomSymbol", CloneObj).css("font-size", "400%");
-                            console.log("XXX TEST2");
-                        }
-
-                        console.log("ui 1: " + JSON.stringify( ui ));
-                        console.log("event.target 1: " + JSON.stringify( event.target ));
-                    },
-                    stop: function(){
-                        // DestroyIdenticalClones();
-                    }
-                });  
-
-// $("#"+IdStr).removeClass("Elem_OK Index_OK Char_OK Coeff_OK");   // Remove acceptedness of the elements   
-// console.log("XTEST - drag: " + $("#"+IdStr).length);
-
-// console.log("ui 2: " + JSON.stringify( ui ));
-// console.log("event.target 2: " + JSON.stringify(  event.target ));
-            }
-
-            // Hide .AtomNum, .AtomName, .AtomWeight "on drag" instead of hide "on mousedown":
-// if ($( ".draggable" ).draggable('option', 'disabled') != true){
-//     $(".AtomNum, .AtomName, .AtomWeight", this).hide();
-//     $(".AtomSymbol", this).css("font-size", "400%");
-//     console.log("XXX TEST");
-// }
-
            
         }
     });
 
-
-    // SetDroppables(1);
-
-
-    // $( ".DropElement" ).droppable({
-    //     accept: ".Elem_OK",
-
-    //     // SEQUENCE 2:
-    //     drop: function( event, ui ) {
-    //         // $( this ).addClass( "DropHighlight" );
-    //         ResultStr += "Drop ";
-    //         EventObj.Element.drop = true;
-    //         console.log("EventObj X: " + JSON.stringify( EventObj ));
-
-    //         EventObj.LastDroppedOn = "DropElement";  // The class name
-    //         EventObj.LastDroppedOnParent = $(this).closest(".DropWrapper").prop("id"); // The id name
-
-    //     }
-    // });
-    // $( ".DropCoeff" ).droppable({
-    //     accept: ".Coeff_OK",
-    //     // accept: ".Coeff_OK, .draggable",  // <-------- TEST
-    //     drop: function( event, ui ) {
-    //         // $( this ).addClass( "DropHighlight" );
-    //         EventObj.Coeff.drop = true;
-
-    //         EventObj.LastDroppedOn = "DropCoeff";  // The class name
-    //         EventObj.LastDroppedOnParent = $(this).closest(".DropWrapper").prop("id"); // The id name
-    //     }
-    // });
-    // $( ".DropCharge" ).droppable({
-    //     accept: ".Char_OK",
-    //     drop: function( event, ui ) {
-    //         // $( this ).addClass( "DropHighlight" );
-    //         EventObj.Charge.drop = true;
-
-    //         EventObj.LastDroppedOn = "DropCharge";  // The class name
-    //         EventObj.LastDroppedOnParent = $(this).closest(".DropWrapper").prop("id"); // The id name
-    //     }
-    // });
-    // $( ".DropIndex" ).droppable({
-    //     accept: ".Index_OK",
-    //     // tolerance: "fit",
-    //     drop: function( event, ui ) {
-    //         // $( this ).addClass( "DropHighlight" );
-    //         EventObj.Index.drop = true;
-
-    //         EventObj.LastDroppedOn = "DropIndex";  // The class name
-    //         EventObj.LastDroppedOnParent = $(this).closest(".DropWrapper").prop("id"); // The id name
-
-    //     }
-    // });
 
     $( "#DropWrap1 .DropElement" ).droppable({accept: ".Elem_OK1"});
     $( "#DropWrap1 .DropCoeff" ).droppable({accept:  ".Coeff_OK1"});
