@@ -6,96 +6,96 @@
 var XXX = "";
 
 var JsonObj_PeriodicTable = [
-    {"name": "Hydrogen",   "sym":"H",  "num":1,   "Z":1,  "A":1.0079},       // SKAL 1
-    {"name": "Helium",     "sym":"He", "num":18,  "Z":2,  "A":4.002602},
-    {"name": "Lithium",    "sym":"Li", "num":19,  "Z":3,  "A":6.94},         // SKAL 2
-    {"name": "Beryllium",  "sym":"Be", "num":20,  "Z":4,  "A":9.0121831},
-    {"name": "Bor",        "sym":"B",  "num":31,  "Z":5,  "A":10.81},
-    {"name": "Carbon",     "sym":"C",  "num":32,  "Z":6,  "A":12.011},
-    {"name": "Nitrogen",   "sym":"N",  "num":33,  "Z":7,  "A":14.007},
-    {"name": "Ilt",        "sym":"O",  "num":34,  "Z":8,  "A":15.999},
-    {"name": "Fluor",      "sym":"F",  "num":35,  "Z":9,  "A":18.998403163},
-    {"name": "Neon",       "sym":"Ne", "num":36,  "Z":10, "A":17.1797},
-    {"name": "Natrium",    "sym":"Na", "num":37,  "Z":11, "A":22.98976928},
-    {"name": "Magnesium",  "sym":"Mg", "num":38,  "Z":12, "A":24.305},
-    {"name": "Aluminium",  "sym":"Al", "num":49,  "Z":13, "A":26.9815385},
-    {"name": "Silicium",   "sym":"Si", "num":50,  "Z":14, "A":28.085},
-    {"name": "Fosfor",     "sym":"P",  "num":51,  "Z":15, "A":30.973761998},
-    {"name": "Svovl",      "sym":"S",  "num":52,  "Z":16, "A":32.06},
-    {"name": "Chlor",       "sym":"Cl", "num":53,  "Z":17, "A":35.45},
-    {"name": "Argon",      "sym":"Ar", "num":54,  "Z":18, "A":39.948},
-    {"name": "Kalium",     "sym":"K",  "num":55,  "Z":19, "A":39.0983},     // SKAL 3
-    {"name": "Calcium",    "sym":"Ca", "num":56,  "Z":20, "A":40.078},
-    {"name": "Scandium",   "sym":"Sc", "num":57,  "Z":21, "A":44.955908},
-    {"name": "Titan",      "sym":"Ti", "num":58,  "Z":22, "A":47.867},
-    {"name": "Vanadium",   "sym":"V",  "num":59,  "Z":23, "A":50.9415},
-    {"name": "Krom",       "sym":"Cr", "num":60,  "Z":24, "A":51.9961},
-    {"name": "Mangan",     "sym":"Mn", "num":61,  "Z":25, "A":54.938044},
-    {"name": "Jern",       "sym":"Fe", "num":62,  "Z":26, "A":55.845},
-    {"name": "Kobolt",     "sym":"Co", "num":63,  "Z":27, "A":58.933194},
-    {"name": "Nikkel",     "sym":"Ni", "num":64,  "Z":28, "A":58.6934},
-    {"name": "Kobber",     "sym":"Cu", "num":65,  "Z":29, "A":63.546},
-    {"name": "Zink",       "sym":"Zn", "num":66,  "Z":30, "A":65.38},
-    {"name": "Gallium",    "sym":"Ga", "num":67,  "Z":31, "A":69.723},
-    {"name": "Germanium",  "sym":"Ge", "num":68,  "Z":32, "A":72.63},
-    {"name": "Arsen",      "sym":"As", "num":69,  "Z":33, "A":74.921595},
-    {"name": "Selen",      "sym":"Se", "num":70,  "Z":34, "A":78.971},
-    {"name": "Brom",       "sym":"Br", "num":71,  "Z":35, "A":79.904},
-    {"name": "Krypton",    "sym":"Kr", "num":72,  "Z":36, "A":83.798},
-    {"name": "Rubidium",   "sym":"Rb", "num":73,  "Z":37, "A":85.4678}, // SKAL 4
-    {"name": "Strontium",  "sym":"Sr", "num":74,  "Z":38, "A":87.62},
-    {"name": "Yttrium",    "sym":"Y", "num":75,  "Z":39, "A":88.90584},
-    {"name": "Zirconium",  "sym":"Zr", "num":76,  "Z":40, "A":91.224},
-    {"name": "Niobium",    "sym":"Nb", "num":77,  "Z":41, "A":92.90637},
-    {"name": "Molybdæn",   "sym":"Mo", "num":78,  "Z":42, "A":95.95},
-    {"name": "Technetium", "sym":"Tc", "num":79,  "Z":43, "A":98},
-    {"name": "Ruthenium",  "sym":"Ru", "num":80,  "Z":44, "A":101.07},
-    {"name": "Rhodium",    "sym":"Rh", "num":81,  "Z":45, "A":102.90550},
-    {"name": "Palladium",  "sym":"Pd", "num":82,  "Z":46, "A":106.42},
-    {"name": "Sølv",       "sym":"Ag", "num":83,  "Z":47, "A":107.8682},
-    {"name": "Cadmium",    "sym":"Cd", "num":84,  "Z":48, "A":112.414},
-    {"name": "Indium",     "sym":"In", "num":85,  "Z":49, "A":114.818},
-    {"name": "Tin",        "sym":"Sn", "num":86,  "Z":50, "A":118.710},
-    {"name": "Antimon",    "sym":"Sb", "num":87,  "Z":51, "A":121.760},
-    {"name": "Tellur",     "sym":"Te", "num":88,  "Z":52, "A":127.60},
-    {"name": "Jod",        "sym":"I", "num":89,   "Z":53, "A":126.90447},
-    {"name": "Xenon",      "sym":"Xe", "num":90,  "Z":54, "A":131.293},
-    {"name": "Cæsium",     "sym":"Cs", "num":91,  "Z":55, "A":132.90545196},   // SKAL 5
-    {"name": "Barium",     "sym":"Ba", "num":92,  "Z":56, "A":137.327},
-    {"name": "",           "sym":"57-71", "num":93,  "Z":0, "A":XXX},
-    {"name": "Hafnium",    "sym":"Hf", "num":94,  "Z":72, "A":178.49},
-    {"name": "Tantal",     "sym":"Ta", "num":95,  "Z":73, "A":180.94788},
-    {"name": "Wolfram",    "sym":"W",  "num":96,  "Z":74, "A":183.84},
-    {"name": "Rhenium",    "sym":"Re", "num":97,  "Z":75, "A":186.207},
-    {"name": "Osmium",     "sym":"Os", "num":98,  "Z":76, "A":190.23},
-    {"name": "Iridium",    "sym":"Ir", "num":99,  "Z":77, "A":192.217},
-    {"name": "Platin",     "sym":"Pt", "num":100,  "Z":78, "A":195.084},
-    {"name": "Guld",       "sym":"Au", "num":101,  "Z":79, "A":196.966569},
-    {"name": "Kviksølv",   "sym":"Hg", "num":102,  "Z":80, "A":200.59},
-    {"name": "Thallium",   "sym":"Tl", "num":103,  "Z":81, "A":204.38},
-    {"name": "Bly",        "sym":"Pb", "num":104,  "Z":82, "A":207.2},
-    {"name": "Bismuth",    "sym":"Bi", "num":105,  "Z":83, "A":208.98040},
-    {"name": "Polonium",   "sym":"Po", "num":106,  "Z":84, "A":209},
-    {"name": "Astat",      "sym":"At", "num":107,  "Z":85, "A":210},
-    {"name": "Radon",      "sym":"Rn", "num":108,  "Z":86, "A":222},
-    {"name": "Francium",      "sym":"Fr", "num":109,  "Z":87, "A":223},      // SKAL 6
-    {"name": "Radium",        "sym":"Ra", "num":110,  "Z":88, "A":226},
-    {"name": "",           "sym":"89-103", "num":111,  "Z":0, "A":XXX}, 
-    {"name": "Rutherfordium", "sym":"Rf", "num":112,  "Z":104, "A":267}, 
-    {"name": "Dubnium",       "sym":"Db", "num":113,  "Z":105, "A":268}, 
-    {"name": "Seaborgium",    "sym":"Sg", "num":114,  "Z":106, "A":271}, 
-    {"name": "Bohrium",       "sym":"Bh", "num":115,  "Z":107, "A":272}, 
-    {"name": "Hassium",       "sym":"Hs", "num":116,  "Z":108, "A":270}, 
-    {"name": "Meitnerium",    "sym":"Mt", "num":117,  "Z":109, "A":276}, 
-    {"name": "Darmstadtium",  "sym":"Ds", "num":118,  "Z":110, "A":281}, 
-    {"name": "Røntgenium",    "sym":"Rg", "num":119,  "Z":111, "A":280}, 
-    {"name": "Copernicium",   "sym":"Cn", "num":120,  "Z":112, "A":285}, 
-    {"name": "Ununtrium",     "sym":"Uut", "num":121,  "Z":113, "A":284}, 
-    {"name": "Flerovium",     "sym":"Fl", "num":122,  "Z":114, "A":289}, 
-    {"name": "Ununpentium",   "sym":"Uup", "num":123,  "Z":115, "A":288}, 
-    {"name": "Livermorium",   "sym":"Lv", "num":124,  "Z":116, "A":293}, 
-    {"name": "Ununseptium",   "sym":"Uus", "num":125,  "Z":117, "A":294}, 
-    {"name": "Ununoctium",    "sym":"Uuo", "num":126,  "Z":118, "A":294}
+    {"name": "Hydrogen",      "sym":"H",      "Class": "NonMetal OtherNonMetal", "num":1,   "Z":1,  "A":1.0079},       // SKAL 1
+    {"name": "Helium",        "sym":"He",     "Class": "NonMetal NobelGas",      "num":18,  "Z":2,  "A":4.002602},
+    {"name": "Lithium",       "sym":"Li",     "Class": "Metal AlkaliMetal",      "num":19,  "Z":3,  "A":6.94},         // SKAL 2
+    {"name": "Beryllium",     "sym":"Be",     "Class": "Metal AlkaliEarthMetal", "num":20,  "Z":4,  "A":9.0121831},
+    {"name": "Bor",           "sym":"B",      "Class": "Metalloid",              "num":31,  "Z":5,  "A":10.81},
+    {"name": "Carbon",        "sym":"C",      "Class": "NonMetal OtherNonMetal", "num":32,  "Z":6,  "A":12.011},
+    {"name": "Nitrogen",      "sym":"N",      "Class": "NonMetal OtherNonMetal", "num":33,  "Z":7,  "A":14.007},
+    {"name": "Oxygen",        "sym":"O",      "Class": "NonMetal OtherNonMetal", "num":34,  "Z":8,  "A":15.999},
+    {"name": "Fluor",         "sym":"F",      "Class": "NonMetal Halogen",       "num":35,  "Z":9,  "A":18.998403163},
+    {"name": "Neon",          "sym":"Ne",     "Class": "NonMetal NobelGas",      "num":36,  "Z":10, "A":17.1797},
+    {"name": "Natrium",       "sym":"Na",     "Class": "Metal AlkaliMetal",      "num":37,  "Z":11, "A":22.98976928},
+    {"name": "Magnesium",     "sym":"Mg",     "Class": "Metal AlkaliEarthMetal", "num":38,  "Z":12, "A":24.305},
+    {"name": "Aluminium",     "sym":"Al",     "Class": "Metal PostTransMetal",   "num":49,  "Z":13, "A":26.9815385},
+    {"name": "Silicium",      "sym":"Si",     "Class": "Metalloid",              "num":50,  "Z":14, "A":28.085},
+    {"name": "Phosphor",      "sym":"P",      "Class": "NonMetal OtherNonMetal", "num":51,  "Z":15, "A":30.973761998},
+    {"name": "Svovl",         "sym":"S",      "Class": "NonMetal OtherNonMetal", "num":52,  "Z":16, "A":32.06},
+    {"name": "Chlor",         "sym":"Cl",     "Class": "NonMetal Halogen",       "num":53,  "Z":17, "A":35.45},
+    {"name": "Argon",         "sym":"Ar",     "Class": "NonMetal NobelGas",      "num":54,  "Z":18, "A":39.948},
+    {"name": "Kalium",        "sym":"K",      "Class": "Metal AlkaliMetal",      "num":55,  "Z":19, "A":39.0983},     // SKAL 3
+    {"name": "Calcium",       "sym":"Ca",     "Class": "Metal AlkaliEarthMetal", "num":56,  "Z":20, "A":40.078},
+    {"name": "Scandium",      "sym":"Sc",     "Class": "Metal TransMetal",       "num":57,  "Z":21, "A":44.955908},
+    {"name": "Titan",         "sym":"Ti",     "Class": "Metal TransMetal",       "num":58,  "Z":22, "A":47.867},
+    {"name": "Vanadium",      "sym":"V",      "Class": "Metal TransMetal",       "num":59,  "Z":23, "A":50.9415},
+    {"name": "Chrom",         "sym":"Cr",     "Class": "Metal TransMetal",       "num":60,  "Z":24, "A":51.9961},
+    {"name": "Mangan",        "sym":"Mn",     "Class": "Metal TransMetal",       "num":61,  "Z":25, "A":54.938044},
+    {"name": "Jern",          "sym":"Fe",     "Class": "Metal TransMetal",       "num":62,  "Z":26, "A":55.845},
+    {"name": "Cobalt",        "sym":"Co",     "Class": "Metal TransMetal",       "num":63,  "Z":27, "A":58.933194},
+    {"name": "Nikkel",        "sym":"Ni",     "Class": "Metal TransMetal",       "num":64,  "Z":28, "A":58.6934},
+    {"name": "Kobber",        "sym":"Cu",     "Class": "Metal TransMetal",       "num":65,  "Z":29, "A":63.546},
+    {"name": "Zink",          "sym":"Zn",     "Class": "Metal TransMetal",       "num":66,  "Z":30, "A":65.38},
+    {"name": "Gallium",       "sym":"Ga",     "Class": "Metal PostTransMetal",   "num":67,  "Z":31, "A":69.723},
+    {"name": "Germanium",     "sym":"Ge",     "Class": "Metalloid",              "num":68,  "Z":32, "A":72.63},
+    {"name": "Arsen",         "sym":"As",     "Class": "Metalloid",              "num":69,  "Z":33, "A":74.921595},
+    {"name": "Selen",         "sym":"Se",     "Class": "NonMetal OtherNonMetal", "num":70,  "Z":34, "A":78.971},
+    {"name": "Brom",          "sym":"Br",     "Class": "NonMetal Halogen",       "num":71,  "Z":35, "A":79.904},
+    {"name": "Krypton",       "sym":"Kr",     "Class": "NonMetal NobelGas",      "num":72,  "Z":36, "A":83.798},
+    {"name": "Rubidium",      "sym":"Rb",     "Class": "Metal AlkaliMetal",      "num":73,  "Z":37, "A":85.4678}, // SKAL 4
+    {"name": "Strontium",     "sym":"Sr",     "Class": "Metal AlkaliEarthMetal", "num":74,  "Z":38, "A":87.62},
+    {"name": "Yttrium",       "sym":"Y",      "Class": "Metal TransMetal",       "num":75,  "Z":39, "A":88.90584},
+    {"name": "Zirconium",     "sym":"Zr",     "Class": "Metal TransMetal",       "num":76,  "Z":40, "A":91.224},
+    {"name": "Niobium",       "sym":"Nb",     "Class": "Metal TransMetal",       "num":77,  "Z":41, "A":92.90637},
+    {"name": "Molybdæn",      "sym":"Mo",     "Class": "Metal TransMetal",       "num":78,  "Z":42, "A":95.95},
+    {"name": "Technetium",    "sym":"Tc",     "Class": "Metal TransMetal",       "num":79,  "Z":43, "A":98},
+    {"name": "Ruthenium",     "sym":"Ru",     "Class": "Metal TransMetal",       "num":80,  "Z":44, "A":101.07},
+    {"name": "Rhodium",       "sym":"Rh",     "Class": "Metal TransMetal",       "num":81,  "Z":45, "A":102.90550},
+    {"name": "Palladium",     "sym":"Pd",     "Class": "Metal TransMetal",       "num":82,  "Z":46, "A":106.42},
+    {"name": "Sølv",          "sym":"Ag",     "Class": "Metal TransMetal",       "num":83,  "Z":47, "A":107.8682},
+    {"name": "Cadmium",       "sym":"Cd",     "Class": "Metal TransMetal",       "num":84,  "Z":48, "A":112.414},
+    {"name": "Indium",        "sym":"In",     "Class": "Metal PostTransMetal",   "num":85,  "Z":49, "A":114.818},
+    {"name": "Tin",           "sym":"Sn",     "Class": "Metal PostTransMetal",   "num":86,  "Z":50, "A":118.710},
+    {"name": "Antimon",       "sym":"Sb",     "Class": "Metalloid",              "num":87,  "Z":51, "A":121.760},
+    {"name": "Tellur",        "sym":"Te",     "Class": "Metalloid",              "num":88,  "Z":52, "A":127.60},
+    {"name": "Iod",           "sym":"I",      "Class": "NonMetal Halogen",       "num":89,   "Z":53, "A":126.90447},
+    {"name": "Xenon",         "sym":"Xe",     "Class": "NonMetal NobelGas",      "num":90,  "Z":54, "A":131.293},
+    {"name": "Cæsium",        "sym":"Cs",     "Class": "Metal AlkaliMetal",      "num":91,  "Z":55, "A":132.90545196},   // SKAL 5
+    {"name": "Barium",        "sym":"Ba",     "Class": "Metal AlkaliEarthMetal", "num":92,  "Z":56, "A":137.327},
+    {"name": "",              "sym":"57-71",  "Class": "ElementSpace",           "num":93,  "Z":0, "A":XXX},
+    {"name": "Hafnium",       "sym":"Hf",     "Class": "Metal TransMetal",       "num":94,  "Z":72, "A":178.49},
+    {"name": "Tantal",        "sym":"Ta",     "Class": "Metal TransMetal",       "num":95,  "Z":73, "A":180.94788},
+    {"name": "Wolfram",       "sym":"W",      "Class": "Metal TransMetal",       "num":96,  "Z":74, "A":183.84},
+    {"name": "Rhenium",       "sym":"Re",     "Class": "Metal TransMetal",       "num":97,  "Z":75, "A":186.207},
+    {"name": "Osmium",        "sym":"Os",     "Class": "Metal TransMetal",       "num":98,  "Z":76, "A":190.23},
+    {"name": "Iridium",       "sym":"Ir",     "Class": "Metal TransMetal",       "num":99,  "Z":77, "A":192.217},
+    {"name": "Platin",        "sym":"Pt",     "Class": "Metal TransMetal",       "num":100,  "Z":78, "A":195.084},
+    {"name": "Guld",          "sym":"Au",     "Class": "Metal TransMetal",       "num":101,  "Z":79, "A":196.966569},
+    {"name": "Kviksølv",      "sym":"Hg",     "Class": "Metal TransMetal",       "num":102,  "Z":80, "A":200.59},
+    {"name": "Thallium",      "sym":"Tl",     "Class": "Metal PostTransMetal",   "num":103,  "Z":81, "A":204.38},
+    {"name": "Bly",           "sym":"Pb",     "Class": "Metal PostTransMetal",   "num":104,  "Z":82, "A":207.2},
+    {"name": "Bismuth",       "sym":"Bi",     "Class": "Metal PostTransMetal",   "num":105,  "Z":83, "A":208.98040},
+    {"name": "Polonium",      "sym":"Po",     "Class": "Metalloid",              "num":106,  "Z":84, "A":209},
+    {"name": "Astat",         "sym":"At",     "Class": "NonMetal Halogen",       "num":107,  "Z":85, "A":210},
+    {"name": "Radon",         "sym":"Rn",     "Class": "NonMetal NobelGas",      "num":108,  "Z":86, "A":222},
+    {"name": "Francium",      "sym":"Fr",     "Class": "Metal AlkaliMetal",      "num":109,  "Z":87, "A":223},      // SKAL 6
+    {"name": "Radium",        "sym":"Ra",     "Class": "Metal AlkaliEarthMetal", "num":110,  "Z":88, "A":226},
+    {"name": "",              "sym":"89-103", "Class": "ElementSpace",           "num":111,  "Z":0, "A":XXX}, 
+    {"name": "Rutherfordium", "sym":"Rf",     "Class": "Metal TransMetal",       "num":112,  "Z":104, "A":267}, 
+    {"name": "Dubnium",       "sym":"Db",     "Class": "Metal TransMetal",       "num":113,  "Z":105, "A":268}, 
+    {"name": "Seaborgium",    "sym":"Sg",     "Class": "Metal TransMetal",       "num":114,  "Z":106, "A":271}, 
+    {"name": "Bohrium",       "sym":"Bh",     "Class": "Metal TransMetal",       "num":115,  "Z":107, "A":272}, 
+    {"name": "Hassium",       "sym":"Hs",     "Class": "Metal TransMetal",       "num":116,  "Z":108, "A":270}, 
+    {"name": "Meitnerium",    "sym":"Mt",     "Class": "Metal TransMetal",       "num":117,  "Z":109, "A":276}, 
+    {"name": "Darmstadtium",  "sym":"Ds",     "Class": "Metal TransMetal",       "num":118,  "Z":110, "A":281}, 
+    {"name": "Røntgenium",    "sym":"Rg",     "Class": "Metal TransMetal",       "num":119,  "Z":111, "A":280}, 
+    {"name": "Copernicium",   "sym":"Cn",     "Class": "Metal TransMetal",       "num":120,  "Z":112, "A":285}, 
+    {"name": "Ununtrium",     "sym":"Uut",    "Class": "Metal PostTransMetal",   "num":121,  "Z":113, "A":284}, 
+    {"name": "Flerovium",     "sym":"Fl",     "Class": "Metal PostTransMetal",   "num":122,  "Z":114, "A":289}, 
+    {"name": "Ununpentium",   "sym":"Uup",    "Class": "Metal PostTransMetal",   "num":123,  "Z":115, "A":288}, 
+    {"name": "Livermorium",   "sym":"Lv",     "Class": "Metal PostTransMetal",   "num":124,  "Z":116, "A":293}, 
+    {"name": "Ununseptium",   "sym":"Uus",    "Class": "NonMetal Halogen",       "num":125,  "Z":117, "A":294}, 
+    {"name": "Ununoctium",    "sym":"Uuo",    "Class": "NonMetal NobelGas",      "num":126,  "Z":118, "A":294}
 ];
 
 var JsonObj_Questions = [
@@ -154,8 +154,8 @@ var JsonObj_Questions = [
     {"MolSym": "SO<sub>4</sub><sup>-</sup>",  "TName": "sulfation",     "Principle": [5], "Mol": [{"AtomSym": "S", "Index": 1},{"AtomSym": "O",  "Index": 4, "Charge": "2-"}] },
     {"MolSym": "NO<sub>2</sub><sup>-</sup>",  "TName": "nitrition",     "Principle": [5], "Mol": [{"AtomSym": "N", "Index": 1},{"AtomSym": "O",  "Index": 2, "Charge": "1-"}] },
     {"MolSym": "NO<sub>3</sub><sup>-</sup>",  "TName": "nitration",     "Principle": [5], "Mol": [{"AtomSym": "N", "Index": 1},{"AtomSym": "O",  "Index": 3, "Charge": "1-"}] },
-    {"MolSym": "PO<sub>4</sub><sup>3-</sup>", "TName": "Phosphation",    "Principle": [5], "Mol": [{"AtomSym": "P", "Index": 1},{"AtomSym": "O",  "Index": 4, "Charge": "3-"}] },
-    {"MolSym": "CO<sub>3</sub><sup>2-</sup>", "TName": "Carbonation",    "Principle": [5], "Mol": [{"AtomSym": "C", "Index": 1},{"AtomSym": "O",  "Index": 3, "Charge": "2-"}] }
+    {"MolSym": "PO<sub>4</sub><sup>3-</sup>", "TName": "Phosphation",   "Principle": [5], "Mol": [{"AtomSym": "P", "Index": 1},{"AtomSym": "O",  "Index": 4, "Charge": "3-"}] },
+    {"MolSym": "CO<sub>3</sub><sup>2-</sup>", "TName": "Carbonation",   "Principle": [5], "Mol": [{"AtomSym": "C", "Index": 1},{"AtomSym": "O",  "Index": 3, "Charge": "2-"}] }
 ]; 
 
 
@@ -249,6 +249,7 @@ $( document ).ready(function() {
 
 // Perodisk system på dansk og andre sprog:
 // http://www.ptable.com/?lang=da
+// http://www.ptable.com/?lang=en
 //
 // JQuery-ui "draggable" resources:
 // http://api.jqueryui.com/draggable/
@@ -267,12 +268,17 @@ $( document ).ready(function() {
 var DebugMode = false;  // Boolean that turns on/off help-information while debugging.
 var Debug_OnlyGiveQuestion = null;   // Set to "null" for deaktivation _OR_ 0, 1, 2, 3,... for the question in JsonObj_Questions. IMPORTANT: DebugMode has to be true! 
 
-var PrincipleNum = 1;  // Principle: "1-a-1"
+// var PrincipleNum = 1;  // Principle: "1-a-1"
 // var PrincipleNum = 2;  // Principle: "1-b-1"
 // var PrincipleNum = 3;  // Principle: "1-b-2"
-var PrincipleNum = 3;  // Principle: "2-a-1"
+// var PrincipleNum = 4;  // Principle: "2-a-1"
+var PrincipleNum = 5;  // Principle: "2-a-2"
 
 var Level = 2;  //  Level = 1: Questions are posesed based on the molecular spiecies: "Lav molekylet mestående af 2 hydrogenatomer". Level = 2: Questions are posesed based on the produckt: "Lav molekylet dihydrogen". 
+
+var MaxNumOfElements = 10; // MaxNumOfElements is the maximum number of random questions given to the student from each principle - we have choosen to limit this number to 10 henceforth.
+
+var Reload = false;
 
 var Names;
 var NameArray = [];
@@ -283,7 +289,7 @@ var QuestionObj =   {
                         P1 : [],  // Princip 1 - P1-array consists of the array-index of all the JsonObj_Questions which have Principle: "1-a-1"
                         P2 : [],  // Princip 2 - P2-array consists of the array-index of all the JsonObj_Questions which have Principle: "1-b-1"
                         P3 : [],  // Princip 3 - P3-array consists of the array-index of all the JsonObj_Questions which have Principle: "1-b-2"
-                        P4 : [],   // Princip 1+2+3 - P4-array consists of the array-index 
+                        P4 : [],  // Princip 1+2+3 - P4-array consists of the array-index 
                         P5 : [],
                         P6 : []
                     }
@@ -415,19 +421,18 @@ function ReturnChemicalIonComposition(JsonObj_PeriodicTable, MoleculeObj){
     var ChargeComp = "";
     for (var Key1 in MObj.Mol){ // Molecule Array
         console.log("ReturnChemicalIonComposition - MObj.Mol["+Key1+"]: " + JSON.stringify(MObj.Mol[Key1]) ); 
-        // for (var Key2 in MObj.Mol[Key1]){ // Molecule sub object
-            var AtomName = ReturnElementInfo(JsonObj_PeriodicTable, "sym", MObj.Mol[Key1]["AtomSym"], "name");
-            if (MObj.Mol[Key1].hasOwnProperty("Charge") ) ChargeComp = " og har ladningen " + ( (MObj.Mol[Key1]["Charge"].indexOf("+") !== -1) ? "+" : "-") + MObj.Mol[Key1]["Charge"].replace("+","").replace("-","") ;
-            HTML += MObj.Mol[Key1]["Index"]+" "+AtomName.toLowerCase() + "atom"+((MObj.Mol[Key1]["Index"]==1)?"":"er") + ChargeComp + ((Count < MolLength-1)?", ": + (Count == MolLength-1)?", ": "" );
-        // }
+        console.log('ReturnChemicalIonComposition - hasOwnProperty("Index"): ' + MObj.Mol[Key1].hasOwnProperty("Index") );
+        var AtomName = ReturnElementInfo(JsonObj_PeriodicTable, "sym", MObj.Mol[Key1]["AtomSym"], "name");
+        if (MObj.Mol[Key1].hasOwnProperty("Charge") ) ChargeComp = " og har ladningen " + ( (MObj.Mol[Key1]["Charge"].indexOf("+") !== -1) ? "+" : "-") + MObj.Mol[Key1]["Charge"].replace("+","").replace("-","") ;
+        HTML += ((MObj.Mol[Key1].hasOwnProperty("Index"))? MObj.Mol[Key1]["Index"]:"1") +" "+AtomName.toLowerCase() + "atom"+((MObj.Mol[Key1]["Index"]>1)?"er":"") + ChargeComp + ((Count < MolLength-1)?", ": + (Count == MolLength-1)?", ": "" );
         ++Count;
     }
     console.log("ReturnChemicalIonComposition - HTML: " + HTML );
 
     return HTML;
 }
-console.log( "ReturnChemicalIonComposition - TEST: " + ReturnChemicalIonComposition( JsonObj_PeriodicTable, {"MolSym": "Fe<sup>3+</sup>",  "TName": "jern(&#73;&#73;&#73;)ion", "Principle": [4], "Mol": [{"AtomSym": "Fe", "Index": 1, "Charge": "3+"}] } ) );
-console.log( "ReturnChemicalIonComposition - TEST: " + ReturnChemicalIonComposition( JsonObj_PeriodicTable, {"MolSym": "NH<sub>4</sub><sup>+</sup>",  "TName": "Amoniumion",    "Principle": [5], "Mol": [{"AtomSym": "N", "Index": 1},{"AtomSym": "H",  "Index": 4, "Charge": "1+"}] } ) );
+// console.log( "ReturnChemicalIonComposition - TEST: " + ReturnChemicalIonComposition( JsonObj_PeriodicTable, {"MolSym": "Fe<sup>3+</sup>",  "TName": "jern(&#73;&#73;&#73;)ion", "Principle": [4], "Mol": [{"AtomSym": "Fe", "Index": 1, "Charge": "3+"}] } ) );
+// console.log( "ReturnChemicalIonComposition - TEST: " + ReturnChemicalIonComposition( JsonObj_PeriodicTable, {"MolSym": "NH<sub>4</sub><sup>+</sup>",  "TName": "Amoniumion",    "Principle": [5], "Mol": [{"AtomSym": "N", "Index": 1},{"AtomSym": "H",  "Index": 4, "Charge": "1+"}] } ) );
 
 
 
@@ -523,6 +528,15 @@ function ReturnQuestionHeading(PrincipleNum, Level){
 }
 
 
+function ReturMaxNumOfElements(PrincipleArray, MaxNumOfElements){
+    if (PrincipleArray.length > MaxNumOfElements)
+        return PrincipleArray.slice(0, MaxNumOfElements);
+    else
+        return PrincipleArray;
+}
+console.log("ReturMaxNumOfElements: " + ReturMaxNumOfElements([0,1,2,3,4,5,6,7,8,9], 6) );
+
+
 function PrincipleRepeat(JOQ, PrincipleArray, Qcount, ShowObj){
 
     var Inx = PrincipleArray[Qcount];
@@ -533,13 +547,15 @@ function PrincipleRepeat(JOQ, PrincipleArray, Qcount, ShowObj){
 
     var MoleculeObj = JOQ[Inx];
 
+    console.log("PrincipleRepeat - Inx: " + Inx + ", MoleculeObj:" + MoleculeObj);
+
     for (var i = 1; i <= MoleculeObj.Mol.length; i++) {  // MoleculeObj.Mol.length is the number of atoms in the molecule.
         $("#DropWrap"+String(i)).removeClass("Hide");    // Show the necessary DropWraps.
     };
         
 
     var ArrayLength = PrincipleArray.length;
-    var QuestionCountStr = "<br/><h2><span class='QuizHeadingTextCount'>" + String(Qcount + 1) + "/" + String(ArrayLength) + "</span></h2>" + 
+    var QuestionCountStr = "<br/><h4><span class='QuizHeadingTextCount'>" + String(Qcount + 1) + "/" + String(ArrayLength) + "</span></h4>" + 
                            "<span class='QuizNextQuestion'>" + 
                                 '<a class="NextQuestion btn-default btn btn-default" href="#">Næste spørgsmål</a>' +
                            "</span>";
@@ -548,12 +564,15 @@ function PrincipleRepeat(JOQ, PrincipleArray, Qcount, ShowObj){
     HTML += (DebugMode)?'<h1 class="DebugMode">DebugMode: PRINCIP 1-B-1</h1>':'';
     HTML += "<h1>"+ReturnQuestionHeading(PrincipleNum, Level)+"</h1>";
     HTML += "<div class='QuestionWrap'>";
-    HTML += "<h2 class='QuestionText'>" +
-                "Træk grundstofsymbol"+ReturnActions(ShowObj)+" til det rette felt.<br/>" +
+    HTML += "<h4 class='QuestionText'>" +
+                "<span class='QustionActionText'>Træk grundstofsymbol<span class='QustionActionElements'>"+ReturnActions(ShowObj)+"</span> til det rette felt. </span><br/>" +
                     ReturnQuestionLevel(JsonObj_PeriodicTable, MoleculeObj, Level) +
-            "</h2>" + QuestionCountStr;
+            "</h4>" + QuestionCountStr;
     HTML += "</div>";
     HTML += "<div class='FeedbackWrap'></div>";
+
+
+    ReturnActions_2();  // TEST
 
     // Write the heading and question for the student:
     $(".QuizHeadingText").html( HTML );
@@ -570,6 +589,11 @@ function GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum){
 
     PrincipleArray = QuestionObj["P"+String(PrincipleNum)]; 
     TPrincipleArray = ShuffelArray( PrincipleArray );  // Random index relating to the sub-objects in JsonObj_Questions.
+    console.log("GiveQuestion - TPrincipleArray 1: " + TPrincipleArray);
+    
+    TPrincipleArray = ReturMaxNumOfElements(TPrincipleArray, MaxNumOfElements);  // This limits the maximum number of returned elements to MaxNumOfElements
+    console.log("GiveQuestion - TPrincipleArray 2: " + TPrincipleArray);
+
     ArrayLength = TPrincipleArray.length;
 
     var ShowObj = ReturnShowObj(JsonObj_Questions, TPrincipleArray, Qcount);
@@ -578,9 +602,9 @@ function GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum){
     if (ShowObj.Charge) $(".ChargeWrapper").html(CreateNumberDivs(-3, 3, "ChargeNum DragNum btn btn-info draggable", true));
     if (ShowObj.Coeff) $(".CoeffWrapper").html(CreateNumberDivs(1, 5, "CoeffNum DragNum btn btn-info draggable", false));
 
-    PrincipleRepeat(JOQ, TPrincipleArray, Qcount, ShowObj);
     ResultObj.Qcount = Qcount;
     ResultObj.PrincipleArray = TPrincipleArray; 
+    PrincipleRepeat(JOQ, TPrincipleArray, Qcount, ShowObj);
 
     console.log("GiveQuestion - Qcount 1:" + Qcount + "");
 
@@ -590,14 +614,21 @@ function GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum){
     if (!ShowObj.Charge) $(".ChargeNumberHeading, .ChargeWrapper").hide(); 
     if (!ShowObj.Coeff) $(".CoeffNumberHeading, .CoeffWrapper").hide();  
 
+    
     $( document ).on('click', ".NextQuestion", function(event){
         event.preventDefault();  // Prevents sending the user to "href".
 
         console.log("GiveQuestion: Antal spm:" + ResultObj.PrincipleArray.length);
 
+        if (Reload) { 
+                location.reload();
+        }
+
         // length the student feedback:
         if ( Qcount == ResultObj.PrincipleArray.length-1) {  // NOTE: Due to the placement of the ++Qcount increasement, Qcount == 9 equals 10 questions.
             ShowStudentScore(true);
+            $(".NextQuestion").text("Prøv igen");
+            Reload = true;
         }
 
 
@@ -612,9 +643,10 @@ function GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum){
 
         ResetQuiz(500);
         ++Qcount;
-        PrincipleRepeat(JOQ, TPrincipleArray, Qcount, ShowObj);
+
         ResultObj.Qcount = Qcount;
         ResultObj.PrincipleArray = TPrincipleArray; 
+        PrincipleRepeat(JOQ, TPrincipleArray, Qcount, ShowObj);
 
         FontSizeScalerNew(".PeriodicTableWrapper", 
                         [".AtomSymbol", ".NumberHeading", ".ElementBox", ".DragNum", ".ScoreHeaderH3", 
@@ -625,6 +657,15 @@ function GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum){
 
     });
 
+}
+
+
+function BtnShowScore(){
+    // var Inx = ResultObj.PrincipleArray[ResultObj.Qcount];
+    // var MObj = JsonObj_Questions[Inx];
+    if ((ResultObj.Qcount == ResultObj.PrincipleArray.length-1) && (ResultObj.Correct == ReturnNumOfCorrectAnswers(JsonObj_Questions, ResultObj))) {  // NOTE: Due to the placement of the ++Qcount increasement, Qcount == 9 equals 10 questions.
+        $(".NextQuestion").text("Se din score");
+    }
 }
 
 
@@ -654,6 +695,49 @@ function ReturnActions(ShowObj){
     console.log("ReturnActions - NumOfActions: " + NumOfActions + ", ActionStr: " + ActionStr);
     return ActionStr;
 }
+
+
+// {"MolSym": "NH<sub>4</sub><sup>+</sup>",  "TName": "Amoniumion",    "Principle": [5], "Mol": [{"AtomSym": "N", "Index": 1},{"AtomSym": "H",  "Index": 4, "Charge": "1+"}] },
+function ReturnActions_2(){  // JOQ, PrincipleArray, Qcount
+
+    // ResultObj.Qcount = Qcount;
+    // ResultObj.PrincipleArray = TPrincipleArray; 
+
+    var ActionStr = "";
+    var NumOfActionTypes = 0;
+
+    // var Inx = PrincipleArray[Qcount]; 
+    // var MObj = JOQ[Inx];
+    var Inx = ResultObj.PrincipleArray[ResultObj.Qcount];
+    var MObj = JsonObj_Questions[Inx];
+
+    var AObj = {NumOfElements: 0, NumOfIndex: 0, NumOfcharge: 0, NumOfCoeff: 0};
+    for (var i in MObj.Mol){
+        if (MObj.Mol[i].hasOwnProperty("AtomSym")) ++AObj.NumOfElements;
+        if (MObj.Mol[i].hasOwnProperty("Index")) ++AObj.NumOfIndex;
+        if (MObj.Mol[i].hasOwnProperty("Coeff")) ++AObj.NumOfCoeff;
+        if (MObj.Mol[i].hasOwnProperty("Charge")) ++AObj.NumOfcharge;
+    }
+    for (var k in AObj){
+        if (AObj[k] > 0) ++NumOfActionTypes;
+    }
+
+    console.log("ReturnActions_2 - AObj: " + JSON.stringify(AObj) );
+    console.log("ReturnActions_2 - NumOfActionTypes: " + NumOfActionTypes );
+
+    for (var i in AObj){
+        --NumOfActionTypes;
+        console.log("ReturnActions_2 - i: " + i + ", AObj[i]: " + AObj[i] );
+        if (i == "NumOfElements") ActionStr += ((AObj[i]>1)?"grundstofsymbolerne":(AObj[i]==1)?"grundstofsymbolet":"");
+        if (i == "NumOfIndex") ActionStr += ((AObj[i]>1)?"index tallene":(AObj[i]==1)?"index tallet":"");
+        if (i == "NumOfcharge") ActionStr += ((AObj[i]>1)?"ladningerne":(AObj[i]==1)?"ladningen":""); 
+        if (i == "NumOfCoeff") ActionStr += ((AObj[i]>1)?"koefficienterne":(AObj[i]==1)?"koefficienten":""); 
+        ActionStr += ((NumOfActionTypes>1)? ", ":(NumOfActionTypes==1)? " og ":"");
+    }
+    console.log("ReturnActions_2 - ActionStr: " + ActionStr );  // ReturnActions_2(JOQ, PrincipleArray, Qcount, ShowObj)
+    return ActionStr;
+}
+
 
 
 function ReturnShowObj(JsonObj_Questions, TPrincipleArray, Qcount){
@@ -746,6 +830,8 @@ function GivePosetiveFeedback(JsonObj_Questions, ResultObj){
     console.log("GivePosetiveFeedback - Current question:" + ResultObj.PrincipleArray[ResultObj.Qcount]);  
 
     if ( ResultObj.Correct == ReturnNumOfCorrectAnswers(JsonObj_Questions, ResultObj) ){
+
+        $(".QustionActionText").fadeOut( "slow" );
 
         ArrayIndex = ResultObj.PrincipleArray[ ResultObj.Qcount ];
 
@@ -880,8 +966,9 @@ function MakePeriodicTable(JsonObj_PeriodicTable){
                     var AtomNum = String(JsonObj_PeriodicTable[Zn].Z);
                     var AtomSymbol = JsonObj_PeriodicTable[Zn].sym;
                     var AtomName = JsonObj_PeriodicTable[Zn].name;
-                    var AtomWeight = String(Math.round(10000*JsonObj_PeriodicTable[Zn].A)/10000);
-                    HTML += ElementBox(AtomNum, AtomSymbol, AtomName, AtomWeight, "");
+                    var AtomWeight = Math.round(10000*JsonObj_PeriodicTable[Zn].A)/10000;
+                    var ExtraCssClasses = JsonObj_PeriodicTable[Zn].Class;
+                    HTML += ElementBox(AtomNum, AtomSymbol, AtomName, AtomWeight, ExtraCssClasses);
                     ++Zn;
                 } else {
                     HTML += ElementBox("34", "X", "Xxxx", "34", "");
@@ -1213,6 +1300,7 @@ $( document ).ready(function() {  // CapitalI
 
         // Scale the height on all small and large boxes
         $( ".lbox" ).height( $( ".lbox" ).width() );
+        // $( ".lbox" ).width( $( ".lbox" ).width() );
         // $( ".xlbox" ).height( $( ".xlbox" ).width() );
         $( ".sbox" ).height( $( ".sbox" ).width() );  
         $( ".DropSpacer" ).height( $( ".DropSpacer" ).width() );
@@ -1441,6 +1529,8 @@ $( document ).ready(function() {  // CapitalI
             GiveNegativeFeedback(JsonObj_Questions, ResultObj, TotResultObj);
 
             if (DebugMode) ShowStudentScore(false);  // TEST
+
+            BtnShowScore();  // Show score after the last question has been given.
 
 
             console.log("ProgramEnd - EventObj: " + JSON.stringify(EventObj) );

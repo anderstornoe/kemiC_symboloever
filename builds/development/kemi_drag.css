@@ -2,6 +2,8 @@ body{line-height: 1;}
 
 h1{color: #000;}  /*Midlertigigt fix*/
 
+h4{display: inline-block;}
+
 .QuizHeadingText{color: #999999;}
 .QuestionWrap{margin-left: 4%;}
 .QuestionWrap h2{display: inline-block;}
@@ -32,11 +34,12 @@ h1{color: #000;}  /*Midlertigigt fix*/
 				position: absolute;
 				margin-left: 7%;
 				margin-top: 3%;
-				font-size: 200%
+				font-size: 350%;
+				font-weight: 100;
 				}
 
 .LukClass:hover {color: #000;}
-.QuizHeadingTextCount{display: inline-block;}
+.QuizHeadingTextCount{display: inline-block; margin-bottom: 1%;}
 .NextQuestion{margin-left: 1%; margin-bottom: 1%;}
 .QuestionTask{color: #000;}
 
@@ -63,8 +66,8 @@ h1{color: #000;}  /*Midlertigigt fix*/
 
 .red{border: 1px solid #F00;}
 
-.DropZone{padding-left: 4%; margin-bottom: 0%;} /* padding-left: 4%; margin-bottom: 0%; */ 
-#DropWrap1{}
+.DropZone{padding-left: 4%; margin-bottom: 0%;} /* padding-left: 10%; margin-bottom: 0%; */ 
+#DropWrap1{padding-left: 9%;}
 #DropWrap2{}
 #DropWrap3{}
 .DropWrapper{}
@@ -129,3 +132,21 @@ h1{color: #000;}  /*Midlertigigt fix*/
 .TempClass}{position: absolute;}
 
 .Duplicate{position: "absolute"; background-color: #F00;}
+
+/*
+	===============================================================  
+					Color classes for the periodic table
+	===============================================================  
+*/
+
+.AlkaliMetal{}
+.AlkaliEarthMetal{}
+.Metalloid{}
+.NobelGas{}
+.Halogen{}
+.PostTransMetal{}
+.TransMetal{}
+.OtherNonMetal{}
+
+.Metal{background-color: #A7A7A7;}
+.NonMetal{background-color: #3399CC;}
