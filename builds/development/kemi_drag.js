@@ -165,7 +165,8 @@ var JsonObj_Questions = [
 
 var ResultStr = "";
 
-var TimerId;
+var TimerId_FadeOut;
+var TimerId_FadeIn;
 
 var MemObj = {  // MemObj is permanent through program execution 
                 CloneArray:[],   // Keeps track of the clone-numbers, eg. 1,2,3,..., denoted: "Clone_1", "Clone_2", "Clone_3",...
@@ -338,10 +339,26 @@ function loadData(url) {
 
 
 function SetTimerAndFadeout(Selector, TimeTimeout, TimeFadeOut){
-    TimerId = setTimeout( function(){ 
+    TimerId_FadeOut = setTimeout( function(){ 
         $(Selector).fadeOut(TimeFadeOut, function() {
-            $( Selector ).remove();
+            $( Selector ).animate({
+                // opacity: 0,
+                width: "0%"
+            }, 1000, function() {
+                // Animation complete.
+                $( Selector ).remove();
+            });
+            // $( Selector ).remove();
             console.log("SetTimerAndFadeout - OK");
+        });
+    } , TimeTimeout);
+}
+
+
+function SetTimerAndFadeIn(Selector, TimeTimeout, TimeFadeIn){
+    TimerId_FadeIn = setTimeout( function(){ 
+        $(Selector).fadeIn(TimeFadeIn, function() {
+            console.log("SetTimerAndFadeIn - OK");
         });
     } , TimeTimeout);
 }
@@ -373,7 +390,7 @@ function ReturnMolecule(JsonObj_Questions, ResultObj){
         console.log("ReturnMolecule - JOQ["+JOQ_index+"]][Mol]["+Key2+"]: " + JSON.stringify(JOQ[JOQ_index]["Mol"][Key2]) ); // TestOutput
 
         if ( MObj.Mol[Key2].hasOwnProperty("AtomSym") )
-            HTML +=  JOQ[JOQ_index]["Mol"][Key2]["AtomSym"];
+            HTML +=  '<span class="HtmlElement">'+JOQ[JOQ_index]["Mol"][Key2]["AtomSym"]+'</span>';
 
         if ( MObj.Mol[Key2].hasOwnProperty("Index") )
             HTML +=  "<sub"+((JOQ[JOQ_index]["Mol"][Key2]["Index"]==1)?" class='IndexFadeOut'":"")+">"+JOQ[JOQ_index]["Mol"][Key2]["Index"]+"</sub>";
@@ -423,7 +440,7 @@ function ReturnChemicalIonComposition(JsonObj_PeriodicTable, MoleculeObj){
         console.log("ReturnChemicalIonComposition - MObj.Mol["+Key1+"]: " + JSON.stringify(MObj.Mol[Key1]) ); 
         console.log('ReturnChemicalIonComposition - hasOwnProperty("Index"): ' + MObj.Mol[Key1].hasOwnProperty("Index") );
         var AtomName = ReturnElementInfo(JsonObj_PeriodicTable, "sym", MObj.Mol[Key1]["AtomSym"], "name");
-        if (MObj.Mol[Key1].hasOwnProperty("Charge") ) ChargeComp = " og har ladningen " + ( (MObj.Mol[Key1]["Charge"].indexOf("+") !== -1) ? "+" : "-") + MObj.Mol[Key1]["Charge"].replace("+","").replace("-","") ;
+        if (MObj.Mol[Key1].hasOwnProperty("Charge") ) ChargeComp = " med ladningen " + ( (MObj.Mol[Key1]["Charge"].indexOf("+") !== -1) ? "+" : "-") + MObj.Mol[Key1]["Charge"].replace("+","").replace("-","") ;
         HTML += ((MObj.Mol[Key1].hasOwnProperty("Index"))? MObj.Mol[Key1]["Index"]:"1") +" "+AtomName.toLowerCase() + "atom"+((MObj.Mol[Key1]["Index"]>1)?"er":"") + ChargeComp + ((Count < MolLength-1)?", ": + (Count == MolLength-1)?", ": "" );
         ++Count;
     }
@@ -492,24 +509,24 @@ function ReturnQuestionLevel(JsonObj_PeriodicTable, MoleculeObj, Level){
 
     if ((1 <= PrincipleNum) && (PrincipleNum <= 3)){
         if (Level == 1) 
-            QuestionLevel += "<span class='QuestionCorrect'>Lav molekylet bestående af <span class='QuestionTask'>" +
+            QuestionLevel += "<span class='QuestionCorrect'>så formlen for stoffet bestående af <span class='QuestionTask'>" +
                                     ReturnChemicalStructureComposition(JsonObj_PeriodicTable, MoleculeObj) +
-                            "</span></span>"; 
+                            "</span> dannes.</span>"; 
         if (Level == 2)
-            QuestionLevel += "<span class='QuestionCorrect'>Lav formlen for <span class='QuestionTask'>" +
+            QuestionLevel += "<span class='QuestionCorrect'>så formlen for stoffet <span class='QuestionTask'>" +
                                     MoleculeObj.TName.toLowerCase() +
-                            "</span></span>"; 
+                            "</span> dannes.</span>"; 
     }
 
     if ((4 <= PrincipleNum) && (PrincipleNum <= 6)){
         if (Level == 1) 
-            QuestionLevel += "<span class='QuestionCorrect'>Lav molekylet bestående af <span class='QuestionTask'>" +
+            QuestionLevel += "<span class='QuestionCorrect'>så formlen for ionen bestående af <span class='QuestionTask'>" +
                                     ReturnChemicalIonComposition(JsonObj_PeriodicTable, MoleculeObj) +
-                            "</span></span>"; 
+                            "</span> dannes.</span>"; 
         if (Level == 2)
-            QuestionLevel += "<span class='QuestionCorrect'>Lav formlen for en <span class='QuestionTask'>" +
+            QuestionLevel += "<span class='QuestionCorrect'>så formlen for en <span class='QuestionTask'>" +
                                     MoleculeObj.TName.toLowerCase() +
-                            "</span></span>"; 
+                            "</span> dannes.</span>"; 
     }
 
     return QuestionLevel;
@@ -518,12 +535,12 @@ function ReturnQuestionLevel(JsonObj_PeriodicTable, MoleculeObj, Level){
 
 function ReturnQuestionHeading(PrincipleNum, Level){
     var HTML = "";
-    if (PrincipleNum == 1) HTML = "Niveau 1: Kemiske formler - &#233;t grundstof";
-    if (PrincipleNum == 2) HTML = "Niveau 2: Kemiske formler - flere grundstoffer";
-    if (PrincipleNum == 3) HTML = "Niveau 3: Kemiske formler - &#233;t og flere grundstoffer";
-    if (PrincipleNum == 4) HTML = "Simple ioner";
-    if (PrincipleNum == 5) HTML = "Sammensatte ioner";
-    HTML += " - "+((Level == 1)?"let":"svært") + " niveau."
+    if (PrincipleNum == 1) HTML = "Ét grundstof";
+    if (PrincipleNum == 2) HTML = "Flere grundstoffer";
+    if (PrincipleNum == 3) HTML = "Ét og flere grundstoffer";
+    if (PrincipleNum == 4) HTML = "Simple ioners formler";
+    if (PrincipleNum == 5) HTML = "Sammensatte ioners formler";
+    HTML += ' <img class="TaskNumberImg" src="../../../library/img/TaskNumbers_'+Level+'.svg"/>';
     return HTML;
 }
 
@@ -565,7 +582,7 @@ function PrincipleRepeat(JOQ, PrincipleArray, Qcount, ShowObj){
     HTML += "<h1>"+ReturnQuestionHeading(PrincipleNum, Level)+"</h1>";
     HTML += "<div class='QuestionWrap'>";
     HTML += "<h4 class='QuestionText'>" +
-                "<span class='QustionActionText'>Træk grundstofsymbol<span class='QustionActionElements'>"+ReturnActions(ShowObj)+"</span> til det rette felt. </span><br/>" +
+                "<span class='QustionActionText'>Træk grundstofsymbol<span class='QustionActionElements'>"+ReturnActions(ShowObj)+"</span> til det rette felt,</span><br/>" +
                     ReturnQuestionLevel(JsonObj_PeriodicTable, MoleculeObj, Level) +
             "</h4>" + QuestionCountStr;
     HTML += "</div>";
@@ -838,10 +855,11 @@ function GivePosetiveFeedback(JsonObj_Questions, ResultObj){
         console.log("GivePosetiveFeedback - ArrayIndex: " + ArrayIndex);
 
         var HTML = "";
-        HTML += "Rigtigt, du har lavet formlen for <span class='QuestionTask'>" + JsonObj_Questions[ ArrayIndex ].TName.toLowerCase() + "</span>";
+        HTML += "Du har lavet formlen for "+(((PrincipleNum==4)||(PrincipleNum==5))?"en":"")+"<br/> <span class='QuestionTask'>" + JsonObj_Questions[ ArrayIndex ].TName.toLowerCase() + "</span>";
         console.log("GivePosetiveFeedback: " + HTML);
 
-        $(".QuestionCorrect").html( HTML );
+        // $(".QuestionCorrect").html( HTML );
+        $(".QuestionCorrect").html('<span class="QuestionTask"> Rigtigt! </span>');  // Insert a blank space to avoid text "jumping up and down"
 
         var CssGet = ["background-color", "border-top-color", "border-right-color", "border-bottom-color", "border-left-color", "color"];
         var CssSet =   {"background-color": "transparent", 
@@ -869,9 +887,14 @@ function GivePosetiveFeedback(JsonObj_Questions, ResultObj){
 
         $(".Clone").animate( CssSet, 500);  // This fades the clones.
         
-        $("#DropWrap1").before('<span class="MoleculeHtmlStr">' + ReturnMolecule(JsonObj_Questions, ResultObj) + '</span>');
+        $("#DropWrap1").before('<div class="MoleculeHtmlStr">' + ReturnMolecule(JsonObj_Questions, ResultObj) + '</div>');
+
+        MarkCertainCharactersAsSpecial([".HtmlElement"], ["I", "l"], ["CapitalI"], "#"); // Change the font-style on iodine...
+
+        $(".MoleculeHtmlStr").append('<span class="QuestionCorrectNew">' + HTML + '<span>');
 
         SetTimerAndFadeout(".IndexFadeOut", 500, 1000);  // If index = 1 the timeout the index-number after a delay
+        SetTimerAndFadeIn(".QuestionCorrectNew", 1000, 500);
 
         
         console.log("IndexNumValue: " + typeof($(".Index_OK").text()) );
@@ -1099,7 +1122,8 @@ function UpdateResultFeedback(ResultObj, TotResultObj, ObjKey ,BoolCorrectOrFail
 
 function ResetQuiz(Milliseconds){
 
-    clearTimeout(TimerId);  // fjerner tidligere timere.
+    clearTimeout(TimerId_FadeOut);  // fjerner tidligere timere.  
+    clearTimeout(TimerId_FadeIn);
 
     $(".MoleculeHtmlStr").remove();
     // $(".MoleculeHtmlStr").hide();
@@ -1284,7 +1308,7 @@ $( document ).ready(function() {  // CapitalI
     // Create the periodic table:
     MakePeriodicTable(JsonObj_PeriodicTable);
 
-    MarkCertainCharactersAsSpecial([".AtomName", ".AtomSymbol"], ["I"], ["CapitalI"], "#");
+    MarkCertainCharactersAsSpecial([".AtomName", ".AtomSymbol"], ["I", "l"], ["CapitalI"], "#");
     // MarkCertainCharactersAsSpecial([".AtomName", ".AtomSymbol"], ["H","L", "S", "I"], ["FontRed", "FontGreen", "FontBlue", "CapitalI"], "#");
 
     // Make the H1 heading, eg. "Princip 1...", and the H2 question, eg. "Skriv formlen for stoffet der..."
@@ -1366,6 +1390,7 @@ $( document ).ready(function() {  // CapitalI
             // // Hide .AtomNum, .AtomName, .AtomWeight "on drag" instead of hide "on mousedown":
             if ($( ".draggable" ).draggable('option', 'disabled') != true){
                 $(".AtomNum, .AtomName, .AtomWeight", this).hide();
+                CssObj.AtomSymbol = $(".AtomSymbol", this).css("font-size");  // Save the font-size
                 $(".AtomSymbol", this).css("font-size", "400%");
                 console.log("XXX TEST");
             }
@@ -1516,7 +1541,8 @@ $( document ).ready(function() {  // CapitalI
             // Reset element when an unaccepted element (does not have class "Clone") returns to its position in the periodic table.
             if (!$(this).hasClass("ElementBox Clone")){  
                 $(".AtomNum, .AtomName, .AtomWeight", this).show();
-                $(".AtomSymbol", this).css("font-size", "160%");
+                // $(".AtomSymbol", this).css("font-size", "160%"); 
+                $(".AtomSymbol", this).css("font-size", CssObj.AtomSymbol);  // Use the saved font-size to resize the AtomSymbol
             }
 
             console.log("ErrStr: " + ErrStr);
