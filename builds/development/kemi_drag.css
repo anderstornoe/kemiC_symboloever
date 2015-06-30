@@ -4,16 +4,16 @@ h1{color: #000;}  /*Midlertigigt fix*/
 
 h4{display: inline-block;}
 
-.container-fluid{padding-left: 50px; padding-right: 50px;}
+.container-fluid{padding-left: 50px; padding-right: 50px; background-color: #f8f8f6;}  
 
 .btn{text-align: left; border-radius: 4px;}
 .btn-info{color: #FFF;}
 
-.QuizHeadingText{color: #666;}
+.QuizHeadingText{}
 .QuestionWrap{margin-left: 4%;}
 .QuestionWrap h2{display: inline-block;}
 .QuestionText{ margin-right: 2%;}
-.QuestionCorrectNew{color: #666;
+.QuestionCorrectNew{color: #777;
 					font-size: 33%; 
 					margin-left: 8%;
     				margin-top: 1%;
@@ -55,6 +55,7 @@ h4{display: inline-block;}
 .LukClass:hover {color: #000;}
 .QuizHeadingTextCount{display: inline-block; margin-bottom: 1%;}
 .NextQuestion{margin-left: 1%; margin-bottom: 1%;}
+.NextQuestion:hover{background-color: #E6E6E6;}
 
 .AnsMolecule{display: inline-block;}
 
@@ -67,15 +68,17 @@ h4{display: inline-block;}
 */
         /*cursor:pointer;*/   
 }  /* NOTE: 90/18 = 5%, og 5/18 = 0.27777% */
+.ElementBox:hover {background-color: orange;}
+
 .DummyElement{position: relative; width: 5.2756%; margin: 0.14%; padding: 3px; display: inline-block; /*border: 1px solid #F00;*/ }
 .AtomNum     {position: relative; font-size: 100%;}
 .AtomName    {position: relative; }
 .AtomSymbol  {position: relative; font-size: 220%; }
 .AtomWeight  {position: relative; display: none;}
  
-.lbox{width: 6%; margin-bottom: 2.8%; border: 1px solid #717272;} /* width: 12%; margin-bottom: 3%; */
+.lbox{width: 6%; margin-bottom: 2.8%; border: 1px solid #717272; background-color: #FFF;} /* width: 12%; margin-bottom: 3%; */
 .xlbox{/*width: 12%;*/ width: 4%; margin-right: 0%; }   /*margin-right: 4%;*/
-.sbox{/*width: 33%;*/ width: 100%; border: 1px solid #717272;}
+.sbox{/*width: 33%;*/ width: 100%; border: 1px solid #717272; background-color: #FFF;}
 
 .red{border: 1px solid #F00;}
 
@@ -85,10 +88,10 @@ h4{display: inline-block;}
 #DropWrap3{}
 .DropWrapper{}
 .DropCoeff{display: inline-block;}
-.DropElement{display: inline-block;}
+.DropElement{display: inline-block; background-color: #FFF; border-radius: 4px;}
 .DropChargeAndIndex{display: inline-block;}
-.DropCharge{}
-.DropIndex{}
+.DropCharge{background-color: #FFF; border-radius: 4px;}
+.DropIndex{background-color: #FFF; border-radius: 4px;}
 .DropSpacer{width: 70%;}
 .DroppedDraggable{background-color: transparent; border-color: transparent;}
 .DropZone .Dropped{text-align: center;}
@@ -116,6 +119,8 @@ h4{display: inline-block;}
 */
         /*cursor:pointer;*/  
 }
+.DragNum:hover {background-color: orange;}
+
 .IndexNum{}
 .ChargeNum{}
 .CoeffNum{}

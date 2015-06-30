@@ -223,6 +223,8 @@ var TotResultObj = {
 
 var CssObj = {};
 
+var CssAtomSymbolFontSize;
+
 // var TResultObj = JSON.parse(JSON.stringify(ResultObj));  // Used for resetting ResultObj
 // var TResultObj  = jQuery.extend(true, {}, ResultObj);
 
@@ -582,7 +584,7 @@ function PrincipleRepeat(JOQ, PrincipleArray, Qcount, ShowObj){
     HTML += "<h1>"+ReturnQuestionHeading(PrincipleNum, Level)+"</h1>";
     HTML += "<div class='QuestionWrap'>";
     HTML += "<h4 class='QuestionText'>" +
-                "<span class='QustionActionText'>Træk grundstofsymbol<span class='QustionActionElements'>"+ReturnActions(ShowObj)+"</span> til det rette felt,</span><br/>" +
+                "<span class='QustionActionText'>Træk grundstofsymbol<span class='QustionActionElements'>"+ReturnActions(ShowObj)+"</span> til de hvide felter, </span><br/>" +
                     ReturnQuestionLevel(JsonObj_PeriodicTable, MoleculeObj, Level) +
             "</h4>" + QuestionCountStr;
     HTML += "</div>";
@@ -667,8 +669,8 @@ function GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum){
 
         FontSizeScalerNew(".PeriodicTableWrapper", 
                         [".AtomSymbol", ".NumberHeading", ".ElementBox", ".DragNum", ".ScoreHeaderH3", 
-                        ".ScoreHeader", ".ScoreNum", ".TryAgain", ".NextQuestion", ".QuizHeadingText h2", 
-                        ".QuizHeadingText h1", ".QuizHeadingTextCount", "#UserMsgBox"], 1425);
+                        ".ScoreHeader", ".ScoreNum", ".TryAgain",  
+                        ".QuizHeadingTextCount", "#UserMsgBox"], 1425);
 
         console.log("GiveQuestion - Qcount 2:" + Qcount + "");
 
@@ -705,7 +707,7 @@ function ReturnActions(ShowObj){
     }
     for (var i in ShowObj){
         if (ShowObj[i]){
-            ActionStr += ((NumOfActions > 1)? ", ":" og ")+((i == "Index")?"index tal":"")+((i == "Charge")?"ladning":"")+((i == "Coeff")?"koefficient":"");
+            ActionStr += ((NumOfActions > 1)? ", ":" og ")+((i == "Index")?"indekstal":"")+((i == "Charge")?"ladning":"")+((i == "Coeff")?"koefficient":"");
             --NumOfActions;
         }
     }
@@ -746,7 +748,7 @@ function ReturnActions_2(){  // JOQ, PrincipleArray, Qcount
         --NumOfActionTypes;
         console.log("ReturnActions_2 - i: " + i + ", AObj[i]: " + AObj[i] );
         if (i == "NumOfElements") ActionStr += ((AObj[i]>1)?"grundstofsymbolerne":(AObj[i]==1)?"grundstofsymbolet":"");
-        if (i == "NumOfIndex") ActionStr += ((AObj[i]>1)?"index tallene":(AObj[i]==1)?"index tallet":"");
+        if (i == "NumOfIndex") ActionStr += ((AObj[i]>1)?"indekstallene":(AObj[i]==1)?"indekstallet":"");
         if (i == "NumOfcharge") ActionStr += ((AObj[i]>1)?"ladningerne":(AObj[i]==1)?"ladningen":""); 
         if (i == "NumOfCoeff") ActionStr += ((AObj[i]>1)?"koefficienterne":(AObj[i]==1)?"koefficienten":""); 
         ActionStr += ((NumOfActionTypes>1)? ", ":(NumOfActionTypes==1)? " og ":"");
@@ -875,14 +877,15 @@ function GivePosetiveFeedback(JsonObj_Questions, ResultObj){
             CssObj.Index =  $(".IndexNum").css( CssGet );
             CssObj.Charge =  $(".ChargeNum").css( CssGet );
             CssObj.Coeff =  $(".CoeffNum").css( CssGet );
-            CssObj.lbox =  $(".lbox").css(["border-top-color", "border-right-color", "border-bottom-color", "border-left-color"]); // Note: "border-color" will not work, you have to explicitly name the sides
-            CssObj.sbox =  $(".sbox").css(["border-top-color", "border-right-color", "border-bottom-color", "border-left-color"]); // Note: "border-color" will not work, you have to explicitly name the sides
+            CssObj.lbox =  $(".lbox").css(["background-color", "border-top-color", "border-right-color", "border-bottom-color", "border-left-color"]); // Note: "border-color" will not work, you have to explicitly name the sides
+            CssObj.sbox =  $(".sbox").css(["background-color", "border-top-color", "border-right-color", "border-bottom-color", "border-left-color"]); // Note: "border-color" will not work, you have to explicitly name the sides
         }
-        console.log("CssObj: " + JSON.stringify(CssObj));
+        console.log("GivePosetiveFeedback - CssObj: " + JSON.stringify(CssObj));
 
         // Fade out borders on the droppables 
         $( ".lbox, .sbox" ).animate({
-            "border-color": "transparent"
+            "border-color": "transparent",
+            "background-color": $(".container-fluid").css("background-color")  // Set background-color to the same background-color as the class container-fluid.
         }, 500 );
 
         $(".Clone").animate( CssSet, 500);  // This fades the clones.
@@ -1150,8 +1153,9 @@ function ResetQuiz(Milliseconds){
     if (ResultObj.Dropped.Coeff)  $(".Coeff_OK").css(CssObj.Coeff);
     // $(".lbox").css(CssObj.lbox);
     // $(".sbox").css(CssObj.sbox);
-    $( ".lbox" ).animate(CssObj.lbox, 1000 ); // The droppables will fadein 
+    
     $( ".sbox" ).animate(CssObj.sbox, 1000 ); // The droppables will fadein 
+    $( ".lbox" ).animate(CssObj.lbox, 1000 ); // The droppables will fadein 
 
     // Reset memory:
     EventObj = {    
@@ -1331,8 +1335,8 @@ $( document ).ready(function() {  // CapitalI
 
         FontSizeScalerNew(".PeriodicTableWrapper", 
                             [".AtomSymbol", ".NumberHeading", ".ElementBox", ".DragNum", ".ScoreHeaderH3", 
-                            ".ScoreHeader", ".ScoreNum", ".TryAgain", ".NextQuestion", ".QuizHeadingText h2", 
-                            ".QuizHeadingText h1", ".QuizHeadingTextCount", "#UserMsgBox", ".ScoreWrapper", ".MoleculeHtmlStr"], 1425);
+                            ".ScoreHeader", ".ScoreNum", ".TryAgain", 
+                            ".QuizHeadingTextCount", "#UserMsgBox", ".ScoreWrapper", ".MoleculeHtmlStr"], 1425);
 
         $( ".DragNum" ).width( $( ".DragNum" ).height() );
 
@@ -1357,8 +1361,8 @@ $( document ).ready(function() {  // CapitalI
 
         FontSizeScalerNew(".PeriodicTableWrapper", 
                             [".AtomSymbol", ".NumberHeading", ".ElementBox", ".DragNum", ".ScoreHeaderH3", 
-                            ".ScoreHeader", ".ScoreNum", ".TryAgain", ".NextQuestion", ".QuizHeadingText h2", 
-                            ".QuizHeadingText h1", ".QuizHeadingTextCount", "#UserMsgBox", ".ScoreWrapper", ".MoleculeHtmlStr"], 1425);
+                            ".ScoreHeader", ".ScoreNum", ".TryAgain", 
+                            ".QuizHeadingTextCount", "#UserMsgBox", ".ScoreWrapper", ".MoleculeHtmlStr"], 1425);
 
         $( ".DragNum" ).width( $( ".DragNum" ).height() );
     });
@@ -1390,7 +1394,7 @@ $( document ).ready(function() {  // CapitalI
             // // Hide .AtomNum, .AtomName, .AtomWeight "on drag" instead of hide "on mousedown":
             if ($( ".draggable" ).draggable('option', 'disabled') != true){
                 $(".AtomNum, .AtomName, .AtomWeight", this).hide();
-                CssObj.AtomSymbol = $(".AtomSymbol", this).css("font-size");  // Save the font-size
+                CssAtomSymbolFontSize = $(".AtomSymbol", this).css("font-size");  // Save the font-size
                 $(".AtomSymbol", this).css("font-size", "400%");
                 console.log("XXX TEST");
             }
@@ -1541,8 +1545,8 @@ $( document ).ready(function() {  // CapitalI
             // Reset element when an unaccepted element (does not have class "Clone") returns to its position in the periodic table.
             if (!$(this).hasClass("ElementBox Clone")){  
                 $(".AtomNum, .AtomName, .AtomWeight", this).show();
-                // $(".AtomSymbol", this).css("font-size", "160%"); 
-                $(".AtomSymbol", this).css("font-size", CssObj.AtomSymbol);  // Use the saved font-size to resize the AtomSymbol
+                // $(".AtomSymbol", this).css("font-size", "160%");
+                $(".AtomSymbol", this).css("font-size", CssAtomSymbolFontSize);  // Use the saved font-size to resize the AtomSymbol
             }
 
             console.log("ErrStr: " + ErrStr);
