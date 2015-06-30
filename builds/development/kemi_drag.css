@@ -96,7 +96,7 @@ h4{display: inline-block;}
 .DroppedDraggable{background-color: transparent; border-color: transparent;}
 .DropZone .Dropped{text-align: center;}
 
-.ui-draggable-dragging{text-align: center;} /*Align center for all dragged elements*/
+.ui-draggable-dragging{text-align: center; z-index: 10;} /*Align center for all dragged elements*/
 
 /*.TaskNumberImg{width: 2.25%; margin-bottom: 3px;}*/
 
