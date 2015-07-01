@@ -115,10 +115,10 @@ var ResultObj = {   Attempt: 0,
                 };
 
 // TotResultObj is used for keeping track of correct/wrong anwsers of the whole quiz:
-var TotResultObj = {  
-                        TotAttempt: 0, 
-                        TotCorrect: 0, 
-                        TotFail: 0, 
+var TotResultObj = {    NewTotFail: 0,    // This counts the total wrong answers in an "forgiving" manner.
+                        TotAttempt: 0, // This counts the total attemps in an "unforgiving" manner.
+                        TotCorrect: 0, // This counts the total correct answers in an "unforgiving" manner.
+                        TotFail: 0,    // This counts the total wrong answers in an "unforgiving" manner.
                         LastDraggableAccepted: false,  // Status of the last draggable: "true" if successfully dropped, otherwise "false".
                         LastDragged: {Type: null, Left: null, Right: null},  // The last (attempted) dragged draggable
                         LastAttemptedDroppedOn: null,       // The last attempted dropped droppable
@@ -128,6 +128,7 @@ var TotResultObj = {
                         Charge:  {Correct: 0, Fail: 0, Attempt: 0},
                         Coeff:   {Correct: 0, Fail: 0, Attempt: 0}
                     };
+
 
 var CssObj = {};
 
@@ -443,7 +444,7 @@ function PrincipleRepeat(JOQ, PrincipleArray, Qcount, ShowObj){
         
 
     var ArrayLength = PrincipleArray.length;
-    var QuestionCountStr = "<br/><h4><span class='QuizHeadingTextCount'>" + String(Qcount + 1) + "/" + String(ArrayLength) + "</span></h4>" + 
+    var QuestionCountStr = "<br/><h4>Din score er: <span class='QuizHeadingTextCount QuestionTask'>" + String(Qcount + 1) + "/" + String(ArrayLength) + "</span> Fejl: <span class='ErrorCount QuestionTask'>"+TotResultObj.NewTotFail+"</span> </h4>" + 
                            "<span class='QuizNextQuestion'>" + 
                                 '<a class="NextQuestion btn-default btn btn-default" href="#">Næste spørgsmål</a>' +
                            "</span>";
@@ -536,7 +537,7 @@ function GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum){
         FontSizeScalerNew(".PeriodicTableWrapper", 
                         [".AtomSymbol", ".NumberHeading", ".ElementBox", ".DragNum", ".ScoreHeaderH3", 
                         ".ScoreHeader", ".ScoreNum", ".TryAgain",  
-                        ".QuizHeadingTextCount", "#UserMsgBox"], 1425);
+                        "#UserMsgBox"], 1425);
 
         console.log("GiveQuestion - Qcount 2:" + Qcount + "");
 
@@ -600,7 +601,7 @@ function ReturnShowObj(JsonObj_Questions, TPrincipleArray, Qcount){
 }
 
 
-function ShowStudentScore(Use_UserMsgBox){
+function ShowStudentScore_OLD(Use_UserMsgBox){
     var HTML = '';  
 
     HTML += '<div class="ScoreWrapper">';
@@ -625,6 +626,25 @@ function ShowStudentScore(Use_UserMsgBox){
 
     if (Use_UserMsgBox) 
         UserMsgBox("body", "Du klarede det med " + TotResultObj.TotFail + " fejl Se resultaterne her <br/>" + HTML);
+    else
+        $(".ShowStudentScore").html( HTML );
+
+    // Update numbers:
+    $(".ScoreAttempts").text( TotResultObj.TotAttempt ); 
+    $(".ScoreCorrect").text( TotResultObj.TotCorrect );
+    $(".ScoreFail").text( TotResultObj.TotFail );
+    $(".ScoreStat").text( (TotResultObj.TotCorrect/TotResultObj.TotAttempt*100).toFixed(2) + "%" ); 
+
+    if (Use_UserMsgBox) 
+        return 0;
+}
+
+
+function ShowStudentScore(Use_UserMsgBox){
+    var HTML = '';  
+
+    if (Use_UserMsgBox) 
+        UserMsgBox("body", "Flot, du har lavet "+MaxNumOfElements+" opgaver korrekt! <br/> Du havde " + TotResultObj.NewTotFail + ' fejl undervejs. <br/>Klik "Prøv igen" for at prøve igen med '+TotResultObj.NewTotFail+' nye opgaver.');
     else
         $(".ShowStudentScore").html( HTML );
 
@@ -936,11 +956,14 @@ function UpdateResultFeedback(ResultObj, TotResultObj, ObjKey ,BoolCorrectOrFail
         TotResultObj.TotFail += 1;
         TotResultObj[ObjKey].Fail += 1;
         TotResultObj.LastDraggableAccepted = false;
+        TotResultObj.NewTotFail += 1;
     }
     // $(".ScoreAttempts").text( ResultObj.Attempt ); 
     // $(".ScoreCorrect").text( ResultObj.Correct );
     // $(".ScoreFail").text( ResultObj.Fail );
     // $(".ScoreStat").text( (ResultObj.Correct/ResultObj.Attempt*100).toFixed(2) + "%" ); 
+
+    $(".ErrorCount").text(TotResultObj.NewTotFail);
 
     // alert(typeof((ResultObj.Correct/ResultObj.Attempt*100).toFixed(2)))     
     console.log("UpdateResultFeedback - TotResultObj: " + JSON.stringify(TotResultObj));          
@@ -1163,7 +1186,7 @@ $( document ).ready(function() {  // CapitalI
         FontSizeScalerNew(".PeriodicTableWrapper", 
                             [".AtomSymbol", ".NumberHeading", ".ElementBox", ".DragNum", ".ScoreHeaderH3", 
                             ".ScoreHeader", ".ScoreNum", ".TryAgain", 
-                            ".QuizHeadingTextCount", "#UserMsgBox", ".ScoreWrapper", ".MoleculeHtmlStr"], 1425);
+                            "#UserMsgBox", ".ScoreWrapper", ".MoleculeHtmlStr"], 1425);
 
         $( ".DragNum" ).width( $( ".DragNum" ).height() );
 
@@ -1189,7 +1212,7 @@ $( document ).ready(function() {  // CapitalI
         FontSizeScalerNew(".PeriodicTableWrapper", 
                             [".AtomSymbol", ".NumberHeading", ".ElementBox", ".DragNum", ".ScoreHeaderH3", 
                             ".ScoreHeader", ".ScoreNum", ".TryAgain", 
-                            ".QuizHeadingTextCount", "#UserMsgBox", ".ScoreWrapper", ".MoleculeHtmlStr"], 1425);
+                            "#UserMsgBox", ".ScoreWrapper", ".MoleculeHtmlStr"], 1425);
 
         $( ".DragNum" ).width( $( ".DragNum" ).height() );
     });
