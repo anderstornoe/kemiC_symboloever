@@ -4,6 +4,9 @@ h1{color: #000;}  /*Midlertigigt fix*/
 
 h4{display: inline-block;}
 
+h5{display: inline-block;}
+
+
 .container-fluid{padding-left: 50px; padding-right: 50px; background-color: #f8f8f6;}  
 
 .btn{text-align: left; border-radius: 4px;}

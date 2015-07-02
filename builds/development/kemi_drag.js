@@ -444,7 +444,7 @@ function PrincipleRepeat(JOQ, PrincipleArray, Qcount, ShowObj){
         
 
     var ArrayLength = PrincipleArray.length;
-    var QuestionCountStr = "<br/><h4>Din score er: <span class='QuizHeadingTextCount QuestionTask'>" + String(Qcount + 1) + "/" + String(ArrayLength) + "</span> Fejl: <span class='ErrorCount QuestionTask'>"+TotResultObj.NewTotFail+"</span> </h4>" + 
+    var QuestionCountStr = "<br/><h5>Spørgsmål: <span class='QuizHeadingTextCount QuestionTask'>" + String(Qcount + 1) + "/" + String(ArrayLength) + "</span> Fejl: <span class='ErrorCount QuestionTask'>"+TotResultObj.NewTotFail+"</span> </h5>" + 
                            "<span class='QuizNextQuestion'>" + 
                                 '<a class="NextQuestion btn-default btn btn-default" href="#">Næste spørgsmål</a>' +
                            "</span>";
@@ -644,7 +644,7 @@ function ShowStudentScore(Use_UserMsgBox){
     var HTML = '';  
 
     if (Use_UserMsgBox) 
-        UserMsgBox("body", "Flot, du har lavet "+MaxNumOfElements+" opgaver korrekt! <br/> Du havde " + TotResultObj.NewTotFail + ' fejl undervejs. <br/>Klik "Prøv igen" for at prøve igen med '+TotResultObj.NewTotFail+' nye opgaver.');
+        UserMsgBox("body", "Flot, du har lavet "+MaxNumOfElements+" opgaver korrekt! <br/> Du havde " + TotResultObj.NewTotFail + ' fejl undervejs. <br/>Klik "Prøv igen" for at prøve igen med '+MaxNumOfElements+' nye opgaver.');
     else
         $(".ShowStudentScore").html( HTML );
 
