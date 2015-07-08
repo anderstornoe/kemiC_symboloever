@@ -1143,6 +1143,7 @@ function SetProgramPerameter(UlrVarObj){
 
 
 $( document ).ready(function() {  // CapitalI
+// $(window).load(function() {
 
     ReturnAjaxData("GET", "periodisk_system.json", false, "json");  // Get the periodic-table data which is contained in JsonData.
     JsonObj_PeriodicTable = JsonData;  
@@ -1172,29 +1173,36 @@ $( document ).ready(function() {  // CapitalI
 
     // When the window loades, scale all elements:
     $(window).load(function () {
-        // Scale the height on all ElmentBox
-        // $( ".ElementBox" ).height( 4/3*$( ".ElementBox" ).width() ); // Rektangulære boxe
-        $( ".ElementBox" ).height( $( ".ElementBox" ).width() );        // Kvardratiske boxe  
 
-        // Scale the height on all small and large boxes
-        $( ".lbox" ).height( $( ".lbox" ).width() );
-        // $( ".lbox" ).width( $( ".lbox" ).width() );
-        // $( ".xlbox" ).height( $( ".xlbox" ).width() );
-        $( ".sbox" ).height( $( ".sbox" ).width() );  
-        $( ".DropSpacer" ).height( $( ".DropSpacer" ).width() );
+        // for (var i = 1; i <= 2; i++) { // For advoiding that IPAD does not load fully.
+        
+            // Scale the height on all ElmentBox
+            // $( ".ElementBox" ).height( 4/3*$( ".ElementBox" ).width() ); // Rektangulære boxe
+            $( ".ElementBox" ).height( $( ".ElementBox" ).width() );        // Kvardratiske boxe  
 
-        FontSizeScalerNew(".PeriodicTableWrapper", 
-                            [".AtomSymbol", ".NumberHeading", ".ElementBox", ".DragNum", ".ScoreHeaderH3", 
-                            ".ScoreHeader", ".ScoreNum", ".TryAgain", 
-                            "#UserMsgBox", ".ScoreWrapper", ".MoleculeHtmlStr"], 1425);
+            // Scale the height on all small and large boxes
+            $( ".lbox" ).height( $( ".lbox" ).width() );
+            // $( ".lbox" ).width( $( ".lbox" ).width() );
+            // $( ".xlbox" ).height( $( ".xlbox" ).width() );
+            $( ".sbox" ).height( $( ".sbox" ).width() );  
+            $( ".DropSpacer" ).height( $( ".DropSpacer" ).width() );
 
-        $( ".DragNum" ).width( $( ".DragNum" ).height() );
+            FontSizeScalerNew(".PeriodicTableWrapper", 
+                                [".AtomSymbol", ".NumberHeading", ".ElementBox", ".DragNum", ".ScoreHeaderH3", 
+                                ".ScoreHeader", ".ScoreNum", ".TryAgain", 
+                                "#UserMsgBox", ".ScoreWrapper", ".MoleculeHtmlStr"], 1425);
 
-        // $( ".DropWrapper" ).height( $( ".DropZone" ).height() );
+            $( ".DragNum" ).width( $( ".DragNum" ).height() );
 
-        console.log("WindowWidth: " + $( window ).width());
+            // $( ".DropWrapper" ).height( $( ".DropZone" ).height() );
 
-        // $( ".ElementBox" ).css( "font-size", String(50)+"%" );
+            console.log("WindowWidth: " + $( window ).width());
+
+            // $( ".ElementBox" ).css( "font-size", String(50)+"%" );
+
+
+            console.log("Load nr: " + i);
+        // };
     });
 
     // When the window resizes, scale all elements: 
