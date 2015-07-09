@@ -62,7 +62,7 @@ h5{display: inline-block;}
 
 .AnsMolecule{display: inline-block;}
 
-.PeriodicTableWrapper{ width: 100%; /*border: 1px solid #F00;*/}
+.PeriodicTableWrapper{ width: 101%; /*border: 1px solid #F00;*/}
 .ElementBox  {position: relative; font-size: 11px; width: 5.2756%; margin: 0.14%; padding: 3px; display: inline-block; line-height: 1.4; overflow: hidden;
 /*
         IPAD-work-around til at faa HintClass-div's til at lukke:
