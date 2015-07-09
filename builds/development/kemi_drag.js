@@ -1349,7 +1349,7 @@ function MakePeriodicTable(JsonObj_PeriodicTable) {
     console.log("ElementNumberStr :" + ElementNumberStr);
 
     for (var r = 1; r <= 7; r++) {
-        HTML += '<div class="row">';
+        HTML += '<div class="xrow">';
         for (var i = 1; i <= 18; i++) {
             ++x;
             if (ElementNumberStr.indexOf("_" + String(x) + "_") === -1) {
