@@ -1813,6 +1813,8 @@ $(document).ready(function() { // CapitalI
                 $(".AtomSymbol", this).css("font-size", "400%");
                 console.log("XXX TEST");
             }
+
+            console.log("dragging start - CssAtomSymbolFontSize: " + CssAtomSymbolFontSize);
         },
 
         // SEQUENCE 3:
@@ -1952,7 +1954,7 @@ $(document).ready(function() { // CapitalI
                 $(this).css({
                     top: "0px",
                     left: "0px"
-                }); // Move the original back to its origanal position.
+                }); // Move the original back to its origanal position. <--- This is not nessary 
                 $("#" + EventObj.LastDroppedOnParent + " " + "." + EventObj.LastDroppedOn).append(SimpleClone($(this)).addClass("Clone")); // Place a clone inside the droppable and add class "Clone" to it.
 
                 // // Reset element when an unaccepted element returns to its position in the periodic table
@@ -1962,6 +1964,10 @@ $(document).ready(function() { // CapitalI
                 TotResultObj.LastDraggableAccepted = false;
             }
 
+            $(this).css({
+                    top: "0px",
+                    left: "0px"
+            }); // Reset all "top" and "left" ajustments add by JQuery-UI, in an attempt to avoid that the periodic table "breaks". 
 
             // Reset element when an unaccepted element (does not have class "Clone") returns to its position in the periodic table.
             if (!$(this).hasClass("ElementBox Clone")) {
