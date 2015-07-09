@@ -5,72 +5,71 @@
 
 var JsonObj_Questions = [
 
-    // {
-    //     "MolSym": "H<sub>2</sub>",
-    //     "TName": "Dihydrogen",
-    //     "Principle": [1, 3],
-    //     "Mol": [{
-    //         "AtomSym": "H",
-    //         "Index": 2
-    //     }]
-    // }, {
-    //     "MolSym": "He",
-    //     "TName": "Helium (ballongas)",
-    //     "Principle": [1, 3],
-    //     "Mol": [{
-    //         "AtomSym": "He",
-    //         "Index": 1
-    //     }]
-    // }, {
-    //     "MolSym": "N<sub>2</sub>",
-    //     "TName": "Dinitrogen",
-    //     "Principle": [1, 3],
-    //     "Mol": [{
-    //         "AtomSym": "N",
-    //         "Index": 2
-    //     }]
-    // }, {
-    //     "MolSym": "O<sub>2</sub>",
-    //     "TName": "Dioxygen",
-    //     "Principle": [1, 3],
-    //     "Mol": [{
-    //         "AtomSym": "O",
-    //         "Index": 2
-    //     }]
-    // }, {
-    //     "MolSym": "O<sub>3</sub>",
-    //     "TName": "Ozon",
-    //     "Principle": [1, 3],
-    //     "Mol": [{
-    //         "AtomSym": "O",
-    //         "Index": 3
-    //     }]
-    // }, {
-    //     "MolSym": "Ne",
-    //     "TName": "Neongas",
-    //     "Principle": [1, 3],
-    //     "Mol": [{
-    //         "AtomSym": "Ne",
-    //         "Index": 1
-    //     }]
-    // }, {
-    //     "MolSym": "S<sub>8</sub>",
-    //     "TName": "Svovl",
-    //     "Principle": [1, 3],
-    //     "Mol": [{
-    //         "AtomSym": "S",
-    //         "Index": 8
-    //     }]
-    // }, {
-    //     "MolSym": "Cl<sub>2</sub>",
-    //     "TName": "Dichlor",
-    //     "Principle": [1, 3],
-    //     "Mol": [{
-    //         "AtomSym": "Cl",
-    //         "Index": 2
-    //     }]
-    // }, 
     {
+        "MolSym": "H<sub>2</sub>",
+        "TName": "Dihydrogen",
+        "Principle": [1, 3],
+        "Mol": [{
+            "AtomSym": "H",
+            "Index": 2
+        }]
+    }, {
+        "MolSym": "He",
+        "TName": "Helium (ballongas)",
+        "Principle": [1, 3],
+        "Mol": [{
+            "AtomSym": "He",
+            "Index": 1
+        }]
+    }, {
+        "MolSym": "N<sub>2</sub>",
+        "TName": "Dinitrogen",
+        "Principle": [1, 3],
+        "Mol": [{
+            "AtomSym": "N",
+            "Index": 2
+        }]
+    }, {
+        "MolSym": "O<sub>2</sub>",
+        "TName": "Dioxygen",
+        "Principle": [1, 3],
+        "Mol": [{
+            "AtomSym": "O",
+            "Index": 2
+        }]
+    }, {
+        "MolSym": "O<sub>3</sub>",
+        "TName": "Ozon",
+        "Principle": [1, 3],
+        "Mol": [{
+            "AtomSym": "O",
+            "Index": 3
+        }]
+    }, {
+        "MolSym": "Ne",
+        "TName": "Neongas",
+        "Principle": [1, 3],
+        "Mol": [{
+            "AtomSym": "Ne",
+            "Index": 1
+        }]
+    }, {
+        "MolSym": "S<sub>8</sub>",
+        "TName": "Svovl",
+        "Principle": [1, 3],
+        "Mol": [{
+            "AtomSym": "S",
+            "Index": 8
+        }]
+    }, {
+        "MolSym": "Cl<sub>2</sub>",
+        "TName": "Dichlor",
+        "Principle": [1, 3],
+        "Mol": [{
+            "AtomSym": "Cl",
+            "Index": 2
+        }]
+    }, {
         "MolSym": "Br<sub>2</sub>",
         "TName": "Dibrom",
         "Principle": [1, 3],
@@ -1005,8 +1004,7 @@ function GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum) {
 
     ResultObj.Qcount = Qcount;
     ResultObj.PrincipleArray = TPrincipleArray;
-    if (Qcount <= MaxNumOfElements - 1)  // Because IE ver 9 breaks when the last answer is given.
-        PrincipleRepeat(JOQ, TPrincipleArray, Qcount, ShowObj);
+    PrincipleRepeat(JOQ, TPrincipleArray, Qcount, ShowObj);
 
     console.log("GiveQuestion - Qcount 1:" + Qcount + "");
 
@@ -1791,8 +1789,6 @@ $(document).ready(function() { // CapitalI
 
     var ErrStr = "";
 
-
-    $(".ElementSpace").removeClass("draggable");  // Prevents the two draggables "ElementSpace" of moving. 
 
     $(".draggable").draggable({
         revert: 'invalid', // Makes the draggable revert back if does not have class "Elem_OK", "Coeff_OK", "Char_OK" or "Index_OK". 
