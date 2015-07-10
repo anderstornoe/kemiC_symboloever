@@ -1746,6 +1746,8 @@ $(document).ready(function() { // CapitalI
    // alert("hej");
     $(".DropSpacer").height($(".DropSpacer").width());
 
+    
+
     FontSizeScalerNew(".PeriodicTableWrapper", [".AtomSymbol", ".NumberHeading", ".ElementBox", ".DragNum", ".ScoreHeaderH3",
         ".ScoreHeader", ".ScoreNum", ".TryAgain",
         "#UserMsgBox", ".ScoreWrapper", ".MoleculeHtmlStr"
