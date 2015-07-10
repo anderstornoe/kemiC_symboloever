@@ -69,7 +69,8 @@ var JsonObj_Questions = [
             "AtomSym": "Cl",
             "Index": 2
         }]
-    }, {
+    }, 
+    {
         "MolSym": "Br<sub>2</sub>",
         "TName": "Dibrom",
         "Principle": [1, 3],
@@ -1004,7 +1005,8 @@ function GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum) {
 
     ResultObj.Qcount = Qcount;
     ResultObj.PrincipleArray = TPrincipleArray;
-    PrincipleRepeat(JOQ, TPrincipleArray, Qcount, ShowObj);
+    if (Qcount <= MaxNumOfElements - 1)  // Because IE ver 9 breaks when the last answer is given.
+        PrincipleRepeat(JOQ, TPrincipleArray, Qcount, ShowObj);
 
     console.log("GiveQuestion - Qcount 1:" + Qcount + "");
 
@@ -1791,6 +1793,8 @@ $(document).ready(function() { // CapitalI
 
     var ErrStr = "";
 
+
+    $(".ElementSpace").removeClass("draggable");  // Prevents the two draggables "ElementSpace" of moving. 
 
     $(".draggable").draggable({
         revert: 'invalid', // Makes the draggable revert back if does not have class "Elem_OK", "Coeff_OK", "Char_OK" or "Index_OK". 
