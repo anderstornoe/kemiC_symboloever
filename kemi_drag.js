@@ -925,7 +925,7 @@ function ReturnQuestionHeading(PrincipleNum, Level) {
     if (PrincipleNum == 3) HTML = "Ét og flere grundstoffer";
     if (PrincipleNum == 4) HTML = "Simple ioners formler";
     if (PrincipleNum == 5) HTML = "Sammensatte ioners formler";
-    HTML += ' <img class="TaskNumberImg" src="../../../library/img/TaskNumbers_' + Level + '.svg"/>';
+    HTML += ' <img class="TaskNumberImg" src="../library/img/TaskNumbers_' + Level + '.svg"/>';
     return HTML;
 }
 
