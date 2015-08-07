@@ -1211,7 +1211,7 @@ function GivePosetiveFeedback(JsonObj_Questions, ResultObj) {
 
     console.log("GivePosetiveFeedback - Current question:" + ResultObj.PrincipleArray[ResultObj.Qcount]);
 
-    if (ResultObj.Correct == ReturnNumOfCorrectAnswers(JsonObj_Questions, ResultObj)) {
+    if ( (ResultObj.Correct == ReturnNumOfCorrectAnswers(JsonObj_Questions, ResultObj)) && ($( ".MoleculeHtmlStr" ).length == 0) ) {  // $( ".MoleculeHtmlStr" ).length == 0 prevents "correct-feedback" from running more than once.
 
         $(".QustionActionText").fadeOut("slow");
 
