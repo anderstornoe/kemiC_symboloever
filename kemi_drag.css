@@ -176,3 +176,7 @@ h5{display: inline-block;}
 .OtherNonMetal{background-color: #277e8e;}
 .Metalloid{background-color: #277e8e;}
 .NonMetal{}  /*background-color: #3399CC;*/
+
+.container-fluid:nth-of-type(2) {  /* Dette forhindre en margin på 20px, som gør at det opaque overlay sænkes */
+    margin-top: 0;
+}
