@@ -102,6 +102,8 @@ h5{display: inline-block;}
 .ui-draggable-dragging{text-align: center; z-index: 10;} /*Align center for all dragged elements*/
 
 /*.TaskNumberImg{width: 2.25%; margin-bottom: 3px;}*/
+.TaskNumberImg{width: 20px; height: 20px;}
+
 
 .DropHighlight{background-color: #0F0;}
 
