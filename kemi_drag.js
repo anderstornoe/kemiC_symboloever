@@ -537,6 +537,8 @@ var ResultStr = "";
 var TimerId_FadeOut;
 var TimerId_FadeIn;
 
+var TArrayLength;
+
 var MemObj = { // MemObj is permanent through program execution 
     CloneArray: [], // Keeps track of the clone-numbers, eg. 1,2,3,..., denoted: "Clone_1", "Clone_2", "Clone_3",...
     NewestClone: null, // The latest clone.
@@ -983,7 +985,7 @@ function PrincipleRepeat(JOQ, PrincipleArray, Qcount, ShowObj) {
 function GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum) {
     var PrincipleArray;
     var TPrincipleArray;
-    var ArrayLength;
+    var ArrayLength;   // <---- MOVED TO GLOBAL SCOPE 26/8-2015
     var JOQ = JsonObj_Questions; // JsonObj_Questions[ArrayIndexNum][KeyName];
     var HTML = "";
     var Qcount = 0;
@@ -996,6 +998,7 @@ function GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum) {
     console.log("GiveQuestion - TPrincipleArray 2: " + TPrincipleArray);
 
     ArrayLength = TPrincipleArray.length;
+    TArrayLength = ArrayLength;
 
     var ShowObj = ReturnShowObj(JsonObj_Questions, TPrincipleArray, Qcount);
 
@@ -1267,6 +1270,7 @@ function GivePosetiveFeedback(JsonObj_Questions, ResultObj) {
 
         console.log("IndexNumValue: " + typeof($(".Index_OK").text()));
 
+        $(".QuizHeadingTextCount").text(String(ResultObj.Qcount + 1) + "/" + String(TArrayLength));  // The "ResultObj.Qcount + 1" is a quick-fix for giving +1 to the score when student solves the task. THAN 26/8-2015.
     }
 }
 
