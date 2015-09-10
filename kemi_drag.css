@@ -357,11 +357,9 @@ h5 {
 .clear {
     clear: both;
 }
-
 .droppable {
-    /*border: 1px solid #717272;*/
+    margin-right: 4px;
 }
-
 .XTEST {
     background-color: #0F0;
 }
@@ -406,7 +404,7 @@ h5 {
 }
 
 .Duplicate {
-    position: "absolute";
+    position: absolute;
     background-color: #F00;
 }
 
