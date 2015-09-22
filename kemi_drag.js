@@ -571,8 +571,7 @@ var EventObj = {
     LastDroppedOn: null, // The last dropped droppable
     LastDroppedOnParent: null // The parent of the last dropped droppable - NOT the attempted
 };
-// var TEventObj = JSON.parse(JSON.stringify(EventObj));   // Used for resetting EventObj
-// var TEventObj  = jQuery.extend(true, {}, EventObj);
+
 
 // ResultObj is used for keeping track of correct/wrong anwsers regarding assembly of a single molecule:
 var ResultObj = {
