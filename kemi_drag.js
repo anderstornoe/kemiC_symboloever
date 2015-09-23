@@ -1187,7 +1187,7 @@ function ShowStudentScore(Use_UserMsgBox) {
 // MARK
 
 
-// QUICK AN DIRTY FIX - TLY ønsker 70% bredde ift container-fluid - THAN d. 23-09-2015
+// QUICK AN DIRTY FIX - TLY ønsker 70% bredde på UserMsgBox ift container-fluid - THAN d. 23-09-2015
 function UserMsgBox_SetWidth(){
     var Width = $(".container-fluid").width();
     $("#UserMsgBox").width(0.7*Width);
