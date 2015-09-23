@@ -1040,6 +1040,7 @@ function GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum) {
             // alert("Du skal placere både grundstof og indeks tal korrekt før du kan fortsætte!");
             // UserMsgBox("body", "Du skal placere både grundstof og indeks tal korrekt før du kan fortsætte!");
             UserMsgBox("body", "Du skal placere både grundstof" + ReturnActions(ShowObj) + " korrekt før du kan fortsætte!");
+            UserMsgBox_SetWidth();
             return 0;
         }
 
@@ -1146,9 +1147,10 @@ function ShowStudentScore_OLD(Use_UserMsgBox) {
     HTML += '</div>';
     HTML += '</div>';
 
-    if (Use_UserMsgBox)
+    if (Use_UserMsgBox){
         UserMsgBox("body", "Du klarede det med " + TotResultObj.TotFail + " fejl Se resultaterne her <br/>" + HTML);
-    else
+        UserMsgBox_SetWidth();
+    } else
         $(".ShowStudentScore").html(HTML);
 
     // Update numbers:
@@ -1165,9 +1167,10 @@ function ShowStudentScore_OLD(Use_UserMsgBox) {
 function ShowStudentScore(Use_UserMsgBox) {
     var HTML = '';
 
-    if (Use_UserMsgBox)
+    if (Use_UserMsgBox){
         UserMsgBox("body", "<span class='feedbackbox_txtstyle_overskrift'>Flot</span><br/>Du har lavet " + MaxNumOfElements + " opgaver korrekt. <br/> Du havde " + TotResultObj.NewTotFail + ' fejl undervejs. <br/><br/>Klik på "Prøv igen" knappen for at løse ' + MaxNumOfElements + ' nye opgaver.');
-    else
+        UserMsgBox_SetWidth();
+    } else
         $(".ShowStudentScore").html(HTML);
 
     // Update numbers:
@@ -1178,6 +1181,16 @@ function ShowStudentScore(Use_UserMsgBox) {
 
     if (Use_UserMsgBox)
         return 0;
+}
+
+
+// MARK
+
+
+// QUICK AN DIRTY FIX - TLY ønsker 70% bredde ift container-fluid - THAN d. 23-09-2015
+function UserMsgBox_SetWidth(){
+    var Width = $(".container-fluid").width();
+    $("#UserMsgBox").width(0.7*Width);
 }
 
 
@@ -1303,6 +1316,7 @@ function GiveNegativeFeedback(JsonObj_Questions, ResultObj, TotResultObj) {
             // LastAttemptedDroppedOn = null if a draggable is not dropped in a droppable.
             // UserMsgBox(".FeedbackWrap", HTML);
             UserMsgBox("body", HTML);
+            UserMsgBox_SetWidth();
         }
     }
 }
