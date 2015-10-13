@@ -960,7 +960,7 @@ function PrincipleRepeat(JOQ, PrincipleArray, Qcount, ShowObj) {
     var ArrayLength = PrincipleArray.length;
     var QuestionCountStr = "<br/><h5>Korrekt svar: <span class='QuizHeadingTextCount QuestionTask'>" + String(Qcount + 0) + "/" + String(ArrayLength) + "</span> Fejl: <span class='ErrorCount QuestionTask'>" + TotResultObj.NewTotFail + "</span> </h5>" +
         "<span class='QuizNextQuestion'>" +
-        '<a class="NextQuestion btn-default btn btn-default" href="#">Næste spørgsmål</a>' +
+        '<a class="NextQuestion btn btn-primary" href="#">Næste spørgsmål</a>' +
         "</span>";
 
     var HTML = "";

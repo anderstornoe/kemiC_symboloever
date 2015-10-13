@@ -92,7 +92,7 @@ h5 {
 }
 
 .NextQuestion:hover {
-    background-color: #E6E6E6;
+    background-color: #05a0a8;
 }
 
 .AnsMolecule {
@@ -126,7 +126,7 @@ h5 {
 /* NOTE: 90/18 = 5%, og 5/18 = 0.27777% */
 
 .ElementBox:hover {
-    background-color: orange;
+    background-color: #56bfc5;
 }
 
 .DummyElement {
@@ -312,6 +312,7 @@ h5 {
     font-size: 22px;
     text-align: center;
     color: #000;
+    background-color: #cececc;
     /*
         IPAD-work-around til at faa HintClass-div's til at lukke:
         http://stackoverflow.com/questions/7892863/jquery-click-not-working-with-ipad
@@ -321,7 +322,7 @@ h5 {
 }
 
 .DragNum:hover {
-    background-color: orange;
+    background-color: #56bfc5;
 }
 
 .IndexNum {}
@@ -416,23 +417,28 @@ h5 {
 .OtherNonMetal {}
 
 .Metal {
-    background-color: #5d6672;
+    /*background-color: #5d6672;*/
+    background-color: #756e29;
 }
 
 .NobelGas {
-    background-color: #276f7c;
+    /*background-color: #276f7c;*/
+    background-color: #e10098;
 }
 
 .Halogen {
-    background-color: #277e8e;
+    /*background-color: #277e8e;*/
+    background-color: #8158b7;
 }
 
 .OtherNonMetal {
-    background-color: #277e8e;
+    /*background-color: #277e8e;*/
+    background-color: #8158b7;
 }
 
 .Metalloid {
-    background-color: #277e8e;
+    /*background-color: #277e8e;*/
+    background-color: #8158b7;
 }
 
 .NonMetal {}
