@@ -111,6 +111,7 @@ h5 {
     width: 5.2756%; /* <-------- IMPORTANT: This value is hardcoded in the JS-file, and is given to ElementBox when dragging stops!!! It prevents "beakage" of the periodic table. */
     margin: 0.14%;
     padding: 3px;
+    color: #000;
     display: inline-block;
     line-height: 1.4;
     overflow: hidden;
@@ -126,7 +127,9 @@ h5 {
 /* NOTE: 90/18 = 5%, og 5/18 = 0.27777% */
 
 .ElementBox:hover {
-    background-color: #56bfc5;
+    /*background-color: #56bfc5; */
+    background-color: #05a0a8;
+    color: #FFF;
 }
 
 .DummyElement {
@@ -404,44 +407,46 @@ h5 {
 
 .AlkaliEarthMetal {}
 
-.Metalloid {}
-
-.NobelGas {}
-
-.Halogen {}
-
 .PostTransMetal {}
 
 .TransMetal {}
 
-.OtherNonMetal {}
-
 .Metal {
-    /*background-color: #5d6672;*/
-    background-color: #756e29;
+    /*background-color: #5d6672;*/  /* version 1 */
+    /*background-color: #756e29;*/  /* version 2 */
+    background-color: #b5f8d5;      /* version 3 */
 }
 
 .NobelGas {
-    /*background-color: #276f7c;*/
-    background-color: #e10098;
+    /*background-color: #276f7c;*/  /* version 1 */
+    /*background-color: #e10098;*/  /* version 2 */
+    background-color: #64e2dc;      /* version 3 */
 }
 
 .Halogen {
-    /*background-color: #277e8e;*/
-    background-color: #8158b7;
+    /*background-color: #277e8e;*/  /* version 1 */
+    /*background-color: #8158b7;*/  /* version 2 */
+    background-color: #f9f206;      /* version 3 */
 }
 
 .OtherNonMetal {
-    /*background-color: #277e8e;*/
-    background-color: #8158b7;
+    /*background-color: #277e8e;*/  /* version 1 */
+    /*background-color: #8158b7;*/  /* version 2 */
+    background-color: #f9f206;      /* version 3 */
 }
 
 .Metalloid {
-    /*background-color: #277e8e;*/
-    background-color: #8158b7;
+    /*background-color: #277e8e;*/  /* version 1 */
+    /*background-color: #8158b7;*/  /* version 2 */
+    background-color: #f9f206;      /* version 3 */
 }
 
 .NonMetal {}
+
+
+.ElementSpace .AtomSymbol{
+    text-align: center;
+}
 
 
 /*background-color: #3399CC;*/
