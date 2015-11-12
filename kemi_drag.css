@@ -131,6 +131,7 @@ h5 {
     /*background-color: #56bfc5; */
     background-color: #05a0a8;
     color: #FFF;
+    border-color: transparent;
 }
 
 .DummyElement {
@@ -326,7 +327,8 @@ h5 {
 }
 
 .DragNum:hover {
-    background-color: #56bfc5;
+    background-color: #05a0a8;
+    border-color: transparent;
 }
 
 .IndexNum {}
