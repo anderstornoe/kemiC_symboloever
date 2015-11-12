@@ -1879,6 +1879,16 @@ $(document).ready(function() { // CapitalI
                     // $(".AtomNum, .AtomName, .AtomWeight", this).show();
                     // $(".AtomSymbol", this).css("font-size", "160%");
                 }
+
+                console.log("XBUG - width: " + $(this).width() + ", Margin: " + String(parseInt($(this).outerWidth(true)) - parseInt($(this).outerWidth())));
+                console.log("XBUG - Margin: " + String(parseInt($(this).outerWidth(true)) - parseInt($(this).outerWidth())));
+                console.log("XBUG - outerWidth(true): " + String(parseInt($(this).outerWidth(true))) + ", raw: " + $(this).outerWidth(true));
+                console.log("XBUG - outerWidth(): " + String(parseInt($(this).outerWidth())) + ", raw: " + $(this).outerWidth());
+                console.log("XBUG - parent(): " + $(this).parent().width());
+                
+                $(this).css({  // Reset "width" to avoid that the periodic table "breaks". THIS WORKS!!! Added by THAN 11-11-2015.
+                    width: "5.2756%"
+                }); 
             }
 
             //==================================================================

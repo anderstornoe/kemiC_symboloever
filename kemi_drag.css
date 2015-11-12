@@ -108,7 +108,7 @@ h5 {
 .ElementBox {
     position: relative;
     font-size: 11px;
-    width: 5.2756%;
+    width: 5.2756%; /* <-------- IMPORTANT: This value is hardcoded in the JS-file, and is given to ElementBox when dragging stops!!! It prevents "beakage" of the periodic table. */
     margin: 0.14%;
     padding: 3px;
     display: inline-block;
