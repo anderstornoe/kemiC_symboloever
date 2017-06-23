@@ -69,8 +69,7 @@ var JsonObj_Questions = [
             "AtomSym": "Cl",
             "Index": 2
         }]
-    }, 
-    {
+    }, {
         "MolSym": "Br<sub>2</sub>",
         "TName": "Dibrom",
         "Principle": [1, 3],
@@ -794,48 +793,48 @@ function ReturnMolecule(JsonObj_Questions, ResultObj) {
 
 
 function ReturnChemicalStructureComposition(JsonObj_PeriodicTable, MoleculeObj) { // ReturnChemicalStructureComposition
-        var MObj = MoleculeObj;
-        var HTML = "";
-        console.log("ReturnChemicalStructureComposition - MObj.Mol: " + JSON.stringify(MObj.Mol));
-        var MolLength = MObj.Mol.length;
-        var Count = 1;
-        for (var Key1 in MObj.Mol) { // Molecule Array
-            console.log("ReturnChemicalStructureComposition - MObj.Mol[" + Key1 + "]: " + JSON.stringify(MObj.Mol[Key1]));
-            // for (var Key2 in MObj.Mol[Key1]){ // Molecule sub object
-            var AtomName = ReturnElementInfo(JsonObj_PeriodicTable, "sym", MObj.Mol[Key1]["AtomSym"], "name");
-            HTML += MObj.Mol[Key1]["Index"] + " " + AtomName.toLowerCase() + "atom" + ((MObj.Mol[Key1]["Index"] == 1) ? "" : "er") + ((Count < MolLength - 1) ? ", " : +(Count == MolLength - 1) ? " og " : "");
-            // }
-            ++Count;
-        }
-        console.log("ReturnChemicalStructureComposition - HTML: " + HTML);
-
-        return HTML;
+    var MObj = MoleculeObj;
+    var HTML = "";
+    console.log("ReturnChemicalStructureComposition - MObj.Mol: " + JSON.stringify(MObj.Mol));
+    var MolLength = MObj.Mol.length;
+    var Count = 1;
+    for (var Key1 in MObj.Mol) { // Molecule Array
+        console.log("ReturnChemicalStructureComposition - MObj.Mol[" + Key1 + "]: " + JSON.stringify(MObj.Mol[Key1]));
+        // for (var Key2 in MObj.Mol[Key1]){ // Molecule sub object
+        var AtomName = ReturnElementInfo(JsonObj_PeriodicTable, "sym", MObj.Mol[Key1]["AtomSym"], "name");
+        HTML += MObj.Mol[Key1]["Index"] + " " + AtomName.toLowerCase() + "atom" + ((MObj.Mol[Key1]["Index"] == 1) ? "" : "er") + ((Count < MolLength - 1) ? ", " : +(Count == MolLength - 1) ? " og " : "");
+        // }
+        ++Count;
     }
-    // console.log( "ReturnChemicalStructureComposition - TEST: " + ReturnChemicalStructureComposition(JsonObj_PeriodicTable, {"MolSym": "H<sub>2</sub>CO<sub>3</sub>",   "TName": "Dihydrogencarbonat (kulsyre)",    "Principle": [2], "Mol": [{"AtomSym": "H", "Index": 2},{"AtomSym": "C", "Index": 1}, {"AtomSym": "O", "Index": 3}] } ) );
+    console.log("ReturnChemicalStructureComposition - HTML: " + HTML);
+
+    return HTML;
+}
+// console.log( "ReturnChemicalStructureComposition - TEST: " + ReturnChemicalStructureComposition(JsonObj_PeriodicTable, {"MolSym": "H<sub>2</sub>CO<sub>3</sub>",   "TName": "Dihydrogencarbonat (kulsyre)",    "Principle": [2], "Mol": [{"AtomSym": "H", "Index": 2},{"AtomSym": "C", "Index": 1}, {"AtomSym": "O", "Index": 3}] } ) );
 
 
 
 function ReturnChemicalIonComposition(JsonObj_PeriodicTable, MoleculeObj) {
-        var MObj = MoleculeObj;
-        var HTML = "";
-        console.log("ReturnChemicalIonComposition - MObj.Mol: " + JSON.stringify(MObj.Mol));
-        var MolLength = MObj.Mol.length;
-        var Count = 1;
-        var ChargeComp = "";
-        for (var Key1 in MObj.Mol) { // Molecule Array
-            console.log("ReturnChemicalIonComposition - MObj.Mol[" + Key1 + "]: " + JSON.stringify(MObj.Mol[Key1]));
-            console.log('ReturnChemicalIonComposition - hasOwnProperty("Index"): ' + MObj.Mol[Key1].hasOwnProperty("Index"));
-            var AtomName = ReturnElementInfo(JsonObj_PeriodicTable, "sym", MObj.Mol[Key1]["AtomSym"], "name");
-            if (MObj.Mol[Key1].hasOwnProperty("Charge")) ChargeComp = " med ladningen " + ((MObj.Mol[Key1]["Charge"].indexOf("+") !== -1) ? "+" : "-") + MObj.Mol[Key1]["Charge"].replace("+", "").replace("-", "");
-            HTML += ((MObj.Mol[Key1].hasOwnProperty("Index")) ? MObj.Mol[Key1]["Index"] : "1") + " " + AtomName.toLowerCase() + "atom" + ((MObj.Mol[Key1]["Index"] > 1) ? "er" : "") + ChargeComp + ((Count < MolLength - 1) ? ", " : +(Count == MolLength - 1) ? ", " : "");
-            ++Count;
-        }
-        console.log("ReturnChemicalIonComposition - HTML: " + HTML);
-
-        return HTML;
+    var MObj = MoleculeObj;
+    var HTML = "";
+    console.log("ReturnChemicalIonComposition - MObj.Mol: " + JSON.stringify(MObj.Mol));
+    var MolLength = MObj.Mol.length;
+    var Count = 1;
+    var ChargeComp = "";
+    for (var Key1 in MObj.Mol) { // Molecule Array
+        console.log("ReturnChemicalIonComposition - MObj.Mol[" + Key1 + "]: " + JSON.stringify(MObj.Mol[Key1]));
+        console.log('ReturnChemicalIonComposition - hasOwnProperty("Index"): ' + MObj.Mol[Key1].hasOwnProperty("Index"));
+        var AtomName = ReturnElementInfo(JsonObj_PeriodicTable, "sym", MObj.Mol[Key1]["AtomSym"], "name");
+        if (MObj.Mol[Key1].hasOwnProperty("Charge")) ChargeComp = " med ladningen " + ((MObj.Mol[Key1]["Charge"].indexOf("+") !== -1) ? "+" : "-") + MObj.Mol[Key1]["Charge"].replace("+", "").replace("-", "");
+        HTML += ((MObj.Mol[Key1].hasOwnProperty("Index")) ? MObj.Mol[Key1]["Index"] : "1") + " " + AtomName.toLowerCase() + "atom" + ((MObj.Mol[Key1]["Index"] > 1) ? "er" : "") + ChargeComp + ((Count < MolLength - 1) ? ", " : +(Count == MolLength - 1) ? ", " : "");
+        ++Count;
     }
-    // console.log( "ReturnChemicalIonComposition - TEST: " + ReturnChemicalIonComposition( JsonObj_PeriodicTable, {"MolSym": "Fe<sup>3+</sup>",  "TName": "jern(&#73;&#73;&#73;)ion", "Principle": [4], "Mol": [{"AtomSym": "Fe", "Index": 1, "Charge": "3+"}] } ) );
-    // console.log( "ReturnChemicalIonComposition - TEST: " + ReturnChemicalIonComposition( JsonObj_PeriodicTable, {"MolSym": "NH<sub>4</sub><sup>+</sup>",  "TName": "Amoniumion",    "Principle": [5], "Mol": [{"AtomSym": "N", "Index": 1},{"AtomSym": "H",  "Index": 4, "Charge": "1+"}] } ) );
+    console.log("ReturnChemicalIonComposition - HTML: " + HTML);
+
+    return HTML;
+}
+// console.log( "ReturnChemicalIonComposition - TEST: " + ReturnChemicalIonComposition( JsonObj_PeriodicTable, {"MolSym": "Fe<sup>3+</sup>",  "TName": "jern(&#73;&#73;&#73;)ion", "Principle": [4], "Mol": [{"AtomSym": "Fe", "Index": 1, "Charge": "3+"}] } ) );
+// console.log( "ReturnChemicalIonComposition - TEST: " + ReturnChemicalIonComposition( JsonObj_PeriodicTable, {"MolSym": "NH<sub>4</sub><sup>+</sup>",  "TName": "Amoniumion",    "Principle": [5], "Mol": [{"AtomSym": "N", "Index": 1},{"AtomSym": "H",  "Index": 4, "Charge": "1+"}] } ) );
 
 
 
@@ -984,7 +983,7 @@ function PrincipleRepeat(JOQ, PrincipleArray, Qcount, ShowObj) {
 function GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum) {
     var PrincipleArray;
     var TPrincipleArray;
-    var ArrayLength;   // <---- MOVED TO GLOBAL SCOPE 26/8-2015
+    var ArrayLength; // <---- MOVED TO GLOBAL SCOPE 26/8-2015
     var JOQ = JsonObj_Questions; // JsonObj_Questions[ArrayIndexNum][KeyName];
     var HTML = "";
     var Qcount = 0;
@@ -1007,7 +1006,7 @@ function GiveQuestion(JsonObj_Questions, QuestionObj, PrincipleNum) {
 
     ResultObj.Qcount = Qcount;
     ResultObj.PrincipleArray = TPrincipleArray;
-    if (Qcount <= MaxNumOfElements - 1)  // Because IE ver 9 breaks when the last answer is given.
+    if (Qcount <= MaxNumOfElements - 1) // Because IE ver 9 breaks when the last answer is given.
         PrincipleRepeat(JOQ, TPrincipleArray, Qcount, ShowObj);
 
     console.log("GiveQuestion - Qcount 1:" + Qcount + "");
@@ -1147,7 +1146,7 @@ function ShowStudentScore_OLD(Use_UserMsgBox) {
     HTML += '</div>';
     HTML += '</div>';
 
-    if (Use_UserMsgBox){
+    if (Use_UserMsgBox) {
         UserMsgBox("body", "Du klarede det med " + TotResultObj.TotFail + " fejl Se resultaterne her <br/>" + HTML);
         UserMsgBox_SetWidth();
     } else
@@ -1167,7 +1166,7 @@ function ShowStudentScore_OLD(Use_UserMsgBox) {
 function ShowStudentScore(Use_UserMsgBox) {
     var HTML = '';
 
-    if (Use_UserMsgBox){
+    if (Use_UserMsgBox) {
         UserMsgBox("body", "<span class='feedbackbox_txtstyle_overskrift'>Flot</span><br/>Du har lavet " + MaxNumOfElements + " opgaver korrekt. <br/> Du havde " + TotResultObj.NewTotFail + ' fejl undervejs. <br/><br/>Klik på "Prøv igen" knappen for at løse ' + MaxNumOfElements + ' nye opgaver.');
         UserMsgBox_SetWidth();
     } else
@@ -1188,9 +1187,9 @@ function ShowStudentScore(Use_UserMsgBox) {
 
 
 // QUICK AN DIRTY FIX - TLY ønsker 70% bredde på UserMsgBox ift container-fluid - THAN d. 23-09-2015
-function UserMsgBox_SetWidth(){
+function UserMsgBox_SetWidth() {
     var Width = $(".container-fluid").width();
-    $("#UserMsgBox").width(0.7*Width);
+    $("#UserMsgBox").width(0.7 * Width);
 }
 
 
@@ -1226,7 +1225,7 @@ function GivePosetiveFeedback(JsonObj_Questions, ResultObj) {
 
     console.log("GivePosetiveFeedback - Current question:" + ResultObj.PrincipleArray[ResultObj.Qcount]);
 
-    if ( (ResultObj.Correct == ReturnNumOfCorrectAnswers(JsonObj_Questions, ResultObj)) && ($( ".MoleculeHtmlStr" ).length == 0) ) {  // $( ".MoleculeHtmlStr" ).length == 0 prevents "correct-feedback" from running more than once.
+    if ((ResultObj.Correct == ReturnNumOfCorrectAnswers(JsonObj_Questions, ResultObj)) && ($(".MoleculeHtmlStr").length == 0)) { // $( ".MoleculeHtmlStr" ).length == 0 prevents "correct-feedback" from running more than once.
 
         $(".QustionActionText").fadeOut("slow");
 
@@ -1282,7 +1281,7 @@ function GivePosetiveFeedback(JsonObj_Questions, ResultObj) {
 
         console.log("IndexNumValue: " + typeof($(".Index_OK").text()));
 
-        $(".QuizHeadingTextCount").text(String(ResultObj.Qcount + 1) + "/" + String(TArrayLength));  // The "ResultObj.Qcount + 1" is a quick-fix for giving +1 to the score when student solves the task. THAN 26/8-2015.
+        $(".QuizHeadingTextCount").text(String(ResultObj.Qcount + 1) + "/" + String(TArrayLength)); // The "ResultObj.Qcount + 1" is a quick-fix for giving +1 to the score when student solves the task. THAN 26/8-2015.
     }
 }
 
@@ -1722,6 +1721,9 @@ function SetProgramPerameter(UlrVarObj) {
 
 $(document).ready(function() { // CapitalI
 
+
+
+
     ReturnAjaxData("GET", "periodisk_system.json", false, "json"); // Get the periodic-table data which is contained in JsonData.
     JsonObj_PeriodicTable = JsonData;
 
@@ -1754,16 +1756,16 @@ $(document).ready(function() { // CapitalI
     // Scale the height on all ElmentBox
     // $( ".ElementBox" ).height( 4/3*$( ".ElementBox" ).width() ); // Rektangulære boxe
     $(".ElementBox").height($(".ElementBox").width()); // Kvardratiske boxe  
-   // alert("hej");
+    // alert("hej");
     // Scale the height on all small and large boxes
     $(".lbox").height($(".lbox").width());
     // $( ".lbox" ).width( $( ".lbox" ).width() );
     // $( ".xlbox" ).height( $( ".xlbox" ).width() );
     $(".sbox").height($(".sbox").width());
-   // alert("hej");
+    // alert("hej");
     $(".DropSpacer").height($(".DropSpacer").width());
 
-    
+
 
     FontSizeScalerNew(".PeriodicTableWrapper", [".AtomSymbol", ".NumberHeading", ".ElementBox", ".DragNum", ".ScoreHeaderH3",
         ".ScoreHeader", ".ScoreNum", ".TryAgain",
@@ -1797,6 +1799,8 @@ $(document).ready(function() { // CapitalI
         ], 1425);
 
         $(".DragNum").width($(".DragNum").height());
+
+
     });
 
 
@@ -1811,7 +1815,7 @@ $(document).ready(function() { // CapitalI
     var ErrStr = "";
 
 
-    $(".ElementSpace").removeClass("draggable");  // Prevents the two draggables "ElementSpace" of moving. 
+    $(".ElementSpace").removeClass("draggable"); // Prevents the two draggables "ElementSpace" of moving. 
 
     $(".draggable").draggable({
         revert: 'invalid', // Makes the draggable revert back if does not have class "Elem_OK", "Coeff_OK", "Char_OK" or "Index_OK". 
@@ -1885,10 +1889,10 @@ $(document).ready(function() { // CapitalI
                 console.log("XBUG - outerWidth(true): " + String(parseInt($(this).outerWidth(true))) + ", raw: " + $(this).outerWidth(true));
                 console.log("XBUG - outerWidth(): " + String(parseInt($(this).outerWidth())) + ", raw: " + $(this).outerWidth());
                 console.log("XBUG - parent(): " + $(this).parent().width());
-                
-                $(this).css({  // Reset "width" to avoid that the periodic table "breaks". THIS WORKS!!! Added by THAN 11-11-2015.
+
+                $(this).css({ // Reset "width" to avoid that the periodic table "breaks". THIS WORKS!!! Added by THAN 11-11-2015.
                     width: "5.2756%"
-                }); 
+                });
             }
 
             //==================================================================
@@ -1994,8 +1998,8 @@ $(document).ready(function() { // CapitalI
             }
 
             $(this).css({
-                    top: "0px",
-                    left: "0px"
+                top: "0px",
+                left: "0px"
             }); // Reset all "top" and "left" ajustments add by JQuery-UI, in an attempt to avoid that the periodic table "breaks". 
 
             // Reset element when an unaccepted element (does not have class "Clone") returns to its position in the periodic table.
@@ -2153,10 +2157,14 @@ $(document).ready(function() { // CapitalI
             // $( this ).addClass( "DropHighlight" );
             EventObj.Index.drop = true;
 
-            EventObj.LastDroppedOn = "DropIndex"; // The class name
+            EventObj.LastDroppedOn = "DropIndex"; // The closestass name
             EventObj.LastDroppedOnParent = $(this).closest(".DropWrapper").prop("id"); // The id name
 
         }
+    });
+    $(".ElementBox").click(function() {
+        microhint($(this), "En længere klamamse om historien bag microhints og mange tilsvarende spændende ting og sager.", "red");
+
     });
 
 });
